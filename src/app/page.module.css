@@ -6,14 +6,34 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  /* display: grid;
+  grid-template-rows: 20px 1fr 20px; */
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
+  /* padding: 0px 80px; */
+  /* gap: 64px; */
   font-family: var(--font-geist-sans);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #c69e0b;
+  padding: 24px;
+  font-weight: 500;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  padding: 16px;
+  width: 250px;
+  height: 270px;
+  text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -16,12 +16,60 @@
   font-family: var(--font-geist-sans);
 }
 
+.MuiPaper-root {
+  background-color: #c69e0b;
+}
+
 .navbar {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background-color: #c69e0b;
   padding: 24px;
+  padding-bottom: 0px;
   font-weight: 500;
+  color: white;
+  position: sticky;
+    top: 0px;
+    z-index: 1000;
+}
+
+.backgroundImage {
+  background-image: url('/assets/vineyards-clipart.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  height: inherit;
+}
+
+.infoContent {
+  height: 334px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px 80px;
+}
+
+.infoContent::before {
+  content: "";
+  background-image: url('/assets/vineyards-clipart.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.content {
+  position: relative;
+  font-weight: bold;
 }
 
 .list {
@@ -32,8 +80,12 @@
 .card {
   padding: 16px;
   width: 250px;
-  height: 270px;
   text-align: center;
+}
+
+.winesSection {
+  padding-top: 20px;
+  display: flex;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,72 +1,205 @@
+'use client'
+
 import Image from "next/image";
 import styles from "./page.module.css";
 import data from "./database.json"
+import { AppBar, Button, Toolbar, IconButton, Typography, Card, CardContent, CardActions } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { amber } from '@mui/material/colors';
+import Grid from '@mui/material/Grid2';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Divider from '@mui/material/Divider';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+
+const primary = amber[500]
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      // hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {children}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const WineCard = ({ name, house, variety, year, color, country, region, price }) => {
   return (
-  <div className={styles.card}>
-    <div style={{textAlign: 'center', marginBottom: '16px'}}>
-      <Image 
-        src={'/assets/wine-clipart.png'}
-        width={37}
-        height={150}
-        alt="wine-bottle"
-      />
-    </div>
-    <p>{name}</p>
-    {/* <p>{variety}</p>
-    <p>{year}</p>
-    <p>{color}</p>
-    <p>{country}</p>
-    <p>{region}</p> */}
-    <p>${price} MXN</p>
-  </div>
+  <Card 
+  className={styles.card}
+  >
+    <CardContent>
+      <div style={{textAlign: 'center', marginBottom: '16px'}}>
+        <Image 
+          src={'/assets/wine-clipart.png'}
+          width={37}
+          height={150}
+          alt="wine-bottle"
+        />
+      </div>
+      <Typography>{name}</Typography>
+      {/* <p>{variety}</p>
+      <p>{year}</p>
+      <p>{color}</p>
+      <p>{country}</p>
+      <p>{region}</p> */}
+      <Typography>${price} MXN</Typography>
+      <Typography variant='body2'>{color} </Typography>
+      <CardActions>
+        <Button size='small'>
+          Agregar al carrito
+        </Button>
+      </CardActions>
+
+    </CardContent>
+  </Card>
   )
 }
 
+const drawerWidth = 240
+
 export default function Home() {
-  console.log(data);
+  const [value, setValue] = React.useState(0);
+  const [filterArg, setFilterArg] = React.useState("TODOS")
+  const [filteredData, setFilteredData] = React.useState(data)
+
+  const handleChange = (event, newValue) => {
+    console.log(event.target.innerText);
+    setValue(newValue);
+    setFilterArg(event.target.innerText)
+  };
+
+  React.useEffect(() => {
+    if(filterArg === "TODOS"){
+      setFilteredData(data)
+    } else if (filterArg !== "TODOS"){
+      console.log('ELSE IF');
+      const result = data.filter((el) => el.color.toUpperCase() === filterArg)
+      setFilteredData(result)
+    }
+    
+  }, [data, filterArg])
+
+  // console.log('ARG',filterArg);
+  // console.log('DATA', filteredData);
+  
+
+
   return (
     <div className={styles.page}>
-    <header style={{backgroundColor: '#c69e0b', textAlign:'center', fontSize: 32}}>
+    {/* <header style={{backgroundColor: '#c69e0b', textAlign:'center', fontSize: 32}}>
       Tirando Vino
-    </header>
+    </header> */}
+    <AppBar position="static" style={{backgroundColor: '#c69e0b'}}>
+      <Toolbar variant="dense">
+        
+        <Typography variant="h6" color="inherit" component="div" >
+          Logo Tirando Vino
+        </Typography>
+        <div style={{flexGrow: 1, marginLeft: '32px'}}>
+          <IconButton edge="start" color="inherit" aria-label="menu" >
+            <InstagramIcon />
+          </IconButton>
+          <IconButton edge="start" color="inherit" aria-label="menu" >
+            <FacebookIcon />
+          </IconButton>
+          <IconButton edge="start" color="inherit" aria-label="menu" >
+            <AlternateEmailIcon />
+          </IconButton>
+        </div>
+        <ShoppingCartIcon />
+      </Toolbar>
+    </AppBar>
+   
         <main>
-        <div className={styles.navbar}>
-              <p>Tintos</p>
-              <p>Blancos</p>
-              <p>Espumosos</p>
-              <p>Rosados</p>
-              <p>Por País</p>
-              <p>Por Marca</p>
-              <p></p>
-            </div>
-          <article style={{padding: '0 px 80px'}}>
-            <p>
-              ¿Quienes somos?
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
+       
+          <article className={styles.infoContent}>
+              <p className={styles.content}>
+                ¿Quienes somos?
+              </p>
+              <p className={styles.content}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+              </p>
           </article>
-          <br />
-          <article style={{padding: '0px 80px'}}>
-            <section>
-              <div className={styles.list}>
-                {data.map((el, index) => (
-                  <WineCard
-                    key={index} 
-                    name={el.name}
-                    house={el.house}
-                    variety={el.variety}
-                    year={el.year}
-                    color={el.color}
-                    country={el.country}
-                    region={el.region}
-                    price={el.price}
-                  />
-                ))}
-              </div>
+          <div className={styles.navbar}>
+              <Typography align='center' color='black' variant='h6'>Explora nuestros vinos</Typography>
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
+                <Tab label="Todos" {...a11yProps(0)} />
+                <Tab label="Blanco" {...a11yProps(1)} />
+                <Tab label="Rosado" {...a11yProps(2)} />
+                <Tab label="Tinto" {...a11yProps(3)} />
+                <Tab label="Naranja" {...a11yProps(4)} />
+              </Tabs>
+        </div>
+          <article style={{padding: '0px 50px'}}>
+           
+            <section className={styles.winesSection}>
+            <Grid container >
+              <Grid size={2.5} style={{paddingRight: '24px'}}>
+                <Typography>País</Typography>
+                <FormGroup>
+                  <FormControlLabel control={<Checkbox  />} label="México" />
+                  <FormControlLabel  control={<Checkbox />} label="España" />
+                </FormGroup>
+                <Divider />
+                <Typography>Bodega</Typography>
+                <FormGroup>
+                  <FormControlLabel control={<Checkbox  />} label="Bruma" />
+                  <FormControlLabel  control={<Checkbox />} label="Burbujas Pop" />
+                  <FormControlLabel  control={<Checkbox />} label="Carrodilla" />
+                  <FormControlLabel  control={<Checkbox />} label="Casa Anza" />
+                  <FormControlLabel  control={<Checkbox />} label="Cerca Blanca" />
+                  <FormControlLabel  control={<Checkbox />} label="Finca Tre" />
+                  <FormControlLabel  control={<Checkbox />} label="Lechuza" />
+                  <FormControlLabel  control={<Checkbox />} label="Lomita" />
+                  <FormControlLabel  control={<Checkbox />} label="Misiones de California" />
+                  <FormControlLabel  control={<Checkbox />} label="Vinim" />
+                </FormGroup>
+                <Divider />
+              </Grid>
+              <Grid size={9.5}>
+                <CustomTabPanel value={value} index={0}>
+                  <Grid container spacing={2}>
+                      {filteredData.map((el, index) => (
+                        <Grid key={index} >
+                          <WineCard
+                            name={el.name}
+                            house={el.house}
+                            variety={el.variety}
+                            year={el.year}
+                            color={el.color}
+                            country={el.country}
+                            region={el.region}
+                            price={el.price}
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                </CustomTabPanel>
+              </Grid>
+            </Grid>
             </section>
           </article>
         </main>

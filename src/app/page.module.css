@@ -22,11 +22,16 @@
 
 .navbar {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background-color: #c69e0b;
   padding: 24px;
+  padding-bottom: 0px;
   font-weight: 500;
-  color: white
+  color: white;
+  position: sticky;
+    top: 0px;
+    z-index: 1000;
 }
 
 .backgroundImage {
@@ -76,6 +81,11 @@
   padding: 16px;
   width: 250px;
   text-align: center;
+}
+
+.winesSection {
+  padding-top: 20px;
+  display: flex;
 }
 
 @media (prefers-color-scheme: dark) {

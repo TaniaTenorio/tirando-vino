@@ -1,18 +1,9 @@
-import { Geist, Geist_Mono, Shadows_Into_Light } from "next/font/google";
+import { Shadows_Into_Light } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import theme from '@/theme';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const shadowsIntoLight = Shadows_Into_Light({
   variable: "--font-shadows-into-light",
@@ -29,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${shadowsIntoLight.variable}`}>
+      <body className={`${shadowsIntoLight.variable}`}>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           {children}

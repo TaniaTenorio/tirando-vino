@@ -20,13 +20,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${shadowsIntoLight.variable}`}>
       <AppRouterCacheProvider>
+      <body className={`${shadowsIntoLight.variable}`}>
         <ThemeProvider theme={theme}>
           {children}
         </ThemeProvider>
-      </AppRouterCacheProvider>
       </body>
+      </AppRouterCacheProvider>
     </html>
   );
 }

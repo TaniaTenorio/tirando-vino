@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 const shadowsIntoLight = Shadows_Into_Light({
   variable: "--font-shadows-into-light",
   weight: "400",
-  subsets: ["latin"]
+  subsets: ["latin"],
+  display: "swap"
 })
 
 export const metadata = {

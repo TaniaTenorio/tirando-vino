@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${ShadowsIntoLight.variable}`}>
+      <body className={`${shadowsIntoLight.variable}`}>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           {children}

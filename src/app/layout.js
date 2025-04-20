@@ -21,11 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <AppRouterCacheProvider>
-      <body className={`${shadowsIntoLight.variable}`}>
         <ThemeProvider theme={theme}>
+          <body className={`${shadowsIntoLight.variable}`}>
           {children}
+          </body>
         </ThemeProvider>
-      </body>
       </AppRouterCacheProvider>
     </html>
   );

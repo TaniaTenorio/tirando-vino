@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import data from "./database.json"
-import { AppBar, Button, Toolbar, IconButton, Typography, Card, CardContent, CardActions } from '@mui/material';
+import { AppBar, Button, Toolbar, IconButton, Typography, Card, CardContent, CardActions, createTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { amber } from '@mui/material/colors';
 import Grid from '@mui/material/Grid2';
@@ -19,6 +19,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+
 
 const primary = amber[500]
 
@@ -108,6 +109,7 @@ export default function Home() {
 
 
   return (
+
     <div className={styles.page}>
     {/* <header style={{backgroundColor: '#c69e0b', textAlign:'center', fontSize: 32}}>
       Tirando Vino
@@ -136,12 +138,39 @@ export default function Home() {
         <main>
        
           <article className={styles.infoContent}>
-              <p className={styles.content}>
+              <h2 className={styles.header}>
                 ¿Quienes somos?
-              </p>
-              <p className={styles.content}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-              </p>
+              </h2>
+              <div className={styles.content}>
+                <p>
+                Tirando Vino nace entre risas, copas de vino y una historia de
+                amor. Para nosotros, el vino no es sólo una bebida; es un medio
+                a través del cual se generan complicidades y vínculos.
+                </p>
+                <p>No necesitamos grandes cosas para crear recuerdos
+                  inolvidables. Una sola copa, un brindis sincero o un día de
+                  celebración pueden quedarse grabados en el corazón para
+                  siempre. Sólo se necesita una cosa: arriesgarse a vivir
+                  intensamente.
+                </p>
+                <p>
+                  Para algunos, los viñedos mexicanos parecen una joya oculta,
+                  pero en nuestro país existe una gran riqueza, donde la
+                  tradición se entrelaza con la innovación y la creatividad para
+                  producir grandes vinos. Por ello, nuestra misión es representar
+                  orgullosamente a las bodegas de México más destacadas.
+                </p>
+                <p>
+                  En Tirando Vino vivimos cada día al límite, con pasión e
+                  intensidad, exprimiendo hasta la última gota de emoción,
+                  botella a botella.
+                </p>
+                <p>
+                  ¡Déjanos sorprenderte con el sabor espectacular e inesperado
+                  que tenemos para ti!
+                </p>
+              </div>
+             
           </article>
           <div className={styles.navbar}>
               <Typography align='center' color='black' variant='h6'>Explora nuestros vinos</Typography>

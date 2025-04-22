@@ -3,32 +3,18 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import data from "./database.json";
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  IconButton,
-  Typography,
-  Card,
-  CardContent,
-  CardActions,
-  Container,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Typography } from "@mui/material";
 import { amber } from "@mui/material/colors";
 import Grid from "@mui/material/Grid2";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Divider from "@mui/material/Divider";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import Header from './components/Header';
+import WineCard from './components/WineCard';
 
 const primary = amber[500];
 
@@ -55,42 +41,7 @@ function a11yProps(index) {
   };
 }
 
-const WineCard = ({
-  name,
-  house,
-  variety,
-  year,
-  color,
-  country,
-  region,
-  price,
-}) => {
-  return (
-    <Card className={styles.card}>
-      <CardContent>
-        <div style={{ textAlign: "center", marginBottom: "16px" }}>
-          <Image
-            src={"/assets/wine-clipart.png"}
-            width={37}
-            height={150}
-            alt="wine-bottle"
-          />
-        </div>
-        <Typography>{name}</Typography>
-        {/* <p>{variety}</p>
-      <p>{year}</p>
-      <p>{color}</p>
-      <p>{country}</p>
-      <p>{region}</p> */}
-        <Typography>${price} MXN</Typography>
-        <Typography variant="body2">{color} </Typography>
-        <CardActions>
-          <Button size="small">Agregar al carrito</Button>
-        </CardActions>
-      </CardContent>
-    </Card>
-  );
-};
+
 
 const drawerWidth = 240;
 
@@ -120,43 +71,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      {/* <header style={{backgroundColor: '#c69e0b', textAlign:'center', fontSize: 32}}>
-      Tirando Vino
-    </header> */}
-      <AppBar position="static" style={{ backgroundColor: "#c1bdbd" }}>
-        <Container maxwidth="xl">
-          <Toolbar variant="dense">
-            <Image src={"/assets/logo.png"} width={64} height={64} alt="logo" />
-            <div style={{ flexGrow: 1, marginLeft: "32px", color: "#c69e0b" }}>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                size="large"
-              >
-                <InstagramIcon />
-              </IconButton>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                size="large"
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                size="large"
-              >
-                <AlternateEmailIcon />
-              </IconButton>
-            </div>
-            <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <Header />
 
       <main>
         <article className={styles.infoContent}>
@@ -208,8 +123,8 @@ export default function Home() {
             <Tab label="Naranja" {...a11yProps(4)} />
           </Tabs>
         </div>
-        <article style={{ padding: "0px 50px" }}>
-          <section className={styles.winesSection}>
+        <article className={styles.winesSection}>
+          <section className={styles.winesList}>
             <Grid container>
               <Grid size={2.5} style={{ paddingRight: "24px" }}>
                 <Typography>País</Typography>

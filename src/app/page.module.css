@@ -17,7 +17,7 @@
 }
 
 .MuiPaper-root {
-  background-color: #c69e0b;
+  background-color: #c1bdbd;
 }
 
 .navbar {
@@ -25,18 +25,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #c69e0b;
+  background-color: #c1bdbd;
   padding: 24px;
   padding-bottom: 0px;
   font-weight: 500;
-  color: white;
+  color: #c69e0b;
   position: sticky;
-    top: 0px;
-    z-index: 1000;
+  top: 0px;
+  z-index: 1000;
 }
 
 .backgroundImage {
-  background-image: url('/assets/vineyards-clipart.jpg');
+  background-image: url("/assets/back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -56,7 +56,7 @@
 
 .infoContent::before {
   content: "";
-  background-image: url('/assets/vineyards-clipart.jpg');
+  background-image: url("/assets/back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -70,6 +70,7 @@
 
 .header {
   font-weight: bold;
+  color: #000;
 }
 
 .content {

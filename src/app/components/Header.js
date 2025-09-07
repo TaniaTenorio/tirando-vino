@@ -1,50 +1,103 @@
-import { AppBar, Container, Toolbar, IconButton } from "@mui/material";
+import React from "react";
+import {
+  AppBar,
+  Container,
+  Toolbar,
+  IconButton,
+  Drawer,
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  Badge,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import CartDrawer from "./CartDrawer";
+import { styled } from "@mui/material/styles";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Header = () => {
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `1px solid black`,
+    padding: "0 2px",
+  },
+}));
+
+const Header = ({ cartList }) => {
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  console.log("cartList", cartList);
+
   return (
-    <AppBar position="static" style={{ backgroundColor: "#c1bdbd" }}>
-      <Container maxwidth="xl">
-        <Toolbar variant="dense">
-          <Image src={"/assets/logo.png"} width={64} height={64} alt="logo" />
-          <div style={{ flexGrow: 1, marginLeft: "32px", color: "#c69e0b" }}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              size="large"
-            >
-              <InstagramIcon />
+    <>
+      <AppBar position="fixed" style={{ backgroundColor: "#c1bdbd" }}>
+        <Container maxwidth="xl">
+          <Toolbar variant="dense">
+            <Image src={"/assets/logo.png"} width={64} height={64} alt="logo" />
+            <div style={{ flexGrow: 1, marginLeft: "32px", color: "#c69e0b" }}>
+              {/* <Image
+                src={"/assets/logo.png"}
+                width={64}
+                height={64}
+                alt="logo"
+              /> */}
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                size="large"
+              >
+                <InstagramIcon />
+              </IconButton>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                size="large"
+              >
+                <FacebookIcon />
+              </IconButton>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                size="large"
+              >
+                <AlternateEmailIcon />
+              </IconButton>
+            </div>
+
+            <IconButton onClick={toggleDrawer(true)}>
+              <Badge badgeContent={cartList.length} color="primary" showZero>
+                <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
+              </Badge>
             </IconButton>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              size="large"
-            >
-              <FacebookIcon />
-            </IconButton>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              size="large"
-            >
-              <AlternateEmailIcon />
-            </IconButton>
-          </div>
-          <IconButton onClick={() => router.push("/checkout")}>
-            <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
-          </IconButton>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
+        anchor="right"
+        style={{ overflow: "hidden" }}
+      >
+        <CartDrawer list={cartList} closeDrawer={toggleDrawer(false)} />
+      </Drawer>
+    </>
   );
 };
 

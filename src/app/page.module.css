@@ -8,6 +8,7 @@
   align-items: center;
   justify-items: center;
   min-height: 100svh;
+  width: 100%
 }
 
 .MuiPaper-root {
@@ -35,7 +36,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 24px 48px;
+  padding: 64px 48px 24px 48px;
 }
 
 .infoContent::before {
@@ -83,7 +84,6 @@
 
 .winesList {
   padding-top: 20px;
-  display: flex;
 }
 
 @media (prefers-color-scheme: dark) {

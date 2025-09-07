@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import data from "./database.json";
-import { Typography } from "@mui/material";
+import { Typography, Snackbar, Alert } from "@mui/material";
 import { amber } from "@mui/material/colors";
 import Grid from "@mui/material/Grid2";
 import Tabs from "@mui/material/Tabs";
@@ -13,11 +13,16 @@ import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Divider from "@mui/material/Divider";
-import Header from './components/Header';
-import WineCard from './components/WineCard';
-
+import Header from "./components/Header";
+import WineCard from "./components/WineCard";
+import Hero from "./components/Hero";
 
 const primary = amber[500];
+
+const countries = [
+  { name: "mexico", label: "México" },
+  { name: "españa", label: "España" },
+];
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,19 +47,38 @@ function a11yProps(index) {
   };
 }
 
-
-
 const drawerWidth = 240;
 
 export default function Home() {
   const [value, setValue] = React.useState(0);
   const [filterArg, setFilterArg] = React.useState("TODOS");
   const [filteredData, setFilteredData] = React.useState(data);
+  const [cart, setCart] = React.useState([]);
+  const [openSnackBar, setOpenSnackBar] = React.useState(false);
+
+  const [checkBoxState, setCheckBoxState] = React.useState({
+    mexico: false,
+    españa: false,
+  });
 
   const handleChange = (event, newValue) => {
-    console.log(event.target.innerText);
     setValue(newValue);
     setFilterArg(event.target.innerText);
+  };
+
+  const handleCheckChange = (event) => {
+    setCheckBoxState({
+      ...checkBoxState,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
   };
 
   React.useEffect(() => {
@@ -67,46 +91,32 @@ export default function Home() {
     }
   }, [data, filterArg]);
 
+  // React.useEffect(() => {
+  //   if (checkBoxState.mexico) {
+  //     console.log("mexico true");
+  //     const result = filteredData.filter((el) => el.country === "México");
+  //     setFilteredData(result);
+  //   } else if (checkBoxState.españa) {
+  //     const result = filteredData.filter((el) => el.country === "España");
+  //     setFilteredData(result);
+  //   }
+  // }, [filteredData]);
+
+  console.log("checkboxState", checkBoxState);
+
   // console.log('ARG',filterArg);
   // console.log('DATA', filteredData);
 
+  const onCartButtonPressed = (newItem) => {
+    setCart((prevItems) => [...prevItems, newItem]);
+    setOpenSnackBar(true);
+    console.log(newItem);
+  };
   return (
     <div className={styles.page}>
-      <Header />
-
-      <main>
-        <article className={styles.infoContent}>
-          <h2 className={styles.header}>¿Quienes somos?</h2>
-          <div className={styles.content}>
-            <p>
-              Tirando Vino nace entre risas, copas de vino y una historia de
-              amor. Para nosotros, el vino no es sólo una bebida; es un medio a
-              través del cual se generan complicidades y vínculos.
-            </p>
-            <p>
-              No necesitamos grandes cosas para crear recuerdos inolvidables.
-              Una sola copa, un brindis sincero o un día de celebración pueden
-              quedarse grabados en el corazón para siempre. Sólo se necesita una
-              cosa: arriesgarse a vivir intensamente.
-            </p>
-            <p>
-              Para algunos, los viñedos mexicanos parecen una joya oculta, pero
-              en nuestro país existe una gran riqueza, donde la tradición se
-              entrelaza con la innovación y la creatividad para producir grandes
-              vinos. Por ello, nuestra misión es representar orgullosamente a
-              las bodegas de México más destacadas.
-            </p>
-            <p>
-              En Tirando Vino vivimos cada día al límite, con pasión e
-              intensidad, exprimiendo hasta la última gota de emoción, botella a
-              botella.
-            </p>
-            <p>
-              ¡Déjanos sorprenderte con el sabor espectacular e inesperado que
-              tenemos para ti!
-            </p>
-          </div>
-        </article>
+      <Header cartList={cart} />
+      <Hero />
+      <main style={{ width: "100%" }}>
         <div className={styles.navbar}>
           <Typography align="center" color="black" variant="h6">
             Explora nuestros vinos
@@ -130,8 +140,19 @@ export default function Home() {
               <Grid size={2.5} style={{ paddingRight: "24px" }}>
                 <Typography>País</Typography>
                 <FormGroup>
-                  <FormControlLabel control={<Checkbox />} label="México" />
-                  <FormControlLabel control={<Checkbox />} label="España" />
+                  {countries.map((country) => (
+                    <FormControlLabel
+                      key={country.name}
+                      control={
+                        <Checkbox
+                          checked={checkBoxState[country.name]}
+                          onChange={handleCheckChange}
+                          name={country.name}
+                        />
+                      }
+                      label={country.label}
+                    />
+                  ))}
                 </FormGroup>
                 <Divider />
                 <Typography>Bodega</Typography>
@@ -160,7 +181,11 @@ export default function Home() {
               </Grid>
               <Grid size={9.5}>
                 <CustomTabPanel value={value} index={0}>
-                  <Grid container spacing={2}>
+                  <Grid
+                    container
+                    spacing={2}
+                    style={{ justifyContent: "center" }}
+                  >
                     {filteredData.map((el, index) => (
                       <Grid key={index}>
                         <WineCard
@@ -172,6 +197,8 @@ export default function Home() {
                           country={el.country}
                           region={el.region}
                           price={el.price}
+                          imageSrc={el.imageURL}
+                          handleCartButton={onCartButtonPressed}
                         />
                       </Grid>
                     ))}
@@ -183,6 +210,24 @@ export default function Home() {
         </article>
       </main>
       <footer>Contáctanos</footer>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{
+          horizontal: "center",
+          vertical: "top",
+        }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Haz agregado un producto a tu carrito
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -8,7 +8,7 @@
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  width: 100%
+  width: 100%;
 }
 
 .MuiPaper-root {
@@ -79,7 +79,7 @@
 }
 
 .winesSection {
-  padding: 0px 50px
+  padding: 0px 50px;
 }
 
 .winesList {

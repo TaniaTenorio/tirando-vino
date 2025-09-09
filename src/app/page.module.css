@@ -5,19 +5,14 @@
 
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
-
-  /* display: grid;
-  grid-template-rows: 20px 1fr 20px; */
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  /* padding: 0px 80px; */
-  /* gap: 64px; */
-  /* font-family: var(--font-geist-sans); */
+  width: 100%;
 }
 
 .MuiPaper-root {
-  background-color: #c69e0b;
+  background-color: #c1bdbd;
 }
 
 .navbar {
@@ -25,38 +20,28 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #c69e0b;
+  background-color: #c1bdbd;
   padding: 24px;
   padding-bottom: 0px;
   font-weight: 500;
-  color: white;
+  color: #c69e0b;
   position: sticky;
-    top: 0px;
-    z-index: 1000;
-}
-
-.backgroundImage {
-  background-image: url('/assets/vineyards-clipart.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  height: inherit;
+  top: 0px;
+  z-index: 1000;
 }
 
 .infoContent {
-  /* height: 334px; */
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 24px 48px;
+  padding: 64px 48px 24px 48px;
 }
 
 .infoContent::before {
   content: "";
-  background-image: url('/assets/vineyards-clipart.jpg');
+  background-image: url("/assets/back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -70,6 +55,7 @@
 
 .header {
   font-weight: bold;
+  color: #000;
 }
 
 .content {
@@ -93,8 +79,11 @@
 }
 
 .winesSection {
+  padding: 0px 50px;
+}
+
+.winesList {
   padding-top: 20px;
-  display: flex;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -102,7 +91,6 @@
     --gray-rgb: 255, 255, 255;
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
   }

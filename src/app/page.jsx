@@ -16,12 +16,22 @@ import Divider from "@mui/material/Divider";
 import Header from "./components/Header";
 import WineCard from "./components/WineCard";
 import Hero from "./components/Hero";
+import PropTypes from "prop-types";
+import { COUNTRIES, WINERIES } from "@/utils/constants";
 
 const primary = amber[500];
 
-const countries = [
-  { name: "mexico", label: "México" },
-  { name: "españa", label: "España" },
+const wineHouses = [
+  { name: "bruma", label: "Bruma" },
+  { name: "burbujasPop", label: "Burbujas Pop" },
+  { name: "carrodilla", label: "Carrodilla" },
+  { name: "casaAnza", label: "Casa Anza" },
+  { name: "cercaBlanca", label: "Cerca Blanca" },
+  { name: "fincaTre", label: "Finca Tre" },
+  { name: "lechuza", label: "Lechuza" },
+  { name: "lomita", label: "Lomita" },
+  { name: "misionesDeCalifornia", label: "Misiones de California" },
+  { name: "vinim", label: "Vinim" },
 ];
 
 function CustomTabPanel(props) {
@@ -55,10 +65,9 @@ export default function Home() {
   const [filteredData, setFilteredData] = React.useState(data);
   const [cart, setCart] = React.useState([]);
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
-
   const [checkBoxState, setCheckBoxState] = React.useState({
-    mexico: false,
-    españa: false,
+    ...Object.fromEntries(Object.keys(COUNTRIES).map((key) => [key, false])),
+    ...Object.fromEntries(Object.keys(WINERIES).map((key) => [key, false])),
   });
 
   const handleChange = (event, newValue) => {
@@ -77,7 +86,6 @@ export default function Home() {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenSnackBar(false);
   };
 
@@ -91,21 +99,18 @@ export default function Home() {
     }
   }, [data, filterArg]);
 
-  // React.useEffect(() => {
-  //   if (checkBoxState.mexico) {
-  //     console.log("mexico true");
-  //     const result = filteredData.filter((el) => el.country === "México");
-  //     setFilteredData(result);
-  //   } else if (checkBoxState.españa) {
-  //     const result = filteredData.filter((el) => el.country === "España");
-  //     setFilteredData(result);
-  //   }
-  // }, [filteredData]);
-
-  console.log("checkboxState", checkBoxState);
-
-  // console.log('ARG',filterArg);
-  // console.log('DATA', filteredData);
+  React.useEffect(() => {
+    let filtered = data;
+    Object.entries(checkBoxState).forEach(([key, isChecked]) => {
+      console.log(key, isChecked);
+      if (isChecked) {
+        filtered = filtered.filter(
+          (item) => item.country === key || item.house === key,
+        );
+      }
+    });
+    setFilteredData(filtered);
+  }, [checkBoxState]);
 
   const onCartButtonPressed = (newItem) => {
     setCart((prevItems) => [...prevItems, newItem]);
@@ -140,42 +145,36 @@ export default function Home() {
               <Grid size={2.5} style={{ paddingRight: "24px" }}>
                 <Typography>País</Typography>
                 <FormGroup>
-                  {countries.map((country) => (
+                  {Object.entries(COUNTRIES).map(([key, label]) => (
                     <FormControlLabel
-                      key={country.name}
+                      key={key}
                       control={
                         <Checkbox
-                          checked={checkBoxState[country.name]}
+                          checked={checkBoxState[key]}
                           onChange={handleCheckChange}
-                          name={country.name}
+                          name={key}
                         />
                       }
-                      label={country.label}
+                      label={label}
                     />
                   ))}
                 </FormGroup>
                 <Divider />
                 <Typography>Bodega</Typography>
                 <FormGroup>
-                  <FormControlLabel control={<Checkbox />} label="Bruma" />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Burbujas Pop"
-                  />
-                  <FormControlLabel control={<Checkbox />} label="Carrodilla" />
-                  <FormControlLabel control={<Checkbox />} label="Casa Anza" />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Cerca Blanca"
-                  />
-                  <FormControlLabel control={<Checkbox />} label="Finca Tre" />
-                  <FormControlLabel control={<Checkbox />} label="Lechuza" />
-                  <FormControlLabel control={<Checkbox />} label="Lomita" />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Misiones de California"
-                  />
-                  <FormControlLabel control={<Checkbox />} label="Vinim" />
+                  {Object.entries(WINERIES).map(([key, label]) => (
+                    <FormControlLabel
+                      key={key}
+                      control={
+                        <Checkbox
+                          checked={checkBoxState[key]}
+                          onChange={handleCheckChange}
+                          name={key}
+                        />
+                      }
+                      label={label}
+                    />
+                  ))}
                 </FormGroup>
                 <Divider />
               </Grid>
@@ -231,3 +230,9 @@ export default function Home() {
     </div>
   );
 }
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  value: PropTypes.number,
+  index: PropTypes.number,
+};

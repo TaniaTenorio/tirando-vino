@@ -11,6 +11,7 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
+import paymentAction from "@/utils/checkout";
 
 const CartDrawer = ({ list, closeDrawer }) => (
   <Box
@@ -70,7 +71,7 @@ const CartDrawer = ({ list, closeDrawer }) => (
       {/* Action Buttons */}
       <Container sx={{ display: "flex", flexDirection: "column" }}>
         <Button onClick={closeDrawer}>Ver mas productos</Button>
-        <Button>Ir a Pagar</Button>
+        <Button onClick={paymentAction}>Ir a Pagar</Button>
       </Container>
     </Container>
   </Box>

@@ -40,8 +40,6 @@ const Header = ({ cartList }) => {
     setOpen(newOpen);
   };
 
-  console.log("cartList", cartList);
-
   return (
     <>
       <AppBar position="fixed" style={{ backgroundColor: "#c1bdbd" }}>

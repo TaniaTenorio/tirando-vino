@@ -1,5 +1,4 @@
 import config from "eslint-config-xo";
-
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 
@@ -21,6 +20,11 @@ export default defineConfig([
     rules: {
       ...pluginReact.configs.recommended.rules,
       "react/prop-types": 0,
+    },
+    settings: {
+      react: {
+        version: "detect", // Automatically detect the React version
+      },
     },
     settings: {
       react: {

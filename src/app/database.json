@@ -9,7 +9,7 @@
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 650,
-    "imageURL": "/assets/CasaJipi_Blanco_Frente.png"
+    "imageURL": "/assets/casa_jipi_blanco.png"
   },
   {
     "name": "Jipi Tinto",
@@ -20,7 +20,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685
+    "price": 685,
+    "imageURL": "/assets/casa_jipi_tinto.png"
   },
   {
     "name": "Jipi Rose",
@@ -31,7 +32,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 485
+    "price": 485,
+    "imageURL": "/assets/casa_jipi_rose.png"
   },
   {
     "name": "Vdlc Tinto",
@@ -42,7 +44,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 575
+    "price": 575,
+    "imageURL": "/assets/vdlc_tinto.png"
   },
   {
     "name": "Vdlc Blanco",
@@ -53,7 +56,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 505
+    "price": 505,
+    "imageURL": "/assets/vdlc_blanco.png"
   },
   {
     "name": "Vdlc Naranja",
@@ -75,7 +79,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 690
+    "price": 690,
+    "imageURL": "/assets/ocho_rose.png"
   },
   {
     "name": "Ocho Bdn",
@@ -86,7 +91,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 795
+    "price": 795,
+    "imageURL": "/assets/ocho_bdn.png"
   },
   {
     "name": "Ocho Tinto",
@@ -108,7 +114,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 810
+    "price": 810,
+    "imageURL": "/assets/plan_b_tinto.png"
   },
   {
     "name": "Plan B Rosé",
@@ -119,7 +126,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 560
+    "price": 560,
+    "imageURL": "/assets/plan_b_rose.png"
   },
   {
     "name": "Plan B Chardonnay",
@@ -130,7 +138,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650
+    "price": 650,
+    "imageURL": "/assets/plan_b_chardonnay.png"
   },
   {
     "name": "Plan B Sauvignon Blanc",
@@ -141,7 +150,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650
+    "price": 650,
+    "imageURL": "/assets/plan_b_sauvignon_blanc.png"
   },
   {
     "name": "Bastardo",
@@ -152,18 +162,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1050
-  },
-  {
-    "name": "Burbujas Pop",
-    "house": "burbujas_pop",
-    "variety": "Chenin Blanc",
-    "year": "",
-    "color": "Blanco",
-    "country": "mexico",
-    "region": "Valle de Guadalupe",
-    "pairing": "",
-    "price": 175
+    "price": 1050,
+    "imageURL": "/assets/el_bastardo.png"
   },
   {
     "name": "Ir Y Venir",
@@ -174,7 +174,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 520
+    "price": 520,
+    "imageURL": "/assets/ir_y_venir.png"
   },
   {
     "name": "Merlot CCOF",
@@ -185,7 +186,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1525
+    "price": 1525,
+    "imageURL": "/assets/carrodilla_merlot.png"
   },
   {
     "name": "Cabernet CCOF",
@@ -196,7 +198,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1525
+    "price": 1525,
+    "imageURL": "/assets/carrodilla_cabernet.png"
   },
   {
     "name": "Chenin Blanc CCOF",
@@ -207,7 +210,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 675
+    "price": 675,
+    "imageURL": "/assets/carrodilla_chenin_blanc.png"
   },
   {
     "name": "Syrah CCOF",
@@ -218,7 +222,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1590
+    "price": 1590,
+    "imageURL": "/assets/carrodilla_syrah.png"
   },
   {
     "name": "Canto De Luna",
@@ -229,7 +234,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650
+    "price": 650,
+    "imageURL": "/assets/carrodilla_canto_de_luna.png"
   },
   {
     "name": "Tempranillo CCOF",
@@ -240,7 +246,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1525
+    "price": 1525,
+    "imageURL": "/assets/carrodilla_tempranillo.png"
   },
   {
     "name": "Cabernet Sauvignon",
@@ -251,7 +258,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 530
+    "price": 530,
+    "imageURL": "/assets/casa_anza_cabernet.png"
   },
   {
     "name": "Malbec",
@@ -262,7 +270,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 530
+    "price": 530,
+    "imageURL": "/assets/casa_anza_malbec.png"
   },
   {
     "name": "Syrah Joven",
@@ -273,7 +282,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 530
+    "price": 530,
+    "imageURL": "/assets/casa_anza_syrah.png"
   },
   {
     "name": "Reserva",
@@ -284,7 +294,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 1185
+    "price": 1185,
+    "imageURL": "/assets/casa_anza_reserva.png"
   },
   {
     "name": "Gran Reserva",
@@ -295,7 +306,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 1315
+    "price": 1315,
+    "imageURL": "/assets/casa_anza_gran_reserva.png"
   },
   {
     "name": "Gran Reserva De La Familia",
@@ -317,7 +329,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 565
+    "price": 565,
+    "imageURL": "/assets/casa_anza_blanco_joven.png"
   },
   {
     "name": "Blanco Reserva 18",
@@ -328,7 +341,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 940
+    "price": 940,
+    "imageURL": "/assets/casa_anza_blanco_reserva_18.png"
   },
   {
     "name": "Blanco Reserva 22",
@@ -339,7 +353,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 900
+    "price": 900,
+    "imageURL": "/assets/casa_anza_blanco_reserva_22.png"
   },
   {
     "name": "Tempranillo",
@@ -350,7 +365,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 555
+    "price": 555,
+    "imageURL": "/assets/casa_anza_tempranillo.png"
   },
   {
     "name": "Rosado",
@@ -361,7 +377,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 555
+    "price": 555,
+    "imageURL": "/assets/casa_anza_rosado.png"
   },
   {
     "name": "Merlot",
@@ -372,7 +389,8 @@
     "country": "mexico",
     "region": "San Miguel de Allende",
     "pairing": "",
-    "price": 550
+    "price": 550,
+    "imageURL": "/assets/casa_anza_merlot.png"
   },
   {
     "name": "Conejo Pinzón",
@@ -405,7 +423,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 945
+    "price": 945,
+    "imageURL": "/assets/finca_tre_dovere.png"
   },
   {
     "name": "Noble Terra",
@@ -427,7 +446,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 765
+    "price": 765,
+    "imageURL": "/assets/finca_tre_bella_luna.png"
   },
   {
     "name": "Rosato",
@@ -438,7 +458,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 590
+    "price": 590,
+    "imageURL": "/assets/finca_tre_rosato.png"
   },
   {
     "name": "Chardonnay Barrica",
@@ -460,7 +481,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 640
+    "price": 640,
+    "imageURL": "/assets/lechuza_chardonnay_acero.png"
   },
   {
     "name": "Canto",
@@ -471,7 +493,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 635
+    "price": 635,
+    "imageURL": "/assets/lechuza_canto.png"
   },
   {
     "name": "Lata Royal Blush",
@@ -482,7 +505,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 150
+    "price": 150,
+    "imageURL": "/assets/lechuza_lata_royal.png"
   },
   {
     "name": "Lata Sauv Blanc",
@@ -493,7 +517,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 155
+    "price": 155,
+    "imageURL": "/assets/lechuza_lata_sauvignon_blanc.png"
   },
   {
     "name": "Lata Pluma",
@@ -504,7 +529,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 160
+    "price": 160,
+    "imageURL": "/assets/lechuza_lata_pluma.png"
   },
   {
     "name": "Pluma",
@@ -515,7 +541,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 760
+    "price": 760,
+    "imageURL": "/assets/lechuza_pluma.png"
   },
   {
     "name": "Amantes",
@@ -526,7 +553,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1180
+    "price": 1180,
+    "imageURL": "/assets/lechuza_amantes.png"
   },
   {
     "name": "Cabernet Sauvignon",
@@ -537,7 +565,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1870
+    "price": 1870,
+    "imageURL": "/assets/lechuza_cabernet.png"
   },
   {
     "name": "Royal Blush Magnum",
@@ -548,7 +577,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1095
+    "price": 1095,
+    "imageURL": "/assets/lechuza_royal_blush_magnum.png"
   },
   {
     "name": "Lomita Cabernet",
@@ -559,7 +589,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 525
+    "price": 525,
+    "imageURL": "/assets/lomita_cabernet.png"
   },
   {
     "name": "Lomita Sauvignon",
@@ -570,7 +601,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 525
+    "price": 525,
+    "imageURL": "/assets/lomita_sauvignon_blanc.png"
   },
   {
     "name": "Lomita Natural",
@@ -581,7 +613,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 950
+    "price": 950,
+    "imageURL": "/assets/lomita_natural.png"
   },
   {
     "name": "Pagano",
@@ -592,7 +625,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1455
+    "price": 1455,
+    "imageURL": "/assets/lomita_pagano.png"
   },
   {
     "name": "Sacro",
@@ -603,7 +637,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1455
+    "price": 1455,
+    "imageURL": "/assets/lomita_sacro.png"
   },
   {
     "name": "Lomita Grenache",
@@ -614,7 +649,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 385
+    "price": 385,
+    "imageURL": "/assets/lomita_grenache.png"
   },
   {
     "name": "Lomita Chardonnay",
@@ -625,7 +661,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 670
+    "price": 670,
+    "imageURL": "/assets/lomita_chardonnay.png"
   },
   {
     "name": "Así Se Va A Las Estrellas",
@@ -636,7 +673,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 2250
+    "price": 2250,
+    "imageURL": "/assets/asi_se_va_a_las_estrellas.png"
   },
   {
     "name": "Polen",
@@ -658,7 +696,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 2185
+    "price": 2185,
+    "imageURL": "/assets/lomita_singular.png"
   },
   {
     "name": "Ensamble De Tintos",
@@ -669,7 +708,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 345
+    "price": 345,
+    "imageURL": "/assets/misiones_ensamble_de_tintos.png"
   },
   {
     "name": "Mezcla Bordalesa",
@@ -680,7 +720,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685
+    "price": 685,
+    "imageURL": "/assets/misiones_mezcla_bordalesa.png"
   },
   {
     "name": "Nebbiolo",
@@ -691,7 +732,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685
+    "price": 685,
+    "imageURL": "/assets/misiones_nebbiolo.png"
   },
   {
     "name": "Syrah",
@@ -702,7 +744,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685
+    "price": 685,
+    "imageURL": "/assets/misiones_syrah.png"
   },
   {
     "name": "Cabernet Franc",
@@ -724,7 +767,8 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 520
+    "price": 520,
+    "imageURL": "/assets/vinim_ciutats_tinto.png"
   },
   {
     "name": "Ciutats Blanco",
@@ -735,7 +779,8 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 520
+    "price": 520,
+    "imageURL": "/assets/vinim_ciutats_blanco.png"
   },
   {
     "name": "Gasela",
@@ -746,6 +791,7 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 635
+    "price": 635,
+    "imageURL": "/assets/vinim_gasela.png"
   }
 ]

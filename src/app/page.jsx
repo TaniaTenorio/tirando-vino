@@ -142,7 +142,11 @@ export default function Home() {
         <article className={styles.winesSection}>
           <section className={styles.winesList}>
             <Grid container>
-              <Grid size={2.5} style={{ paddingRight: "24px" }}>
+              <Grid
+                size={2.5}
+                style={{ paddingRight: "24px" }}
+                className="country-filter"
+              >
                 <Typography>País</Typography>
                 <FormGroup>
                   {Object.entries(COUNTRIES).map(([key, label]) => (

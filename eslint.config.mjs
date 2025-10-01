@@ -19,7 +19,7 @@ export default defineConfig([
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
-      camelcase: ["error", { properties: "never" }],
+      "react/prop-types": 0,
     },
     settings: {
       react: {

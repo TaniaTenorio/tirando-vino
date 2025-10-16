@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import styles from "../page.module.css";
 import Image from "next/image";
+import { COUNTRIES } from "@/utils/constants";
 
 const style = {
   modalContainer: {
@@ -102,7 +103,7 @@ const WineCard = ({
           <Typography>{variety}</Typography>
           <Typography>{year}</Typography>
           <Typography>{color}</Typography>
-          <Typography>{country}</Typography>
+          <Typography>{COUNTRIES[country]}</Typography>
           <Typography>${price} MXN</Typography>
           <Box sx={style.modalActions}>
             <Button size="small" onClick={handleClick}>

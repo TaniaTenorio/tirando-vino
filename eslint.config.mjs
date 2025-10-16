@@ -1,4 +1,5 @@
 import config from "eslint-config-xo";
+
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 

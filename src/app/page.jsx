@@ -3,7 +3,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import data from "./database.json";
-import { Typography, Snackbar, Alert } from "@mui/material";
+import {
+  Typography,
+  Snackbar,
+  Alert,
+  Box,
+  FormControl,
+  RadioGroup,
+} from "@mui/material";
 import { amber } from "@mui/material/colors";
 import Grid from "@mui/material/Grid2";
 import Tabs from "@mui/material/Tabs";
@@ -17,22 +24,9 @@ import Header from "./components/Header";
 import WineCard from "./components/WineCard";
 import Hero from "./components/Hero";
 import PropTypes from "prop-types";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
 import { COUNTRIES, WINERIES } from "@/utils/constants";
-
-const primary = amber[500];
-
-const wineHouses = [
-  { name: "bruma", label: "Bruma" },
-  { name: "burbujasPop", label: "Burbujas Pop" },
-  { name: "carrodilla", label: "Carrodilla" },
-  { name: "casaAnza", label: "Casa Anza" },
-  { name: "cercaBlanca", label: "Cerca Blanca" },
-  { name: "fincaTre", label: "Finca Tre" },
-  { name: "lechuza", label: "Lechuza" },
-  { name: "lomita", label: "Lomita" },
-  { name: "misionesDeCalifornia", label: "Misiones de California" },
-  { name: "vinim", label: "Vinim" },
-];
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,21 +59,18 @@ export default function Home() {
   const [filteredData, setFilteredData] = React.useState(data);
   const [cart, setCart] = React.useState([]);
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
-  const [checkBoxState, setCheckBoxState] = React.useState({
-    ...Object.fromEntries(Object.keys(COUNTRIES).map((key) => [key, false])),
-    ...Object.fromEntries(Object.keys(WINERIES).map((key) => [key, false])),
-  });
+  const [wineHouse, setWineHouse] = React.useState("");
+
+  const handleRadioChange = (event) => {
+    console.log(event.target.value);
+    setWineHouse(event.target.value);
+  };
+
+  console.log("WINE_HOUSE", wineHouse);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
     setFilterArg(event.target.innerText);
-  };
-
-  const handleCheckChange = (event) => {
-    setCheckBoxState({
-      ...checkBoxState,
-      [event.target.name]: event.target.checked,
-    });
   };
 
   const handleClose = (event, reason) => {
@@ -101,16 +92,17 @@ export default function Home() {
 
   React.useEffect(() => {
     let filtered = data;
-    Object.entries(checkBoxState).forEach(([key, isChecked]) => {
-      console.log(key, isChecked);
-      if (isChecked) {
-        filtered = filtered.filter(
-          (item) => item.country === key || item.house === key,
-        );
+    if (wineHouse !== "") {
+      if (wineHouse === "TODOS") {
+        setFilteredData(data);
+        return;
       }
-    });
-    setFilteredData(filtered);
-  }, [checkBoxState]);
+      filtered = filtered.filter((item) => item.house === wineHouse);
+      setFilteredData(filtered);
+    }
+  }, [wineHouse]);
+
+  console.log(filteredData);
 
   const onCartButtonPressed = (newItem) => {
     setCart((prevItems) => [...prevItems, newItem]);
@@ -121,7 +113,7 @@ export default function Home() {
     <div className={styles.page}>
       <Header cartList={cart} />
       <Hero />
-      <main style={{ width: "100%" }}>
+      <main className={styles.mainContent}>
         <div className={styles.navbar}>
           <Typography align="center" color="black" variant="h6">
             Explora nuestros vinos
@@ -130,65 +122,82 @@ export default function Home() {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
-            centered
+            variant="scrollable"
+            scrollButtons="auto"
+            textColor="primary"
           >
-            <Tab label="Todos" {...a11yProps(0)} />
-            <Tab label="Blanco" {...a11yProps(1)} />
-            <Tab label="Rosado" {...a11yProps(2)} />
-            <Tab label="Tinto" {...a11yProps(3)} />
-            <Tab label="Naranja" {...a11yProps(4)} />
+            <Tab label="Todos" {...a11yProps(0)} sx={{ fontWeight: "bold" }} />
+            <Tab label="Blanco" {...a11yProps(1)} sx={{ fontWeight: "bold" }} />
+            <Tab label="Rosado" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
+            <Tab label="Tinto" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
+            <Tab
+              label="Naranja"
+              {...a11yProps(4)}
+              sx={{ fontWeight: "bold" }}
+            />
           </Tabs>
         </div>
         <article className={styles.winesSection}>
           <section className={styles.winesList}>
-            <Grid container>
-              <Grid
-                size={2.5}
-                style={{ paddingRight: "24px" }}
-                className="country-filter"
-              >
-                <Typography>País</Typography>
-                <FormGroup>
-                  {Object.entries(COUNTRIES).map(([key, label]) => (
+            <Grid container spacing={{ xs: 2, md: 3 }}>
+              <Grid size={{ xs: 5, sm: 3, md: 3 }} className="country-filter">
+                <FormControl>
+                  <FormLabel
+                    id="house-filters"
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                      color: "#000",
+                    }}
+                  >
+                    Bodega
+                  </FormLabel>
+                  <RadioGroup
+                    aria-labelledby="house-filters"
+                    name="house-filters"
+                    value={wineHouse}
+                    onChange={handleRadioChange}
+                  >
                     <FormControlLabel
-                      key={key}
                       control={
-                        <Checkbox
-                          checked={checkBoxState[key]}
-                          onChange={handleCheckChange}
-                          name={key}
+                        <Radio
+                          sx={{
+                            "@media (max-width: 600px)": {
+                              "& .MuiSvgIcon-root": {
+                                fontSize: 16, // Even smaller icon size on very small screens
+                              },
+                            },
+                          }}
                         />
                       }
-                      label={label}
+                      label={"Todos"}
+                      value={"TODOS"}
                     />
-                  ))}
-                </FormGroup>
-                <Divider />
-                <Typography>Bodega</Typography>
-                <FormGroup>
-                  {Object.entries(WINERIES).map(([key, label]) => (
-                    <FormControlLabel
-                      key={key}
-                      control={
-                        <Checkbox
-                          checked={checkBoxState[key]}
-                          onChange={handleCheckChange}
-                          name={key}
-                        />
-                      }
-                      label={label}
-                    />
-                  ))}
-                </FormGroup>
+                    {Object.entries(WINERIES).map(([key, label]) => (
+                      <FormControlLabel
+                        key={key}
+                        control={
+                          <Radio
+                            sx={{
+                              "@media (max-width: 600px)": {
+                                "& .MuiSvgIcon-root": {
+                                  fontSize: 16, // Even smaller icon size on very small screens
+                                },
+                              },
+                            }}
+                          />
+                        }
+                        label={label}
+                        value={key}
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
                 <Divider />
               </Grid>
-              <Grid size={9.5}>
+              <Grid size={{ xs: 7, sm: 9, md: 9 }}>
                 <CustomTabPanel value={value} index={0}>
-                  <Grid
-                    container
-                    spacing={2}
-                    style={{ justifyContent: "center" }}
-                  >
+                  <Grid container spacing={2} className={styles.cardContainer}>
                     {filteredData.map((el, index) => (
                       <Grid key={index}>
                         <WineCard
@@ -212,7 +221,15 @@ export default function Home() {
           </section>
         </article>
       </main>
-      <footer>Contáctanos</footer>
+      <footer className={styles.footer}>
+        <Box>
+          <Typography variant="body2" color="textSecondary" align="center">
+            {"© "}
+            Tirando Vino {new Date().getFullYear()}
+            {"."}
+          </Typography>
+        </Box>
+      </footer>
       <Snackbar
         open={openSnackBar}
         autoHideDuration={6000}

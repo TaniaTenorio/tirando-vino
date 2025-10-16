@@ -5,7 +5,6 @@ export const COUNTRIES = {
 
 export const WINERIES = {
   bruma: "Bruma",
-  burbujas_pop: "Burbujas Pop",
   carrodilla: "Carrodilla",
   casa_anza: "Casa Anza",
   cerca_blanca: "Cerca Blanca",

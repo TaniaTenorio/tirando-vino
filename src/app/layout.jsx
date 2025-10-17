@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from "react";
 import { Shadows_Into_Light } from "next/font/google";
 import "./globals.css";

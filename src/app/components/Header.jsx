@@ -5,12 +5,6 @@ import {
   Toolbar,
   IconButton,
   Drawer,
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Button,
   Badge,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -32,13 +26,23 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Header = ({ cartList }) => {
+const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [totalItems, setTotalItems] = React.useState(0);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  const handleRemoveItem = (item) => (event) => {
+    event.stopPropagation();
+    onRemoveItem(item);
+  };
+
+  React.useEffect(() => {
+    const total = cartList.reduce((acc, item) => acc + item.quantity, 0);
+    setTotalItems(total);
+  }, [cartList]);
 
   return (
     <>
@@ -80,7 +84,7 @@ const Header = ({ cartList }) => {
             </div>
 
             <IconButton onClick={toggleDrawer(true)}>
-              <Badge badgeContent={cartList.length} color="primary" showZero>
+              <Badge badgeContent={totalItems} color="primary" showZero>
                 <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
               </Badge>
             </IconButton>
@@ -93,7 +97,12 @@ const Header = ({ cartList }) => {
         anchor="right"
         style={{ overflow: "hidden" }}
       >
-        <CartDrawer list={cartList} closeDrawer={toggleDrawer(false)} />
+        <CartDrawer
+          list={cartList}
+          closeDrawer={toggleDrawer(false)}
+          removeItem={handleRemoveItem}
+          updateCartList={onUpdateCartList}
+        />
       </Drawer>
     </>
   );

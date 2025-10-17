@@ -31,7 +31,14 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
 
   return (
     <Box
-      sx={{ width: 350, height: "95%", padding: "0px 16px" }}
+      sx={{
+        width: 350,
+        height: "95%",
+        padding: "0px 16px",
+        "@media (max-width: 600px)": {
+          width: "100vw",
+        },
+      }}
       role="presentation"
       onClick={closeDrawer}
     >

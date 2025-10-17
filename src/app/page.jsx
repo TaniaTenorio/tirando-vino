@@ -62,10 +62,10 @@ export default function Home() {
     console.log("add to cart", newItem);
   };
 
-  const handleRemoveItem = (event) => {
-    // event.stopPropagation();
-    // setCart((prevItems) => prevItems.filter((_, index) => index !== itemIndex));
-    console.log("remove item at index:", event);
+  const handleRemoveItem = (item) => {
+    setCart((prevCartList) =>
+      prevCartList.filter((cartItem) => cartItem.id !== item.id),
+    );
   };
 
   React.useEffect(() => {
@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <Header cartList={cart} handleRemoveItem={handleRemoveItem} />
+      <Header cartList={cart} onRemoveItem={handleRemoveItem} />
       <Hero />
       <main className={styles.mainContent}>
         <Navbar value={tabValue} handleOnChange={handleChange} />

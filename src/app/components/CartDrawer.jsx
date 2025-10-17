@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import paymentAction from "@/utils/checkout";
 
-const CartDrawer = ({ list, closeDrawer }) => (
+const CartDrawer = ({ list, closeDrawer, removeItem }) => (
   <Box
     sx={{ width: 250, height: "95%", padding: "0px 16px" }}
     role="presentation"
@@ -53,17 +54,29 @@ const CartDrawer = ({ list, closeDrawer }) => (
         <Typography align="center">Productos en tu carrito</Typography>
         <List style={{ padding: "16px 0px" }}>
           {list.map((el) => (
-            <ListItem key={el}>
+            <ListItem
+              key={el.productId}
+              secondaryAction={
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  color="error"
+                  onClick={removeItem(el.productId)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
+            >
               <Image
-                src={"/assets/wine-clipart.png"}
+                src={el.productImg}
                 width={35}
                 height={120}
                 alt="wine-bottle"
               />
               <ListItemText
                 style={{ marginLeft: "24px" }}
-                primary={el}
-                secondary="Precio del Vino"
+                primary={el.productName}
+                secondary={`$${el.productPrice} MXN`}
               />
             </ListItem>
           ))}

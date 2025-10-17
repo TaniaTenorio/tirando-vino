@@ -32,12 +32,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Header = ({ cartList }) => {
+const Header = ({ cartList, onRemoveItem }) => {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+  const handleRemoveItem = (item) => (event) => {
+    event.stopPropagation();
+    onRemoveItem(item);
   };
 
   return (
@@ -93,7 +97,11 @@ const Header = ({ cartList }) => {
         anchor="right"
         style={{ overflow: "hidden" }}
       >
-        <CartDrawer list={cartList} closeDrawer={toggleDrawer(false)} />
+        <CartDrawer
+          list={cartList}
+          closeDrawer={toggleDrawer(false)}
+          removeItem={handleRemoveItem}
+        />
       </Drawer>
     </>
   );

@@ -93,6 +93,13 @@ const CartDrawer = ({ list, closeDrawer, removeItem }) => (
                   primary={el.productName}
                   secondary={`$${el.productPrice} MXN`}
                 />
+                <div>
+                  <div className={styles.quantityInput}>
+                    <button>-</button>
+                    <p>{0}</p>
+                    <button>+</button>
+                  </div>
+                </div>
               </ListItem>
             ))}
           </List>

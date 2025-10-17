@@ -34,6 +34,7 @@ const style = {
 };
 
 const WineCard = ({
+  id,
   name,
   house,
   variety,
@@ -50,8 +51,14 @@ const WineCard = ({
   const handleClose = () => setOpen(false);
 
   const handleClick = () => {
-    const dataToSend = name;
-    handleCartButton(name);
+    const dataToSend = {
+      productId: id,
+      productName: name,
+      productPrice: price,
+      productImg: imageSrc,
+    };
+    // console.log("click", dataToSend);
+    handleCartButton(dataToSend);
   };
 
   return (
@@ -76,7 +83,7 @@ const WineCard = ({
           {/* <Typography variant="body2">{color} </Typography> */}
           <CardActions style={{ justifyContent: "center" }}>
             <Button size="small" onClick={handleOpen}>
-              Vista rápida
+              Detalles
             </Button>
           </CardActions>
           <CardActions style={{ justifyContent: "center" }}>
@@ -94,7 +101,7 @@ const WineCard = ({
       >
         <Box sx={style.modalContainer}>
           <Image
-            src={"/assets/wine-clipart.png"}
+            src={imageSrc || "/assets/wine-clipart.png"}
             width={37}
             height={150}
             alt="wine-bottle"

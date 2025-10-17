@@ -1,32 +1,19 @@
 "use client";
 
-import Image from "next/image";
+import * as React from "react";
+
 import styles from "./page.module.css";
 import data from "./database.json";
-import {
-  Typography,
-  Snackbar,
-  Alert,
-  Box,
-  FormControl,
-  RadioGroup,
-} from "@mui/material";
-import { amber } from "@mui/material/colors";
+import { Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import * as React from "react";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Divider from "@mui/material/Divider";
 import Header from "./components/Header";
 import WineCard from "./components/WineCard";
 import Hero from "./components/Hero";
 import PropTypes from "prop-types";
-import FormLabel from "@mui/material/FormLabel";
-import Radio from "@mui/material/Radio";
-import { COUNTRIES, WINERIES } from "@/utils/constants";
+import RadioFilters from "./components/RadioFilters";
+import Navbar from "./components/Navbar";
+import CustomSnackbar from "./components/Snackbar";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,40 +31,41 @@ function CustomTabPanel(props) {
   );
 }
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
-const drawerWidth = 240;
-
 export default function Home() {
-  const [value, setValue] = React.useState(0);
+  const [tabValue, setTabvalue] = React.useState(0);
   const [filterArg, setFilterArg] = React.useState("TODOS");
   const [filteredData, setFilteredData] = React.useState(data);
   const [cart, setCart] = React.useState([]);
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
-  const [wineHouse, setWineHouse] = React.useState("");
+  const [wineHouse, setWineHouse] = React.useState("TODOS");
 
   const handleRadioChange = (event) => {
     console.log(event.target.value);
     setWineHouse(event.target.value);
   };
 
-  console.log("WINE_HOUSE", wineHouse);
-
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabvalue(newValue);
     setFilterArg(event.target.innerText);
   };
 
-  const handleClose = (event, reason) => {
+  const handleSnackbarClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnackBar(false);
+  };
+
+  const onCartButtonPressed = (newItem) => {
+    setCart((prevItems) => [...prevItems, newItem]);
+    setOpenSnackBar(true);
+    console.log("add to cart", newItem);
+  };
+
+  const handleRemoveItem = (event) => {
+    // event.stopPropagation();
+    // setCart((prevItems) => prevItems.filter((_, index) => index !== itemIndex));
+    console.log("remove item at index:", event);
   };
 
   React.useEffect(() => {
@@ -102,105 +90,29 @@ export default function Home() {
     }
   }, [wineHouse]);
 
-  console.log(filteredData);
-
-  const onCartButtonPressed = (newItem) => {
-    setCart((prevItems) => [...prevItems, newItem]);
-    setOpenSnackBar(true);
-    console.log(newItem);
-  };
   return (
     <div className={styles.page}>
-      <Header cartList={cart} />
+      <Header cartList={cart} handleRemoveItem={handleRemoveItem} />
       <Hero />
       <main className={styles.mainContent}>
-        <div className={styles.navbar}>
-          <Typography align="center" color="black" variant="h6">
-            Explora nuestros vinos
-          </Typography>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            variant="scrollable"
-            scrollButtons="auto"
-            textColor="primary"
-          >
-            <Tab label="Todos" {...a11yProps(0)} sx={{ fontWeight: "bold" }} />
-            <Tab label="Blanco" {...a11yProps(1)} sx={{ fontWeight: "bold" }} />
-            <Tab label="Rosado" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
-            <Tab label="Tinto" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
-            <Tab
-              label="Naranja"
-              {...a11yProps(4)}
-              sx={{ fontWeight: "bold" }}
-            />
-          </Tabs>
-        </div>
+        <Navbar value={tabValue} handleOnChange={handleChange} />
         <article className={styles.winesSection}>
           <section className={styles.winesList}>
             <Grid container spacing={{ xs: 2, md: 3 }}>
               <Grid size={{ xs: 5, sm: 3, md: 3 }} className="country-filter">
-                <FormControl>
-                  <FormLabel
-                    id="house-filters"
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      color: "#000",
-                    }}
-                  >
-                    Bodega
-                  </FormLabel>
-                  <RadioGroup
-                    aria-labelledby="house-filters"
-                    name="house-filters"
-                    value={wineHouse}
-                    onChange={handleRadioChange}
-                  >
-                    <FormControlLabel
-                      control={
-                        <Radio
-                          sx={{
-                            "@media (max-width: 600px)": {
-                              "& .MuiSvgIcon-root": {
-                                fontSize: 16, // Even smaller icon size on very small screens
-                              },
-                            },
-                          }}
-                        />
-                      }
-                      label={"Todos"}
-                      value={"TODOS"}
-                    />
-                    {Object.entries(WINERIES).map(([key, label]) => (
-                      <FormControlLabel
-                        key={key}
-                        control={
-                          <Radio
-                            sx={{
-                              "@media (max-width: 600px)": {
-                                "& .MuiSvgIcon-root": {
-                                  fontSize: 16, // Even smaller icon size on very small screens
-                                },
-                              },
-                            }}
-                          />
-                        }
-                        label={label}
-                        value={key}
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
+                <RadioFilters
+                  wineHouse={wineHouse}
+                  handleOnChange={handleRadioChange}
+                />
                 <Divider />
               </Grid>
               <Grid size={{ xs: 7, sm: 9, md: 9 }}>
-                <CustomTabPanel value={value} index={0}>
+                <CustomTabPanel value={tabValue} index={0}>
                   <Grid container spacing={2} className={styles.cardContainer}>
                     {filteredData.map((el, index) => (
                       <Grid key={index}>
                         <WineCard
+                          id={el.id}
                           name={el.name}
                           house={el.house}
                           variety={el.variety}
@@ -230,24 +142,12 @@ export default function Home() {
           </Typography>
         </Box>
       </footer>
-      <Snackbar
+      <CustomSnackbar
         open={openSnackBar}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{
-          horizontal: "center",
-          vertical: "top",
-        }}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          Haz agregado un producto a tu carrito
-        </Alert>
-      </Snackbar>
+        handleOnClose={handleSnackbarClose}
+        severity="success"
+        message="Haz agregado un producto a tu carrito"
+      />
     </div>
   );
 }

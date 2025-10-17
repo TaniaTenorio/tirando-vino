@@ -57,14 +57,46 @@ export default function Home() {
   };
 
   const onCartButtonPressed = (newItem) => {
-    setCart((prevItems) => [...prevItems, newItem]);
+    // Check if the item already exists in the cart
+    const itemExists = cart.some((cartItem) => cartItem.id === newItem.id);
+
+    if (itemExists) {
+      // If the item exists, update its quantity
+      setCart((prevCart) =>
+        prevCart.map((cartItem) =>
+          cartItem.id === newItem.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem,
+        ),
+      );
+    } else {
+      // If the item does not exist, add it to the cart with quantity 1
+      newItem.quantity = 1;
+      setCart((prevCart) => [...prevCart, newItem]);
+    }
+
     setOpenSnackBar(true);
-    console.log("add to cart", newItem);
   };
 
   const handleRemoveItem = (item) => {
     setCart((prevCartList) =>
       prevCartList.filter((cartItem) => cartItem.id !== item.id),
+    );
+  };
+
+  const handleUpdateCartList = (item, action) => {
+    console.log("UPDATE CART LIST", item, action);
+    setCart((prevCartList) =>
+      prevCartList.map((cartItem) => {
+        if (cartItem.productId === item) {
+          if (action === "plus") {
+            return { ...cartItem, quantity: cartItem.quantity + 1 };
+          } else if (action === "minus" && cartItem.quantity > 1) {
+            return { ...cartItem, quantity: cartItem.quantity - 1 };
+          }
+        }
+        return cartItem;
+      }),
     );
   };
 
@@ -92,7 +124,11 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <Header cartList={cart} onRemoveItem={handleRemoveItem} />
+      <Header
+        cartList={cart}
+        onRemoveItem={handleRemoveItem}
+        onUpdateCartList={handleUpdateCartList}
+      />
       <Hero />
       <main className={styles.mainContent}>
         <Navbar value={tabValue} handleOnChange={handleChange} />

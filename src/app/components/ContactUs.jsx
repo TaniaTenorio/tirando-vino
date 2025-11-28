@@ -98,20 +98,20 @@ const ContactUsDialog = ({ onClose, open }) => {
             variant="outlined"
             ref={form}
           >
-            <label html-for="user-name">Nombre</label>
+            <label htmlFor="user-name">Nombre</label>
             <TextField
               id="user-name"
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
-            <label html-for="user-name">Correo</label>
+            <label htmlFor="user-name">Correo</label>
             <TextField
               id="user-email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
-            <label html-for="user-name">Detalles</label>
+            <label htmlFor="user-name">Detalles</label>
             <TextField
               id="message"
               multiline

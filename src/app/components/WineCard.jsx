@@ -50,6 +50,10 @@ const WineCard = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const itemIsCan = name.includes("Lata");
+  const imageHeight = itemIsCan ? 100 : 150;
+  const imageHeightContainer = itemIsCan ? 157 : "auto";
+
   const handleClick = () => {
     const dataToSend = {
       productId: id,
@@ -57,7 +61,6 @@ const WineCard = ({
       productPrice: price,
       productImg: imageSrc,
     };
-    // console.log("click", dataToSend);
     handleCartButton(dataToSend);
   };
 
@@ -65,11 +68,17 @@ const WineCard = ({
     <>
       <Card className={styles.card}>
         <CardContent>
-          <div style={{ textAlign: "center", marginBottom: "16px" }}>
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "16px",
+              height: imageHeightContainer,
+            }}
+          >
             <Image
               src={imageSrc || "/assets/wine-clipart.png"}
               width={37}
-              height={150}
+              height={imageHeight}
               alt="wine-bottle"
             />
           </div>
@@ -103,7 +112,7 @@ const WineCard = ({
           <Image
             src={imageSrc || "/assets/wine-clipart.png"}
             width={37}
-            height={150}
+            height={imageHeight}
             alt="wine-bottle"
           />
           <Typography>{name}</Typography>

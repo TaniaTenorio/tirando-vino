@@ -14,3 +14,10 @@ export const WINERIES = {
   vinim: "Vinim",
   vinicola_os: "Vinicola OS",
 };
+
+export const IG_PROFILE_URL =
+  "https://www.instagram.com/tirandovino?igsh=MWRlaW5uNW95N3ppbg==";
+
+export const EMAIL_JS_TEMPLATE_ID = "contact_form";
+export const EMAIL_JS_SERVICE_ID = "contact_service";
+export const EMAIL_JS_ADMIN = "Tirando Vino";

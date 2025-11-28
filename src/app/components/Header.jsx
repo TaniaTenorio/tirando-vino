@@ -1,35 +1,27 @@
-import React from "react";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {
   AppBar,
-  Container,
-  Toolbar,
-  IconButton,
-  Drawer,
   Badge,
+  Container,
+  Drawer,
+  IconButton,
+  Toolbar,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import CartDrawer from "./CartDrawer";
-import { styled } from "@mui/material/styles";
-
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import React from "react";
+import CartDrawer from "./CartDrawer";
+import ContactUsDialog from "./ContactUs";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    right: -3,
-    top: 13,
-    border: `1px solid black`,
-    padding: "0 2px",
-  },
-}));
+import { IG_PROFILE_URL } from "@/utils/constants";
 
 const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [totalItems, setTotalItems] = React.useState(0);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -37,6 +29,14 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   const handleRemoveItem = (item) => (event) => {
     event.stopPropagation();
     onRemoveItem(item);
+  };
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
 
   React.useEffect(() => {
@@ -49,19 +49,20 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
       <AppBar position="fixed" style={{ backgroundColor: "#c1bdbd" }}>
         <Container maxwidth="xl">
           <Toolbar variant="dense">
-            <Image src={"/assets/logo.png"} width={64} height={64} alt="logo" />
+            <Image
+              src={"/assets/tirando_vino_logo.png"}
+              width={64}
+              height={64}
+              alt="logo"
+            />
             <div style={{ flexGrow: 1, marginLeft: "32px", color: "#c69e0b" }}>
-              {/* <Image
-                src={"/assets/logo.png"}
-                width={64}
-                height={64}
-                alt="logo"
-              /> */}
               <IconButton
                 edge="start"
                 color="inherit"
                 aria-label="menu"
                 size="large"
+                href={IG_PROFILE_URL}
+                target="_blank"
               >
                 <InstagramIcon />
               </IconButton>
@@ -70,14 +71,7 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
                 color="inherit"
                 aria-label="menu"
                 size="large"
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                size="large"
+                onClick={handleDialogOpen}
               >
                 <AlternateEmailIcon />
               </IconButton>
@@ -104,6 +98,7 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
           updateCartList={onUpdateCartList}
         />
       </Drawer>
+      <ContactUsDialog open={dialogOpen} onClose={handleDialogClose} />
     </>
   );
 };

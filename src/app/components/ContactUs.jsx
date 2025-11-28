@@ -26,23 +26,25 @@ const ContactUsDialog = ({ onClose, open }) => {
   const [snackBarState, setSnackBarState] = React.useState(null);
   const [snackBarMessage, setSnackBarMessage] = React.useState("");
 
-  console.log("emailJS", process.env.EMAIL_JS_PUBLIC_KEY);
+  console.log("emailJS", process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY);
 
   const sendEmail = (e, templateParams) => {
     e.preventDefault();
 
     emailjs
       .send(EMAIL_JS_SERVICE_ID, EMAIL_JS_TEMPLATE_ID, templateParams, {
-        publicKey: process.env.EMAIL_JS_PUBLIC_KEY,
+        publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY,
       })
       .then(
         (response) => {
+          console.log("SUCCESS!", response.status, response.text);
           setOpenSnackBar(true);
           setSnackBarState("success");
           setSnackBarMessage("Tu mensaje ha sido enviado correctamente");
           onClose();
         },
         (error) => {
+          console.log("FAILED...", error);
           setOpenSnackBar(true);
           setSnackBarState("error");
           setSnackBarMessage(

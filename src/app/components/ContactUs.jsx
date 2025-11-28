@@ -26,6 +26,8 @@ const ContactUsDialog = ({ onClose, open }) => {
   const [snackBarState, setSnackBarState] = React.useState(null);
   const [snackBarMessage, setSnackBarMessage] = React.useState("");
 
+  console.log("emailJS", process.env.EMAIL_JS_PUBLIC_KEY);
+
   const sendEmail = (e, templateParams) => {
     e.preventDefault();
 

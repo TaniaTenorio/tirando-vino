@@ -83,7 +83,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           {list.length === 0 ? (
             <div className={styles.emptyMessage}>
               <Typography>
-                Aún no has agregado productos a tu carrito
+                Aún no haz agregado productos a tu carrito
               </Typography>
             </div>
           ) : (

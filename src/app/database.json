@@ -74,7 +74,8 @@
     "country": "mexico",
     "region": "",
     "pairing": "",
-    "price": 505
+    "price": 505,
+    "imageURL": "/assets/bruma_vdlc_naranja.png"
   },
   {
     "id": 7,
@@ -112,7 +113,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1435
+    "price": 1435,
+    "imageURL": "/assets/bruma_ocho_tinto.png"
   },
   {
     "id": 10,
@@ -271,161 +273,6 @@
     "imageURL": "/assets/carrodilla_tempranillo.png"
   },
   {
-    "id": 22,
-    "name": "Cabernet Sauvignon",
-    "house": "casa_anza",
-    "variety": "Cabernet Sauvignon",
-    "year": 2021,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 530,
-    "imageURL": "/assets/casa_anza_cabernet.png"
-  },
-  {
-    "id": 23,
-    "name": "Malbec",
-    "house": "casa_anza",
-    "variety": "Malbec",
-    "year": 2020,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 530,
-    "imageURL": "/assets/casa_anza_malbec.png"
-  },
-  {
-    "id": 24,
-    "name": "Syrah Joven",
-    "house": "casa_anza",
-    "variety": "Syrah",
-    "year": 2023,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 530,
-    "imageURL": "/assets/casa_anza_syrah.png"
-  },
-  {
-    "id": 25,
-    "name": "Reserva",
-    "house": "casa_anza",
-    "variety": "Syrah, Cabernet Sauvignon, Tempranillo, Malbec",
-    "year": 2019,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 1185,
-    "imageURL": "/assets/casa_anza_reserva.png"
-  },
-  {
-    "id": 26,
-    "name": "Gran Reserva",
-    "house": "casa_anza",
-    "variety": "Cabernet Sauvignon, Tempranillo, Malbec",
-    "year": 2018,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 1315,
-    "imageURL": "/assets/casa_anza_gran_reserva.png"
-  },
-  {
-    "id": 27,
-    "name": "Gran Reserva De La Familia",
-    "house": "casa_anza",
-    "variety": "Cabernet Sauvignon, Tempranillo, Malbec",
-    "year": 2018,
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 1785
-  },
-  {
-    "id": 28,
-    "name": "Blanco Joven",
-    "house": "casa_anza",
-    "variety": "Sauvignon Blanc, Semillón",
-    "year": 2023,
-    "color": "Blanco",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 565,
-    "imageURL": "/assets/casa_anza_blanco_joven.png"
-  },
-  {
-    "id": 29,
-    "name": "Blanco Reserva 18",
-    "house": "casa_anza",
-    "variety": "Sauvignon Blanc, Semillón",
-    "year": 2018,
-    "color": "Blanco",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 940,
-    "imageURL": "/assets/casa_anza_blanco_reserva_18.png"
-  },
-  {
-    "id": 30,
-    "name": "Blanco Reserva 22",
-    "house": "casa_anza",
-    "variety": "Sauvignon Blanc, Semillón",
-    "year": 2022,
-    "color": "Blanco",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 900,
-    "imageURL": "/assets/casa_anza_blanco_reserva_22.png"
-  },
-  {
-    "id": 31,
-    "name": "Tempranillo",
-    "house": "casa_anza",
-    "variety": "Tempranillo",
-    "year": "",
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 555,
-    "imageURL": "/assets/casa_anza_tempranillo.png"
-  },
-  {
-    "id": 32,
-    "name": "Rosado",
-    "house": "casa_anza",
-    "variety": "Cabernet Sauvignon, Malbec, Syrah",
-    "year": 2022,
-    "color": "Rosado",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 555,
-    "imageURL": "/assets/casa_anza_rosado.png"
-  },
-  {
-    "id": 33,
-    "name": "Merlot",
-    "house": "casa_anza",
-    "variety": "Merlot",
-    "year": "",
-    "color": "Tinto",
-    "country": "mexico",
-    "region": "San Miguel de Allende",
-    "pairing": "",
-    "price": 550,
-    "imageURL": "/assets/casa_anza_merlot.png"
-  },
-  {
     "id": 34,
     "name": "Conejo Pinzón",
     "house": "cerca_blanca",
@@ -435,7 +282,8 @@
     "country": "mexico",
     "region": "Jalostotitlán, Jalisco",
     "pairing": "",
-    "price": 635
+    "price": 635,
+    "imageURL": "/assets/cerca_blanca_conejo_pinzon.png"
   },
   {
     "id": 35,
@@ -447,7 +295,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 590
+    "price": 590,
+    "imageURL": "/assets/finca_tre_tres_de_tre.png"
   },
   {
     "id": 36,
@@ -472,7 +321,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 945
+    "price": 945,
+    "imageURL": "/assets/finca_tre_noble_terra.png"
   },
   {
     "id": 38,
@@ -502,15 +352,16 @@
   },
   {
     "id": 40,
-    "name": "Chardonnay Barrica",
+    "name": "Chardonnay Roble",
     "house": "lechuza",
     "variety": "Chardonnay",
     "year": "",
-    "color": "Tinto",
+    "color": "Blanco",
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 895
+    "price": 996,
+    "imageURL": "/assets/lechuza_chardonnay_roble.png"
   },
   {
     "id": 41,
@@ -743,7 +594,8 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 515
+    "price": 515,
+    "imageURL": "/assets/carrodilla_polen.png"
   },
   {
     "id": 59,
@@ -775,7 +627,7 @@
     "id": 61,
     "name": "Mezcla Bordalesa",
     "house": "misiones_de_california",
-    "variety": "Cabernet Franc, Cabernet Saucignon, Merlot",
+    "variety": "Cabernet Franc, Cabernet Sauvignon, Merlot",
     "year": "",
     "color": "Tinto",
     "country": "mexico",
@@ -860,5 +712,161 @@
     "pairing": "",
     "price": 635,
     "imageURL": "/assets/vinim_gasela.png"
+  },
+  {
+    "id": 68,
+    "name": "Jipi Naranja",
+    "house": "bruma",
+    "variety": "Sauvignon Blanc",
+    "year": "",
+    "color": "Blanco",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 750,
+    "imageURL": "/assets/bruma_jipi_naranja.png"
+  },
+  {
+    "id": 69,
+    "name": "Vdlc Rose",
+    "house": "bruma",
+    "variety": "Carménère",
+    "year": "",
+    "color": "Rosado",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 715,
+    "imageURL": "/assets/bruma_vdlc_rose.png"
+  },
+  {
+    "id": 70,
+    "name": "Rosé-Lixco",
+    "house": "Cerca Blanca",
+    "variety": "Cabernet Sauvignon, Malbec, Merlot",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Los Altos de Jalisco",
+    "pairing": "",
+    "price": 520,
+    "imageURL": "/assets/cerca_blanca_rose_lixco.png"
+  },
+  {
+    "id": 71,
+    "name": "Nebbiolo",
+    "house": "lechuza",
+    "variety": "Nebbiolo",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 2140,
+    "imageURL": "/assets/lechuza_nebbiolo.png"
+  },
+  {
+    "id": 72,
+    "name": "Alas Magnum",
+    "house": "lechuza",
+    "variety": "Merlot, Syrah",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 1260,
+    "imageURL": "/assets/lechuza_alas.png"
+  },
+  {
+    "id": 73,
+    "name": "Bohemio Blanco",
+    "house": "lechuza",
+    "variety": "Chardonnay, Sauvignon Blanc",
+    "year": "",
+    "color": "Blanco",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 1485,
+    "imageURL": "/assets/lechuza_bohemio_blanco.png"
+  },
+  {
+    "id": 74,
+    "name": "Bohemio Tempranillo",
+    "house": "lechuza",
+    "variety": "Tempranillo",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 1800,
+    "imageURL": "/assets/lechuza_bohemio_tempranillo.png"
+  },
+  {
+    "id": 75,
+    "name": "Bohemio Nebbiolo",
+    "house": "lechuza",
+    "variety": "Nebbiolo",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 1870,
+    "imageURL": "/assets/lechuza_bohemio_nebbiolo.png"
+  },
+  {
+    "id": 76,
+    "name": "A Pachas Malvar",
+    "house": "vinim",
+    "variety": "Malvar",
+    "year": "",
+    "color": "Blanco",
+    "country": "españa",
+    "region": "Arganda del Rey, Madrid",
+    "pairing": "",
+    "price": 590,
+    "imageURL": "/assets/vinim_a_pachas_malvar.png"
+  },
+  {
+    "id": 77,
+    "name": "A Pachas Tinto",
+    "house": "vinim",
+    "variety": "Tempranillo",
+    "year": "",
+    "color": "Tinto",
+    "country": "españa",
+    "region": "Arganda del Rey, Madrid",
+    "pairing": "",
+    "price": 590,
+    "imageURL": "/assets/vinim_a_pachas_tinto.png"
+  },
+  {
+    "id": 78,
+    "name": "Verraco Rosado",
+    "house": "vinicola_os",
+    "variety": "Syrah",
+    "year": "",
+    "color": "Rosado",
+    "country": "mexico",
+    "region": "Valle de San Vicente",
+    "pairing": "",
+    "price": 595,
+    "imageURL": "/assets/vinicola_os_verraco_rosado.png"
+  },
+  {
+    "id": 79,
+    "name": "Verraco Tinto",
+    "house": "vinicola_os",
+    "variety": "Syrah",
+    "year": "",
+    "color": "Tinto",
+    "country": "mexico",
+    "region": "Valle de San Vicente",
+    "pairing": "",
+    "price": 635,
+    "imageURL": "/assets/vinicola_os_verraco_tinto.png"
   }
 ]

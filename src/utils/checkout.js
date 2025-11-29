@@ -1,4 +1,4 @@
-export default function paymentAction() {
+export default function paymentAction(payload) {
   const options = {
     method: "POST",
     headers: {
@@ -8,13 +8,13 @@ export default function paymentAction() {
         "Basic dGVzdF9mZmU1NTdjMi1jZGZlLTQ5MDAtODcxYi1kNWNmMmE3ODIwYzM6ZjNjNDFjMmEtNDFjNi00ODdkLWJhMTUtZGMxYjAzNjMwNTk0",
     },
     body: JSON.stringify({
-      amount: 100.5,
-      currency: "MXN",
-      purchase_description: "ejemplo de compra",
+      ...payload,
       redirection_url: {
-        success: "https://localhost:3000",
-        error: "https://localhost:3000",
-        default: "https://localhost:3000",
+        success:
+          "https://localhost:3000/redirection/success?external_reference=OID123456789",
+        error:
+          "https://localhost:3000/redirection/error?external_reference=OID123456789",
+        default: "https://localhost:3000/redirection/default",
       },
     }),
   };

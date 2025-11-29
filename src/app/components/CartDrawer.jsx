@@ -17,8 +17,19 @@ import Image from "next/image";
 import paymentAction from "@/utils/checkout";
 
 import styles from "../page.module.css";
+import { CURRENCY } from "@/utils/constants";
 
 const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
+  const [totalAmount, setTotalAmount] = React.useState(0);
+
+  React.useEffect(() => {
+    const total = list
+      .reduce((acc, item) => acc + item.productPrice * item.quantity, 0)
+      .toFixed(2);
+
+    setTotalAmount(total);
+  }, [list]);
+
   const handlePlusQuantity = (item) => (event) => {
     event.stopPropagation();
     updateCartList(item, "plus");
@@ -27,6 +38,16 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
   const handleMinusQuantity = (item) => (event) => {
     event.stopPropagation();
     updateCartList(item, "minus");
+  };
+
+  const handleOnClick = (event) => {
+    event.stopPropagation();
+    const paymentData = {
+      amount: totalAmount,
+      currency: CURRENCY,
+      purchase_description: "Compra en Tirando Vino",
+    };
+    paymentAction(paymentData);
   };
 
   return (
@@ -128,11 +149,35 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
               ))}
             </List>
           )}
+          <Divider />
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Typography
+              align="center"
+              variant="h6"
+              style={{ padding: "16px 0px", fontWeight: "bold" }}
+            >
+              {`Total: $${totalAmount} MXN`}
+            </Typography>
+          </Container>
         </Container>
         {/* Action Buttons */}
-        <Container sx={{ display: "flex", flexDirection: "column" }}>
-          <Button onClick={closeDrawer}>Ver mas productos</Button>
-          <Button onClick={paymentAction} disabled={list.length === 0}>
+        <Container
+          sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+        >
+          <Button onClick={closeDrawer} fullWidth variant="contained">
+            Ver mas productos
+          </Button>
+          <Button
+            onClick={handleOnClick}
+            disabled={list.length === 0}
+            fullWidth
+            variant="contained"
+          >
             Ir a Pagar
           </Button>
         </Container>

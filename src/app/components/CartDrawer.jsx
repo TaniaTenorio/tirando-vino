@@ -174,7 +174,9 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           </Button>
           <Button
             onClick={handleOnClick}
-            disabled={list.length === 0}
+            // disabled={list.length === 0}
+            // Update this once the payment gateway is functional
+            disabled={false}
             fullWidth
             variant="contained"
           >

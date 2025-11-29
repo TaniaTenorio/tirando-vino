@@ -15,8 +15,7 @@ export const WINERIES = {
   vinicola_os: "Vinicola OS",
 };
 
-export const IG_PROFILE_URL =
-  "https://www.instagram.com/tirandovino?igsh=MWRlaW5uNW95N3ppbg==";
+export const IG_PROFILE_URL = "https://www.instagram.com/tirandovino";
 
 export const EMAIL_JS_TEMPLATE_ID = "contact_form";
 export const EMAIL_JS_SERVICE_ID = "contact_service";

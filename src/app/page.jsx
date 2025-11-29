@@ -58,7 +58,9 @@ export default function Home() {
 
   const onCartButtonPressed = (newItem) => {
     // Check if the item already exists in the cart
-    const itemExists = cart.some((cartItem) => cartItem.id === newItem.id);
+    const itemExists = cart.some(
+      (cartItem) => cartItem.productId === newItem.productId,
+    );
 
     if (itemExists) {
       // If the item exists, update its quantity

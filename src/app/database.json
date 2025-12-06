@@ -1,5 +1,17 @@
 [
   {
+    "id": "test_item",
+    "name": "ITEM DE PRUEBA",
+    "house": "bruma",
+    "variety": "Sauvignon Blanc",
+    "year": 2021,
+    "color": "Blanco",
+    "country": "mexico",
+    "region": "Valle de Guadalupe",
+    "pairing": "",
+    "price": 0.01
+  },
+  {
     "id": 1,
     "name": "Jipi Blanco",
     "house": "bruma",

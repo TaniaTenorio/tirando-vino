@@ -22,3 +22,5 @@ export const EMAIL_JS_SERVICE_ID = "contact_service";
 export const EMAIL_JS_ADMIN = "Tirando Vino";
 
 export const CURRENCY = "MXN";
+
+export const ENV = process.env.NODE_ENV;

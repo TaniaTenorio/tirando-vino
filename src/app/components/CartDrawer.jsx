@@ -10,6 +10,7 @@ import {
   Button,
   Divider,
 } from "@mui/material";
+import { connection } from "next/server";
 
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,9 +18,19 @@ import Image from "next/image";
 import paymentAction from "@/utils/checkout";
 
 import styles from "../page.module.css";
-import { CURRENCY } from "@/utils/constants";
+import { CURRENCY, ENV } from "@/utils/constants";
 
-const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
+export default async function CartDrawer({
+  list,
+  closeDrawer,
+  removeItem,
+  updateCartList,
+}) {
+  await connection();
+
+  // Use different tokens for development and production when prod token is provided
+  // const paymentToken = ENV === 'development' ? process.env.CLIP_TOKEN_TEST : process.env.CLIP_TOKEN_PROD;
+  const paymentToken = process.env.CLIP_TOKEN_TEST;
   const [totalAmount, setTotalAmount] = React.useState(0);
 
   React.useEffect(() => {
@@ -47,7 +58,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
       currency: CURRENCY,
       purchase_description: "Compra en Tirando Vino",
     };
-    paymentAction(paymentData);
+    paymentAction(paymentData, paymentToken);
   };
 
   return (
@@ -124,7 +135,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
                   }
                 >
                   <Image
-                    src={el.productImg}
+                    src={el.productImg || "/assets/wine-clipart.png"}
                     width={35}
                     height={120}
                     alt="wine-bottle"
@@ -174,10 +185,9 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           </Button>
           <Button
             onClick={handleOnClick}
-            // disabled={list.length === 0}
+            disabled={list.length === 0}
             // Update this once the payment gateway is functional
-            // disabled={false}
-            disabled
+            // disabled
             fullWidth
             variant="contained"
           >
@@ -187,6 +197,4 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
       </Container>
     </Box>
   );
-};
-
-export default CartDrawer;
+}

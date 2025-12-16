@@ -65,7 +65,7 @@ export default function Home() {
       // If the item exists, update its quantity
       setCart((prevCart) =>
         prevCart.map((cartItem) =>
-          cartItem.id === newItem.id
+          cartItem.productId === newItem.productId
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem,
         ),
@@ -81,7 +81,7 @@ export default function Home() {
 
   const handleRemoveItem = (item) => {
     setCart((prevCartList) =>
-      prevCartList.filter((cartItem) => cartItem.id !== item.id),
+      prevCartList.filter((cartItem) => cartItem.productId !== item),
     );
   };
 

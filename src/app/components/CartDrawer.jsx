@@ -10,27 +10,15 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import { connection } from "next/server";
 
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
-import paymentAction from "@/utils/checkout";
 
 import styles from "../page.module.css";
-import { CURRENCY, ENV } from "@/utils/constants";
+import PayButton from "./PayButton";
 
-export default async function CartDrawer({
-  list,
-  closeDrawer,
-  removeItem,
-  updateCartList,
-}) {
-  await connection();
-
-  // Use different tokens for development and production when prod token is provided
-  // const paymentToken = ENV === 'development' ? process.env.CLIP_TOKEN_TEST : process.env.CLIP_TOKEN_PROD;
-  const paymentToken = process.env.CLIP_TOKEN_TEST;
+const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
   const [totalAmount, setTotalAmount] = React.useState(0);
 
   React.useEffect(() => {
@@ -49,16 +37,6 @@ export default async function CartDrawer({
   const handleMinusQuantity = (item) => (event) => {
     event.stopPropagation();
     updateCartList(item, "minus");
-  };
-
-  const handleOnClick = (event) => {
-    event.stopPropagation();
-    const paymentData = {
-      amount: totalAmount,
-      currency: CURRENCY,
-      purchase_description: "Compra en Tirando Vino",
-    };
-    paymentAction(paymentData, paymentToken);
   };
 
   return (
@@ -183,18 +161,11 @@ export default async function CartDrawer({
           <Button onClick={closeDrawer} fullWidth variant="contained">
             Ver mas productos
           </Button>
-          <Button
-            onClick={handleOnClick}
-            disabled={list.length === 0}
-            // Update this once the payment gateway is functional
-            // disabled
-            fullWidth
-            variant="contained"
-          >
-            Ir a Pagar
-          </Button>
+          <PayButton totalAmount={totalAmount} disabled />
         </Container>
       </Container>
     </Box>
   );
-}
+};
+
+export default CartDrawer;

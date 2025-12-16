@@ -1,19 +1,16 @@
 "use client";
 
-import * as React from "react";
-
-import styles from "./page.module.css";
-import data from "./database.json";
+import React from "react";
+import styles from "../page.module.css";
 import { Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Divider from "@mui/material/Divider";
-import Header from "./components/Header";
-import WineCard from "./components/WineCard";
-import Hero from "./components/Hero";
+import Header from "./Header";
+import WineCard from "./WineCard";
 import PropTypes from "prop-types";
-import RadioFilters from "./components/RadioFilters";
-import Navbar from "./components/Navbar";
-import CustomSnackbar from "./components/Snackbar";
+import RadioFilters from "./RadioFilters";
+import Navbar from "./Navbar";
+import CustomSnackbar from "./Snackbar";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,7 +18,6 @@ function CustomTabPanel(props) {
   return (
     <div
       role="tabpanel"
-      // hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
@@ -31,7 +27,7 @@ function CustomTabPanel(props) {
   );
 }
 
-export default function Home() {
+const HomeClient = ({ data }) => {
   const [tabValue, setTabvalue] = React.useState(0);
   const [filterArg, setFilterArg] = React.useState("TODOS");
   const [cart, setCart] = React.useState([]);
@@ -39,7 +35,6 @@ export default function Home() {
   const [wineHouse, setWineHouse] = React.useState("TODOS");
 
   const handleRadioChange = (event) => {
-    console.log(event.target.value);
     setWineHouse(event.target.value);
   };
 
@@ -56,13 +51,11 @@ export default function Home() {
   };
 
   const onCartButtonPressed = (newItem) => {
-    // Check if the item already exists in the cart
     const itemExists = cart.some(
       (cartItem) => cartItem.productId === newItem.productId,
     );
 
     if (itemExists) {
-      // If the item exists, update its quantity
       setCart((prevCart) =>
         prevCart.map((cartItem) =>
           cartItem.id === newItem.id
@@ -71,7 +64,6 @@ export default function Home() {
         ),
       );
     } else {
-      // If the item does not exist, add it to the cart with quantity 1
       newItem.quantity = 1;
       setCart((prevCart) => [...prevCart, newItem]);
     }
@@ -86,7 +78,6 @@ export default function Home() {
   };
 
   const handleUpdateCartList = (item, action) => {
-    console.log("UPDATE CART LIST", item, action);
     setCart((prevCartList) =>
       prevCartList.map((cartItem) => {
         if (cartItem.productId === item) {
@@ -101,28 +92,6 @@ export default function Home() {
     );
   };
 
-  // React.useEffect(() => {
-  //   if (filterArg === "TODOS") {
-  //     setFilteredData(data);
-  //   } else if (filterArg !== "TODOS") {
-  //     console.log("ELSE IF");
-  //     const result = data.filter((el) => el.color.toUpperCase() === filterArg);
-  //     setFilteredData(result);
-  //   }
-  // }, [data, filterArg]);
-
-  // React.useEffect(() => {
-  //   let filtered = data;
-  //   if (wineHouse !== "") {
-  //     if (wineHouse === "TODOS") {
-  //       setFilteredData(data);
-  //       return;
-  //     }
-  //     filtered = filtered.filter((item) => item.house === wineHouse);
-  //     setFilteredData(filtered);
-  //   }
-  // }, [wineHouse]);
-
   const filteredData = React.useMemo(() => {
     let result = data;
 
@@ -134,20 +103,19 @@ export default function Home() {
       result = result.filter((el) => el.color.toUpperCase() === filterArg);
     }
 
-    // If wineHouse is "", return empty array
     if (wineHouse === "") return [];
 
     return result;
   }, [data, wineHouse, filterArg]);
 
   return (
-    <div className={styles.page}>
+    <div>
       <Header
         cartList={cart}
         onRemoveItem={handleRemoveItem}
         onUpdateCartList={handleUpdateCartList}
       />
-      <Hero />
+
       <main className={styles.mainContent}>
         <Navbar value={tabValue} handleOnChange={handleChange} />
         <article className={styles.winesSection}>
@@ -187,15 +155,7 @@ export default function Home() {
           </section>
         </article>
       </main>
-      <footer className={styles.footer}>
-        <Box>
-          <Typography variant="body2" color="textSecondary" align="center">
-            {"© "}
-            Tirando Vino {new Date().getFullYear()}
-            {"."}
-          </Typography>
-        </Box>
-      </footer>
+
       <CustomSnackbar
         open={openSnackBar}
         handleOnClose={handleSnackbarClose}
@@ -204,10 +164,16 @@ export default function Home() {
       />
     </div>
   );
-}
+};
 
 CustomTabPanel.propTypes = {
   children: PropTypes.node,
   value: PropTypes.number,
   index: PropTypes.number,
 };
+
+HomeClient.propTypes = {
+  data: PropTypes.array.isRequired,
+};
+
+export default HomeClient;

@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 import { WINERIES } from "@/utils/constants";
+import { Typography } from "@mui/material";
 
 const RadioFilters = ({ wineHouse, handleOnChange }) => (
   <FormControl>
@@ -37,7 +38,7 @@ const RadioFilters = ({ wineHouse, handleOnChange }) => (
             }}
           />
         }
-        label={"Todos"}
+        label={<Typography variant="body2">Todos</Typography>}
         value={"TODOS"}
       />
       {Object.entries(WINERIES).map(([key, label]) => (
@@ -54,7 +55,7 @@ const RadioFilters = ({ wineHouse, handleOnChange }) => (
               }}
             />
           }
-          label={label}
+          label={<Typography variant="body2">{label}</Typography>}
           value={key}
         />
       ))}

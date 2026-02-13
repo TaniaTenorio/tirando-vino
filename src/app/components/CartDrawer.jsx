@@ -42,7 +42,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
   return (
     <Box
       sx={{
-        width: 350,
+        width: 424,
         height: "95%",
         padding: "0px 16px",
         "@media (max-width: 600px)": {
@@ -112,15 +112,21 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
                     </IconButton>
                   }
                 >
-                  <Image
-                    src={el.productImg || "/assets/wine-clipart.png"}
-                    width={35}
-                    height={120}
-                    alt="wine-bottle"
-                  />
+                  <div style={{ width: 120, height: 120, textAlign: "center" }}>
+                    <Image
+                      src={el.productImg || "/assets/wine-clipart.png"}
+                      width={el.productCategory === "wine" ? 35 : 120}
+                      height={120}
+                      alt="cart-item"
+                    />
+                  </div>
                   <ListItemText
                     style={{ marginLeft: "24px" }}
-                    primary={el.productName}
+                    primary={
+                      el.productCategory === "wine"
+                        ? el.productName
+                        : `${el.productName} - ${el.productVariety.toUpperCase()}`
+                    }
                     secondary={`$${el.productPrice} MXN`}
                   />
                   <div>
@@ -159,7 +165,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
         >
           <Button onClick={closeDrawer} fullWidth variant="contained">
-            Ver mas productos
+            Ver más productos
           </Button>
           <PayButton totalAmount={totalAmount} disabled />
         </Container>

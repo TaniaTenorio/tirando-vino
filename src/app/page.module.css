@@ -29,6 +29,17 @@
   z-index: 1000;
 }
 
+.sectionHeader {
+  font-family: var(--font-shadows-into-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #d4cfcf;
+  padding: 24px;
+  font-weight: 500;
+  color: #c69e0b;
+}
+
 .infoContent {
   position: relative;
   display: flex;
@@ -121,6 +132,14 @@
 .quantityInput button {
   border: none;
   background-color: transparent;
+}
+
+.merchContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
 }
 
 .footer {

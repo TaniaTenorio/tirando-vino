@@ -60,6 +60,7 @@ const WineCard = ({
       productName: name,
       productPrice: price,
       productImg: imageSrc,
+      productCategory: "wine",
     };
     handleCartButton(dataToSend);
   };
@@ -96,7 +97,7 @@ const WineCard = ({
             </Button>
           </CardActions>
           <CardActions style={{ justifyContent: "center" }}>
-            <Button size="small" onClick={handleClick}>
+            <Button size="small" onClick={handleClick} variant="contained">
               Agregar al carrito
             </Button>
           </CardActions>

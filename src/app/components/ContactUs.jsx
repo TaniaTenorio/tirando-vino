@@ -31,7 +31,7 @@ const ContactUsDialog = ({ onClose, open }) => {
 
     emailjs
       .send(EMAIL_JS_SERVICE_ID, EMAIL_JS_TEMPLATE_ID, templateParams, {
-        publicKey: process.env.EMAIL_JS_PUBLIC_KEY,
+        publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY,
       })
       .then(
         (response) => {

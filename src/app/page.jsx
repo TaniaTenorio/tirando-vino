@@ -1,10 +1,19 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 
 import styles from "./page.module.css";
 import data from "./database.json";
-import { Typography, Box } from "@mui/material";
+import merchData from "./merchdb.json";
+import {
+  Typography,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+} from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Divider from "@mui/material/Divider";
 import Header from "./components/Header";
@@ -21,7 +30,6 @@ function CustomTabPanel(props) {
   return (
     <div
       role="tabpanel"
-      // hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
@@ -99,6 +107,18 @@ export default function Home() {
         return cartItem;
       }),
     );
+  };
+
+  const handleMerchCartButton = (el) => {
+    const data = {
+      productId: el.id,
+      productName: el.name,
+      productPrice: el.price,
+      productImg: el.imageURL,
+      productCategory: "merch",
+      productVariety: el.variety,
+    };
+    onCartButtonPressed(data);
   };
 
   // React.useEffect(() => {
@@ -184,6 +204,48 @@ export default function Home() {
                 </CustomTabPanel>
               </Grid>
             </Grid>
+          </section>
+        </article>
+        <article>
+          <section>
+            <div className={styles.sectionHeader}>
+              <Typography align="center" color="black" variant="h6">
+                {" "}
+                Llévate una playerita
+              </Typography>
+            </div>
+            <div className={styles.merchContainer}>
+              <Grid container spacing={2}>
+                {merchData.map((el) => (
+                  <Grid key={el.id}>
+                    <Card>
+                      <CardContent>
+                        <Image
+                          src={el.imageURL}
+                          width={300}
+                          height={300}
+                          alt="t-shirt"
+                        />
+                        <Typography align="center">{el.name}</Typography>
+                        <Typography align="center">
+                          Talla {el.variety.toUpperCase()}
+                        </Typography>
+                        <Typography align="center">${el.price} MXN</Typography>
+                        <CardActions style={{ justifyContent: "center" }}>
+                          <Button
+                            size="small"
+                            onClick={() => handleMerchCartButton(el)}
+                            variant="contained"
+                          >
+                            Agregar al carrito
+                          </Button>
+                        </CardActions>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
           </section>
         </article>
       </main>

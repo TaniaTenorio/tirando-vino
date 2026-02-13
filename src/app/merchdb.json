@@ -1,0 +1,23 @@
+[
+  {
+    "id": 901,
+    "name": "Playera ALV",
+    "variety": "ch",
+    "price": 150,
+    "imageURL": "/assets/shirt.png"
+  },
+  {
+    "id": 902,
+    "name": "Playera ALV",
+    "variety": "m",
+    "price": 150,
+    "imageURL": "/assets/shirt.png"
+  },
+  {
+    "id": 903,
+    "name": "Playera ALV",
+    "variety": "g",
+    "price": 150,
+    "imageURL": "/assets/shirt.png"
+  }
+]

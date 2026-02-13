@@ -12,6 +12,10 @@ const shadowsIntoLight = Shadows_Into_Light({
 const theme = createTheme({
   typography: {
     fontFamily: "var(--font-shadows-into-light)",
+    body2: {
+      fontWeight: "bold",
+      fontSize: "1rem",
+    },
   },
   palette: {
     primary: {

@@ -1,3 +1,7 @@
+import { ENV, HOME_URL, DEV_HOME_URL } from "@/utils/constants";
+
+const redirectionUrl = ENV === "development" ? DEV_HOME_URL : HOME_URL;
+
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -14,11 +18,11 @@ export async function POST(req) {
       ...body,
       redirection_url: {
         // "http://localhost:3000/redirection/success?external_reference=OID123456789",
-        success: "http://localhost:3000",
+        success: redirectionUrl,
         // TODO: create error page
         error:
           "http://localhost:3000/redirection/error?external_reference=OID123456789",
-        default: "http://localhost:3000",
+        default: redirectionUrl,
       },
     };
 

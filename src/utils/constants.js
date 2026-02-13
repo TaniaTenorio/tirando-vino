@@ -24,3 +24,6 @@ export const EMAIL_JS_ADMIN = "Tirando Vino";
 export const CURRENCY = "MXN";
 
 export const ENV = process.env.NODE_ENV;
+
+export const HOME_URL = "https://tirando-vino.vercel.app/";
+export const DEV_HOME_URL = "http://localhost:3000";

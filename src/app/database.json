@@ -21,7 +21,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650,
+    "price": 585,
     "imageURL": "/assets/casa_jipi_blanco.png"
   },
   {
@@ -34,7 +34,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685,
+    "price": 640,
     "imageURL": "/assets/casa_jipi_tinto.png"
   },
   {
@@ -47,7 +47,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 485,
+    "price": 530,
     "imageURL": "/assets/casa_jipi_rose.png"
   },
   {
@@ -60,7 +60,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 575,
+    "price": 640,
     "imageURL": "/assets/vdlc_tinto.png"
   },
   {
@@ -73,7 +73,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 505,
+    "price": 475,
     "imageURL": "/assets/vdlc_blanco.png"
   },
   {
@@ -86,7 +86,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 690,
+    "price": 645,
     "imageURL": "/assets/ocho_rose.png"
   },
   {
@@ -99,7 +99,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 795,
+    "price": 740,
     "imageURL": "/assets/ocho_bdn.png"
   },
   {
@@ -112,7 +112,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1435,
+    "price": 1335,
     "imageURL": "/assets/bruma_ocho_tinto.png"
   },
   {
@@ -125,7 +125,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 810,
+    "price": 755,
     "imageURL": "/assets/plan_b_tinto.png"
   },
   {
@@ -138,7 +138,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 560,
+    "price": 520,
     "imageURL": "/assets/plan_b_rose.png"
   },
   {
@@ -151,7 +151,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650,
+    "price": 605,
     "imageURL": "/assets/plan_b_chardonnay.png"
   },
   {
@@ -164,7 +164,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 650,
+    "price": 605,
     "imageURL": "/assets/plan_b_sauvignon_blanc.png"
   },
   {
@@ -177,7 +177,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1050,
+    "price": 975,
     "imageURL": "/assets/el_bastardo.png"
   },
   {
@@ -190,7 +190,7 @@
     "country": "mexico",
     "region": "Jalostotitlán, Jalisco",
     "pairing": "",
-    "price": 635,
+    "price": 590,
     "imageURL": "/assets/cerca_blanca_conejo_pinzon.png"
   },
   {
@@ -203,7 +203,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 590,
+    "price": 550,
     "imageURL": "/assets/finca_tre_tres_de_tre.png"
   },
   {
@@ -216,7 +216,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 945,
+    "price": 880,
     "imageURL": "/assets/finca_tre_dovere.png"
   },
   {
@@ -229,7 +229,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 945,
+    "price": 880,
     "imageURL": "/assets/finca_tre_noble_terra.png"
   },
   {
@@ -242,7 +242,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 765,
+    "price": 715,
     "imageURL": "/assets/finca_tre_bella_luna.png"
   },
   {
@@ -255,7 +255,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 590,
+    "price": 550,
     "imageURL": "/assets/finca_tre_rosato.png"
   },
   {
@@ -268,7 +268,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 996,
+    "price": 830,
     "imageURL": "/assets/lechuza_chardonnay_roble.png"
   },
   {
@@ -277,11 +277,11 @@
     "house": "lechuza",
     "variety": "Chardonnay",
     "year": "",
-    "color": "Tinto",
+    "color": "Blanco",
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 640,
+    "price": 595,
     "imageURL": "/assets/lechuza_chardonnay_acero.png"
   },
   {
@@ -294,7 +294,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 635,
+    "price": 590,
     "imageURL": "/assets/lechuza_canto.png"
   },
   {
@@ -303,11 +303,11 @@
     "house": "lechuza",
     "variety": "Cabernet Sauvignon, Merlot, Tempranillo, Nebbiolo",
     "year": "",
-    "color": "Tinto",
+    "color": "Rosado",
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 150,
+    "price": 140,
     "imageURL": "/assets/lechuza_lata_royal.png"
   },
   {
@@ -320,7 +320,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1180,
+    "price": 1200,
     "imageURL": "/assets/lechuza_amantes.png"
   },
   {
@@ -333,7 +333,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1870,
+    "price": 1740,
     "imageURL": "/assets/lechuza_cabernet.png"
   },
   {
@@ -346,7 +346,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1095,
+    "price": 1020,
     "imageURL": "/assets/lechuza_royal_blush_magnum.png"
   },
   {
@@ -359,7 +359,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 345,
+    "price": 325,
     "imageURL": "/assets/misiones_ensamble_de_tintos.png"
   },
   {
@@ -372,7 +372,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685,
+    "price": 640,
     "imageURL": "/assets/misiones_mezcla_bordalesa.png"
   },
   {
@@ -385,7 +385,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685,
+    "price": 640,
     "imageURL": "/assets/misiones_nebbiolo.png"
   },
   {
@@ -398,7 +398,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 685,
+    "price": 640,
     "imageURL": "/assets/misiones_syrah.png"
   },
   {
@@ -411,7 +411,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1015
+    "price": 945
   },
   {
     "id": 65,
@@ -423,7 +423,7 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 520,
+    "price": 485,
     "imageURL": "/assets/vinim_ciutats_tinto.png"
   },
   {
@@ -436,7 +436,7 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 520,
+    "price": 485,
     "imageURL": "/assets/vinim_ciutats_blanco.png"
   },
   {
@@ -449,7 +449,7 @@
     "country": "españa",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
-    "price": 635,
+    "price": 590,
     "imageURL": "/assets/vinim_gasela.png"
   },
   {
@@ -462,7 +462,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 750,
+    "price": 625,
     "imageURL": "/assets/bruma_jipi_naranja.png"
   },
   {
@@ -475,7 +475,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 715,
+    "price": 595,
     "imageURL": "/assets/bruma_vdlc_rose.png"
   },
   {
@@ -488,7 +488,7 @@
     "country": "mexico",
     "region": "Los Altos de Jalisco",
     "pairing": "",
-    "price": 535,
+    "price": 445,
     "imageURL": "/assets/cerca_blanca_rose_lixco.png"
   },
   {
@@ -501,7 +501,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 2140,
+    "price": 1780,
     "imageURL": "/assets/lechuza_nebbiolo.png"
   },
   {
@@ -514,7 +514,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1320,
+    "price": 1100,
     "imageURL": "/assets/lechuza_alas.png"
   },
   {
@@ -527,7 +527,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1485,
+    "price": 1235,
     "imageURL": "/assets/lechuza_bohemio_blanco.png"
   },
   {
@@ -540,7 +540,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1800,
+    "price": 1500,
     "imageURL": "/assets/lechuza_bohemio_tempranillo.png"
   },
   {
@@ -553,7 +553,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1870,
+    "price": 1555,
     "imageURL": "/assets/lechuza_bohemio_nebbiolo.png"
   },
   {
@@ -566,7 +566,7 @@
     "country": "españa",
     "region": "Arganda del Rey, Madrid",
     "pairing": "",
-    "price": 590,
+    "price": 490,
     "imageURL": "/assets/vinim_a_pachas_malvar.png"
   },
   {
@@ -579,7 +579,7 @@
     "country": "españa",
     "region": "Arganda del Rey, Madrid",
     "pairing": "",
-    "price": 590,
+    "price": 490,
     "imageURL": "/assets/vinim_a_pachas_tinto.png"
   },
   {
@@ -592,7 +592,7 @@
     "country": "mexico",
     "region": "Valle de San Vicente",
     "pairing": "",
-    "price": 595,
+    "price": 495,
     "imageURL": "/assets/vinicola_os_verraco_rosado.png"
   },
   {
@@ -605,7 +605,7 @@
     "country": "mexico",
     "region": "Valle de San Vicente",
     "pairing": "",
-    "price": 715,
+    "price": 595,
     "imageURL": "/assets/vinicola_os_verraco_tinto.png"
   },
   {
@@ -618,7 +618,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 940,
+    "price": 780,
     "imageURL": "/assets/bruma_reserva_chenin_blanc.png"
   },
   {
@@ -631,7 +631,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 940,
+    "price": 780,
     "imageURL": "/assets/bruma_reserva_sauvignon_blanc.png"
   },
   {
@@ -644,7 +644,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 940,
+    "price": 780,
     "imageURL": "/assets/bruma_reserva_chardonnay.png"
   },
   {
@@ -657,7 +657,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1725,
+    "price": 1435,
     "imageURL": "/assets/bruma_reserva_cabernet_franc.png"
   },
   {
@@ -666,11 +666,11 @@
     "house": "bruma",
     "variety": "Carménère",
     "year": "",
-    "color": "Rosado",
+    "color": "Tinto",
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1500,
+    "price": 1250,
     "imageURL": ""
   },
   {
@@ -683,7 +683,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1500,
+    "price": 1250,
     "imageURL": ""
   },
   {
@@ -696,7 +696,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1280,
+    "price": 1065,
     "imageURL": "/assets/bruma_reserva_mezcla_bordalesa.png"
   },
   {
@@ -709,7 +709,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 820,
+    "price": 680,
     "imageURL": "/assets/lechuza_alas_750ml.png"
   },
   {
@@ -722,7 +722,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 820,
+    "price": 285,
     "imageURL": "/assets/lechuza_cantito.png"
   },
   {
@@ -735,7 +735,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 710,
+    "price": 590,
     "imageURL": ""
   },
   {
@@ -748,12 +748,12 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 2020,
+    "price": 1680,
     "imageURL": ""
   },
   {
     "id": 91,
-    "name": "Vlogner",
+    "name": "Viogner",
     "house": "lechuza",
     "variety": "Vlogner",
     "year": "",
@@ -761,7 +761,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1380,
+    "price": 1150,
     "imageURL": ""
   },
   {
@@ -774,7 +774,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 960,
+    "price": 795,
     "imageURL": "/assets/vena_cava_big_blend.png"
   },
   {
@@ -787,7 +787,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 920,
+    "price": 765,
     "imageURL": "/assets/vena_cava_cabernet_sauvignon.png"
   },
   {
@@ -800,7 +800,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1150,
+    "price": 955,
     "imageURL": "/assets/vena_cava_phils_blend.png"
   },
   {
@@ -813,7 +813,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 640,
+    "price": 530,
     "imageURL": "/assets/vena_cava_sauvignon_blanc.png"
   },
   {
@@ -826,7 +826,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 960,
+    "price": 800,
     "imageURL": "/assets/vena_cava_mezcla_especial.png"
   },
   {
@@ -839,7 +839,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 640,
+    "price": 530,
     "imageURL": "/assets/vena_cava_rosado.png"
   },
   {
@@ -852,7 +852,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 735,
+    "price": 610,
     "imageURL": "/assets/vena_cava_ambar.png"
   },
   {
@@ -865,7 +865,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 870,
+    "price": 720,
     "imageURL": ""
   },
   {
@@ -878,7 +878,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 1050,
+    "price": 870,
     "imageURL": "/assets/altos_norte_zafado_naranja.png"
   },
   {
@@ -891,7 +891,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 1050,
+    "price": 870,
     "imageURL": "/assets/altos_norte_zafado_rosado.png"
   },
   {
@@ -904,7 +904,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 1050,
+    "price": 870,
     "imageURL": "/assets/altos_norte_zafado_tinto.png"
   },
   {
@@ -917,7 +917,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 1215,
+    "price": 1010,
     "imageURL": "/assets/altos_norte_bruto_cero.png"
   },
   {
@@ -930,12 +930,12 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1060,
+    "price": 880,
     "imageURL": "/assets/bruma_la_vedette.png"
   },
   {
     "id": 105,
-    "name": "BIB tinto Cava Quintanilla",
+    "name": "BIB Tinto Cava Quintanilla",
     "house": "cava_quintanilla",
     "variety": "Syrah, Grenache",
     "year": "",
@@ -943,12 +943,12 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 950,
+    "price": 785,
     "imageURL": ""
   },
   {
     "id": 106,
-    "name": "BIB blanco",
+    "name": "BIB Blanco",
     "house": "cava_quintanilla",
     "variety": "Sauvignon Blanc, Chardonnay",
     "year": "",
@@ -956,12 +956,12 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 950,
+    "price": 785,
     "imageURL": ""
   },
   {
     "id": 107,
-    "name": "BIB rosado",
+    "name": "BIB Rosado",
     "house": "cava_quintanilla",
     "variety": "Tempranillo",
     "year": "",
@@ -969,7 +969,7 @@
     "country": "mexico",
     "region": "San Luis Potosí",
     "pairing": "",
-    "price": 950,
+    "price": 785,
     "imageURL": ""
   },
   {
@@ -982,7 +982,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 1680,
+    "price": 1400,
     "imageURL": "/assets/bruma_bib_tinto.png"
   },
   {
@@ -995,7 +995,7 @@
     "country": "mexico",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 2020,
+    "price": 1680,
     "imageURL": ""
   }
 ]

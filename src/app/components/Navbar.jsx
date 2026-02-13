@@ -28,6 +28,7 @@ const Navbar = ({ value, handleOnChange }) => (
       <Tab label="Rosado" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
       <Tab label="Tinto" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
       <Tab label="Naranja" {...a11yProps(4)} sx={{ fontWeight: "bold" }} />
+      <Tab label="Espumoso" {...a11yProps(4)} sx={{ fontWeight: "bold" }} />
     </Tabs>
   </div>
 );

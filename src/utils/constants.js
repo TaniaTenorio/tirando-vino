@@ -4,13 +4,14 @@ export const COUNTRIES = {
 };
 
 export const WINERIES = {
+  altos_norte: "Altos Norte",
   bruma: "Bruma",
-  carrodilla: "Carrodilla",
+  cava_quintanilla: "Cava Quintanilla",
   cerca_blanca: "Cerca Blanca",
   finca_tre: "Finca Tre",
   lechuza: "Lechuza",
-  lomita: "Lomita",
   misiones_de_california: "Misiones de California",
+  vena_cava: "Vena Cava",
   vinim: "Vinim",
   vinicola_os: "Vinicola OS",
 };

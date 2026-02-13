@@ -4,7 +4,7 @@ import styles from "../page.module.css";
 const Hero = () => {
   return (
     <article className={styles.infoContent}>
-      <h2 className={styles.header}>¿Quienes somos?</h2>
+      <h2 className={styles.header}>¿Quiénes somos?</h2>
       <div className={styles.content}>
         <p className={styles.textContent}>
           Tirando Vino nace entre risas, copas de vino y una historia de amor.

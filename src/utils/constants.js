@@ -25,7 +25,5 @@ export const CURRENCY = "MXN";
 
 export const ENV = process.env.NODE_ENV;
 
-console.log("ENV", ENV);
-
 export const HOME_URL = "https://tirando-vino.vercel.app/";
 export const DEV_HOME_URL = "http://localhost:3000";

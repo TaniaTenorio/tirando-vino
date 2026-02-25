@@ -185,7 +185,7 @@ export default function Home() {
                   <Grid key={el.id}>
                     <MerchCard
                       item={el}
-                      handleMerchCartButton={onCartButtonPressed}
+                      handleCartButton={onCartButtonPressed}
                     />
                   </Grid>
                 ))}

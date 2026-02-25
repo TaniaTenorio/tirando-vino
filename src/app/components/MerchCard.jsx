@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { CheckBox } from "@mui/icons-material";
 
-const MerchCard = ({ item, handleMerchCartButton }) => {
+const MerchCard = ({ item, handleCartButton }) => {
   const [gender, setGender] = React.useState({
     his: true,
     her: false,
@@ -35,7 +35,7 @@ const MerchCard = ({ item, handleMerchCartButton }) => {
       productCategory: "merch",
       productVariety: el.variety,
     };
-    handleMerchCartButton(data);
+    handleCartButton(data);
   };
 
   return (

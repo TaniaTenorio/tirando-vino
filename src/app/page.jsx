@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 
 import styles from "./page.module.css";
 import data from "./database.json";
@@ -23,6 +22,7 @@ import PropTypes from "prop-types";
 import RadioFilters from "./components/RadioFilters";
 import Navbar from "./components/Navbar";
 import CustomSnackbar from "./components/Snackbar";
+import MerchCard from "./components/MerchCard";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -109,40 +109,6 @@ export default function Home() {
     );
   };
 
-  const handleMerchCartButton = (el) => {
-    const data = {
-      productId: el.id,
-      productName: el.name,
-      productPrice: el.price,
-      productImg: el.imageURL,
-      productCategory: "merch",
-      productVariety: el.variety,
-    };
-    onCartButtonPressed(data);
-  };
-
-  // React.useEffect(() => {
-  //   if (filterArg === "TODOS") {
-  //     setFilteredData(data);
-  //   } else if (filterArg !== "TODOS") {
-  //     console.log("ELSE IF");
-  //     const result = data.filter((el) => el.color.toUpperCase() === filterArg);
-  //     setFilteredData(result);
-  //   }
-  // }, [data, filterArg]);
-
-  // React.useEffect(() => {
-  //   let filtered = data;
-  //   if (wineHouse !== "") {
-  //     if (wineHouse === "TODOS") {
-  //       setFilteredData(data);
-  //       return;
-  //     }
-  //     filtered = filtered.filter((item) => item.house === wineHouse);
-  //     setFilteredData(filtered);
-  //   }
-  // }, [wineHouse]);
-
   const filteredData = React.useMemo(() => {
     let result = data;
 
@@ -154,7 +120,6 @@ export default function Home() {
       result = result.filter((el) => el.color.toUpperCase() === filterArg);
     }
 
-    // If wineHouse is "", return empty array
     if (wineHouse === "") return [];
 
     return result;
@@ -218,30 +183,10 @@ export default function Home() {
               <Grid container spacing={2}>
                 {merchData.map((el) => (
                   <Grid key={el.id}>
-                    <Card>
-                      <CardContent>
-                        <Image
-                          src={el.imageURL}
-                          width={300}
-                          height={300}
-                          alt="t-shirt"
-                        />
-                        <Typography align="center">{el.name}</Typography>
-                        <Typography align="center">
-                          Talla {el.variety.toUpperCase()}
-                        </Typography>
-                        <Typography align="center">${el.price} MXN</Typography>
-                        <CardActions style={{ justifyContent: "center" }}>
-                          <Button
-                            size="small"
-                            onClick={() => handleMerchCartButton(el)}
-                            variant="contained"
-                          >
-                            Agregar al carrito
-                          </Button>
-                        </CardActions>
-                      </CardContent>
-                    </Card>
+                    <MerchCard
+                      item={el}
+                      handleCartButton={onCartButtonPressed}
+                    />
                   </Grid>
                 ))}
               </Grid>

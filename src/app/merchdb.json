@@ -4,20 +4,23 @@
     "name": "Playera ALV",
     "variety": "ch",
     "price": 350,
-    "imageURL": "/assets/shirt.png"
+    "imageURL": "/assets/shirt.png",
+    "state": "active"
   },
   {
     "id": 902,
     "name": "Playera ALV",
     "variety": "m",
     "price": 350,
-    "imageURL": "/assets/shirt.png"
+    "imageURL": "/assets/shirt.png",
+    "state": "active"
   },
   {
     "id": 903,
     "name": "Playera ALV",
     "variety": "g",
     "price": 350,
-    "imageURL": "/assets/shirt.png"
+    "imageURL": "/assets/shirt.png",
+    "state": "active"
   }
 ]

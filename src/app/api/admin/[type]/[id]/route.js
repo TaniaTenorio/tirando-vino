@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { persistImageIfNeeded } from "@/utils/helpers";
 
 export async function PUT(request, { params }) {
   const { type, id } = params;
@@ -25,7 +26,9 @@ export async function PUT(request, { params }) {
     }
 
     // Update the item
-    database[itemIndex] = { ...database[itemIndex], ...body };
+    const updatedItem = { ...database[itemIndex], ...body };
+    updatedItem.imageURL = persistImageIfNeeded(updatedItem, type);
+    database[itemIndex] = updatedItem;
 
     // Write back to the file
     fs.writeFileSync(filePath, JSON.stringify(database, null, 2));

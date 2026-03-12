@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { persistImageIfNeeded } from "@/utils/helpers";
 
 export async function POST(request, { params }) {
   const { type } = params;
@@ -28,6 +29,8 @@ export async function POST(request, { params }) {
       ...body,
       state: body.state || "active",
     };
+
+    newItem.imageURL = persistImageIfNeeded(newItem, type);
 
     database.push(newItem);
     fs.writeFileSync(filePath, JSON.stringify(database, null, 2));

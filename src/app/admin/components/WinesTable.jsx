@@ -4,6 +4,17 @@ import winesList from "@/app/database.json";
 import ActionsMenu from "./ActionsMenu";
 import { Paper, Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { getCountryDisplayValue } from "@/utils/countries";
+
+const formatHouseValue = (value) => {
+  if (!value) return "";
+
+  return value
+    .toString()
+    .split("_")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+};
 
 const WinesTable = () => {
   const router = useRouter();
@@ -12,9 +23,19 @@ const WinesTable = () => {
     { field: "name", headerName: "Nombre", width: 200 },
     { field: "color", headerName: "Color", width: 100 },
     { field: "variety", headerName: "Variedad", width: 150 },
-    { field: "house", headerName: "Bodega", width: 100 },
+    {
+      field: "house",
+      headerName: "Bodega",
+      width: 100,
+      valueGetter: (_, row) => formatHouseValue(row.house),
+    },
     { field: "region", headerName: "Región", width: 150 },
-    { field: "country", headerName: "País", width: 150 },
+    {
+      field: "country",
+      headerName: "País",
+      width: 150,
+      valueGetter: (_, row) => getCountryDisplayValue(row.country),
+    },
     { field: "price", headerName: "Precio", width: 100 },
     { field: "state", headerName: "Estado", width: 100 },
     {

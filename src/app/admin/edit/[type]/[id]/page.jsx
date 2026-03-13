@@ -15,6 +15,10 @@ import winesList from "@/app/database.json";
 import merchList from "@/app/merchdb.json";
 import { CountryDropdown } from "react-country-region-selector";
 import ImageDropzone from "@/app/admin/components/ImageDropzone";
+import {
+  getCountryCodeFromValue,
+  getSpanishCountryNameFromCode,
+} from "@/utils/countries";
 
 const FIELD_LABELS = {
   wine: {
@@ -147,19 +151,6 @@ const EditPage = () => {
     return field.charAt(0).toUpperCase() + field.slice(1);
   };
 
-  const formatCountryValue = (country) => {
-    if (!country) return "";
-    return country
-      .toString()
-      .split(" ")
-      .map((part) =>
-        part
-          ? part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
-          : part,
-      )
-      .join(" ");
-  };
-
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Paper sx={{ p: 4 }}>
@@ -187,7 +178,8 @@ const EditPage = () => {
                   <CountryDropdown
                     id="country-dropdown"
                     name={field}
-                    value={formatCountryValue(formData[field])}
+                    value={getCountryCodeFromValue(formData[field])}
+                    valueType="short"
                     onChange={(value) =>
                       setFormData((prev) => ({
                         ...prev,
@@ -195,15 +187,30 @@ const EditPage = () => {
                       }))
                     }
                     defaultOptionLabel="Selecciona un país"
-                    style={{
-                      width: "100%",
-                      minHeight: "56px",
-                      padding: "0 14px",
-                      borderRadius: "4px",
-                      border: "1px solid rgba(0, 0, 0, 0.23)",
-                      backgroundColor: "transparent",
-                      font: "inherit",
-                    }}
+                    customRender={({ options, ...selectProps }) => (
+                      <select
+                        {...selectProps}
+                        style={{
+                          width: "100%",
+                          minHeight: "56px",
+                          padding: "0 14px",
+                          borderRadius: "4px",
+                          border: "1px solid rgba(0, 0, 0, 0.23)",
+                          backgroundColor: "transparent",
+                          font: "inherit",
+                        }}
+                      >
+                        {options
+                          .filter(Boolean)
+                          .map(({ key, value, label }) => (
+                            <option key={key} value={value}>
+                              {value
+                                ? getSpanishCountryNameFromCode(value)
+                                : label}
+                            </option>
+                          ))}
+                      </select>
+                    )}
                   />
                 </Box>
               );

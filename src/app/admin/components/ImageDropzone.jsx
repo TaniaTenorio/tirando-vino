@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useDropzone } from "react-dropzone";
+import styles from "../admin.module.css";
 
 const DEFAULT_MAX_SIZE_MB = 2;
 
@@ -68,6 +69,11 @@ const ImageDropzone = ({
     maxSize: maxSizeBytes,
   });
 
+  const handleRemoveImage = () => {
+    setError("");
+    onChange("");
+  };
+
   return (
     <Box>
       <Typography
@@ -77,30 +83,60 @@ const ImageDropzone = ({
         {label}
       </Typography>
 
-      <Box
-        {...getRootProps()}
-        sx={{
-          border: "2px dashed",
-          borderColor: isDragActive ? "primary.main" : "grey.400",
-          borderRadius: 1,
-          p: 3,
-          textAlign: "center",
-          cursor: "pointer",
-          transition: "border-color 0.2s ease",
-          bgcolor: isDragActive ? "action.hover" : "transparent",
-        }}
-      >
-        <input {...getInputProps()} />
-        <Typography variant="body2">
-          Arrastra una imagen aquí o haz clic para seleccionar un archivo
-        </Typography>
-        <Typography
-          variant="caption"
-          sx={{ display: "block", mt: 1, color: "text.secondary" }}
+      {value ? (
+        <Box sx={{ mt: 2 }}>
+          <Typography variant="body">Vista previa</Typography>
+
+          <div className={styles.previewHeader}>
+            <Box
+              component="img"
+              src={value}
+              alt="Preview"
+              sx={{
+                maxWidth: "100%",
+                maxHeight: 220,
+                borderRadius: 1,
+                border: "1px solid",
+                borderColor: "grey.300",
+                objectFit: "contain",
+              }}
+            />
+            <Button
+              variant="text"
+              color="error"
+              onClick={handleRemoveImage}
+              sx={{ mt: 1 }}
+            >
+              Eliminar imagen
+            </Button>
+          </div>
+        </Box>
+      ) : (
+        <Box
+          {...getRootProps()}
+          sx={{
+            border: "2px dashed",
+            borderColor: isDragActive ? "primary.main" : "grey.400",
+            borderRadius: 1,
+            p: 3,
+            textAlign: "center",
+            cursor: "pointer",
+            transition: "border-color 0.2s ease",
+            bgcolor: isDragActive ? "action.hover" : "transparent",
+          }}
         >
-          Máximo {maxSizeMB} MB. Formatos permitidos: JPG, PNG, WEBP, etc.
-        </Typography>
-      </Box>
+          <input {...getInputProps()} />
+          <Typography variant="body2">
+            Arrastra una imagen aquí o haz clic para seleccionar un archivo
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{ display: "block", mt: 1, color: "text.secondary" }}
+          >
+            Máximo {maxSizeMB} MB. Formatos permitidos: JPG, PNG, WEBP, etc.
+          </Typography>
+        </Box>
+      )}
 
       {error ? (
         <Typography
@@ -110,27 +146,6 @@ const ImageDropzone = ({
         >
           {error}
         </Typography>
-      ) : null}
-
-      {value ? (
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="caption" sx={{ display: "block", mb: 1 }}>
-            Vista previa
-          </Typography>
-          <Box
-            component="img"
-            src={value}
-            alt="Preview"
-            sx={{
-              maxWidth: "100%",
-              maxHeight: 220,
-              borderRadius: 1,
-              border: "1px solid",
-              borderColor: "grey.300",
-              objectFit: "contain",
-            }}
-          />
-        </Box>
       ) : null}
     </Box>
   );

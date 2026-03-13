@@ -13,6 +13,10 @@ import {
 } from "@mui/material";
 import { CountryDropdown } from "react-country-region-selector";
 import ImageDropzone from "@/app/admin/components/ImageDropzone";
+import {
+  getCountryCodeFromValue,
+  getSpanishCountryNameFromCode,
+} from "@/utils/countries";
 
 const FIELD_LABELS = {
   wine: {
@@ -163,7 +167,8 @@ const NewItemPage = () => {
                   <CountryDropdown
                     id="country-dropdown"
                     name={field}
-                    value={formData[field] || ""}
+                    value={getCountryCodeFromValue(formData[field])}
+                    valueType="short"
                     onChange={(value) =>
                       setFormData((prev) => ({
                         ...prev,
@@ -171,15 +176,30 @@ const NewItemPage = () => {
                       }))
                     }
                     defaultOptionLabel="Selecciona un país"
-                    style={{
-                      width: "100%",
-                      minHeight: "56px",
-                      padding: "0 14px",
-                      borderRadius: "4px",
-                      border: "1px solid rgba(0, 0, 0, 0.23)",
-                      backgroundColor: "transparent",
-                      font: "inherit",
-                    }}
+                    customRender={({ options, ...selectProps }) => (
+                      <select
+                        {...selectProps}
+                        style={{
+                          width: "100%",
+                          minHeight: "56px",
+                          padding: "0 14px",
+                          borderRadius: "4px",
+                          border: "1px solid rgba(0, 0, 0, 0.23)",
+                          backgroundColor: "transparent",
+                          font: "inherit",
+                        }}
+                      >
+                        {options
+                          .filter(Boolean)
+                          .map(({ key, value, label }) => (
+                            <option key={key} value={value}>
+                              {value
+                                ? getSpanishCountryNameFromCode(value)
+                                : label}
+                            </option>
+                          ))}
+                      </select>
+                    )}
                   />
                 </Box>
               );

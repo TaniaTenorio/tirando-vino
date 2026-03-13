@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { persistImageIfNeeded } from "@/utils/helpers";
+import { getCountryCodeFromValue } from "@/utils/countries";
 
 export async function PUT(request, { params }) {
   const { type, id } = params;
@@ -27,6 +28,9 @@ export async function PUT(request, { params }) {
 
     // Update the item
     const updatedItem = { ...database[itemIndex], ...body };
+    if (updatedItem.country) {
+      updatedItem.country = getCountryCodeFromValue(updatedItem.country);
+    }
     updatedItem.imageURL = persistImageIfNeeded(updatedItem, type);
     database[itemIndex] = updatedItem;
 

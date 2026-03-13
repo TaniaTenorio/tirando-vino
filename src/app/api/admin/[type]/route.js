@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { persistImageIfNeeded } from "@/utils/helpers";
+import { getCountryCodeFromValue } from "@/utils/countries";
 
 export async function POST(request, { params }) {
   const { type } = params;
@@ -29,6 +30,10 @@ export async function POST(request, { params }) {
       ...body,
       state: body.state || "active",
     };
+
+    if (newItem.country) {
+      newItem.country = getCountryCodeFromValue(newItem.country);
+    }
 
     newItem.imageURL = persistImageIfNeeded(newItem, type);
 

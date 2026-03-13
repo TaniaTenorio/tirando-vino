@@ -5,8 +5,50 @@ import ActionsMenu from "./ActionsMenu";
 import { Paper, Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 
+const normalizeSelectionModel = (selectionModel) => {
+  if (Array.isArray(selectionModel)) return selectionModel;
+  if (selectionModel?.ids) return Array.from(selectionModel.ids);
+  return [];
+};
+
 const MerchTable = () => {
   const router = useRouter();
+  const [rows, setRows] = React.useState(merchList);
+  const [selectedIds, setSelectedIds] = React.useState([]);
+  const [isBulkUpdating, setIsBulkUpdating] = React.useState(false);
+
+  const handleBulkStateChange = async (state) => {
+    if (selectedIds.length === 0) return;
+
+    setIsBulkUpdating(true);
+
+    try {
+      const response = await fetch("/api/admin/merch", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ids: selectedIds, state }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update selected items");
+      }
+
+      setRows((currentRows) =>
+        currentRows.map((row) =>
+          selectedIds.includes(row.id) ? { ...row, state } : row,
+        ),
+      );
+      setSelectedIds([]);
+    } catch (error) {
+      console.error("Error updating selected merch items:", error);
+      alert("No se pudieron actualizar los elementos seleccionados.");
+    } finally {
+      setIsBulkUpdating(false);
+    }
+  };
+
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Nombre", width: 200 },
@@ -20,12 +62,29 @@ const MerchTable = () => {
       renderCell: (params) => <ActionsMenu row={params.row} type="merch" />,
     },
   ];
-  const rows = merchList;
   const paginationModel = { page: 0, pageSize: 100 };
 
   return (
     <Box sx={{ width: "100%", marginBottom: "20px" }}>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 1 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Button
+            variant="outlined"
+            color="error"
+            disabled={selectedIds.length === 0 || isBulkUpdating}
+            onClick={() => handleBulkStateChange("inactive")}
+          >
+            Desactivar seleccionados
+          </Button>
+          <Button
+            variant="outlined"
+            color="success"
+            disabled={selectedIds.length === 0 || isBulkUpdating}
+            onClick={() => handleBulkStateChange("active")}
+          >
+            Reactivar seleccionados
+          </Button>
+        </Box>
         <Button
           variant="contained"
           onClick={() => router.push("/admin/new/merch")}
@@ -37,6 +96,10 @@ const MerchTable = () => {
         <DataGrid
           rows={rows}
           columns={columns}
+          rowSelectionModel={{ type: "include", ids: new Set(selectedIds) }}
+          onRowSelectionModelChange={(newSelectionModel) =>
+            setSelectedIds(normalizeSelectionModel(newSelectionModel))
+          }
           getRowClassName={(params) =>
             params.row.state === "inactive" ? "row-inactive" : ""
           }

@@ -23,7 +23,7 @@ const ActionsMenu = ({ row, type }) => {
   const router = useRouter();
   const open = Boolean(anchorEl);
   const isInactive = row?.state === "inactive";
-  const statusOptionLabel = isInactive ? "Reactivar" : "Eliminar";
+  const statusOptionLabel = isInactive ? "Reactivar" : "Desactivar";
   const options = ["Editar", statusOptionLabel];
 
   const handleClick = (event) => {
@@ -112,11 +112,11 @@ const ActionsMenu = ({ row, type }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {isInactive ? "Confirmar reactivación" : "Confirmar eliminación"}
+          {isInactive ? "Confirmar reactivación" : "Confirmar desactivación"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            ¿Estás seguro que deseas {isInactive ? "reactivar" : "eliminar"}{" "}
+            ¿Estás seguro que deseas {isInactive ? "reactivar" : "desactivar"}{" "}
             {row?.name}? Esta acción no puede deshacerse.
           </DialogContentText>
         </DialogContent>

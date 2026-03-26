@@ -27,7 +27,8 @@ export async function PUT(request, { params }) {
     }
 
     // Update the item
-    const updatedItem = { ...database[itemIndex], ...body };
+    const { id: _ignoredId, ...restBody } = body;
+    const updatedItem = { ...database[itemIndex], ...restBody };
     if (updatedItem.country) {
       updatedItem.country = getCountryCodeFromValue(updatedItem.country);
     }

@@ -5,14 +5,7 @@ import * as React from "react";
 import styles from "./page.module.css";
 import data from "./database.json";
 import merchData from "./merchdb.json";
-import {
-  Typography,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardActions,
-} from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Divider from "@mui/material/Divider";
 import Header from "./components/Header";
@@ -110,7 +103,7 @@ export default function Home() {
   };
 
   const filteredData = React.useMemo(() => {
-    let result = data;
+    let result = data.filter((item) => item.state === "active");
 
     if (wineHouse !== "" && wineHouse !== "TODOS") {
       result = result.filter((item) => item.house === wineHouse);
@@ -181,7 +174,7 @@ export default function Home() {
             </div>
             <div className={styles.merchContainer}>
               <Grid container spacing={2}>
-                {merchData.map((el) => (
+                {merchData.filter((el) => el.state === "active").map((el) => (
                   <Grid key={el.id}>
                     <MerchCard
                       item={el}

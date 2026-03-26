@@ -1,15 +1,16 @@
 [
   {
-    "id": "test_item",
+    "id": 0,
     "name": "ITEM DE PRUEBA",
     "house": "bruma",
     "variety": "Sauvignon Blanc",
     "year": 2021,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 0.01
+    "price": 0.01,
+    "state": "active"
   },
   {
     "id": 1,
@@ -18,11 +19,12 @@
     "variety": "Sauvignon Blanc",
     "year": 2021,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 585,
-    "imageURL": "/assets/casa_jipi_blanco.png"
+    "imageURL": "/assets/casa_jipi_blanco.png",
+    "state": "active"
   },
   {
     "id": 2,
@@ -31,11 +33,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 640,
-    "imageURL": "/assets/casa_jipi_tinto.png"
+    "imageURL": "/assets/casa_jipi_tinto.png",
+    "state": "active"
   },
   {
     "id": 3,
@@ -44,11 +47,12 @@
     "variety": "Barbera",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 530,
-    "imageURL": "/assets/casa_jipi_rose.png"
+    "imageURL": "/assets/casa_jipi_rose.png",
+    "state": "active"
   },
   {
     "id": 4,
@@ -57,11 +61,12 @@
     "variety": "Barbera",
     "year": 2020,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 640,
-    "imageURL": "/assets/vdlc_tinto.png"
+    "imageURL": "/assets/vdlc_tinto.png",
+    "state": "active"
   },
   {
     "id": 5,
@@ -70,11 +75,12 @@
     "variety": "Sauvignon Blanc",
     "year": 2021,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 475,
-    "imageURL": "/assets/vdlc_blanco.png"
+    "imageURL": "/assets/vdlc_blanco.png",
+    "state": "active"
   },
   {
     "id": 7,
@@ -83,11 +89,12 @@
     "variety": "Sangiovese",
     "year": 2022,
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 645,
-    "imageURL": "/assets/ocho_rose.png"
+    "imageURL": "/assets/ocho_rose.png",
+    "state": "active"
   },
   {
     "id": 8,
@@ -96,11 +103,12 @@
     "variety": "Carignan",
     "year": 2020,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 740,
-    "imageURL": "/assets/ocho_bdn.png"
+    "imageURL": "/assets/ocho_bdn.png",
+    "state": "active"
   },
   {
     "id": 9,
@@ -109,11 +117,12 @@
     "variety": "Cabernet Sauvignon, Petite Syrah",
     "year": 2021,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1335,
-    "imageURL": "/assets/bruma_ocho_tinto.png"
+    "imageURL": "/assets/bruma_ocho_tinto.png",
+    "state": "active"
   },
   {
     "id": 10,
@@ -122,11 +131,12 @@
     "variety": "Grenache, Syrah, Mouvedre, Nebbiolo",
     "year": 2022,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 755,
-    "imageURL": "/assets/plan_b_tinto.png"
+    "imageURL": "/assets/plan_b_tinto.png",
+    "state": "active"
   },
   {
     "id": 11,
@@ -135,11 +145,12 @@
     "variety": "Carménère",
     "year": 2023,
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 520,
-    "imageURL": "/assets/plan_b_rose.png"
+    "imageURL": "/assets/plan_b_rose.png",
+    "state": "active"
   },
   {
     "id": 12,
@@ -148,11 +159,12 @@
     "variety": "Chardonnay",
     "year": 2020,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 605,
-    "imageURL": "/assets/plan_b_chardonnay.png"
+    "imageURL": "/assets/plan_b_chardonnay.png",
+    "state": "active"
   },
   {
     "id": 13,
@@ -161,11 +173,12 @@
     "variety": "Sauvignon Blanc",
     "year": 2022,
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 605,
-    "imageURL": "/assets/plan_b_sauvignon_blanc.png"
+    "imageURL": "/assets/plan_b_sauvignon_blanc.png",
+    "state": "active"
   },
   {
     "id": 14,
@@ -174,11 +187,12 @@
     "variety": "Mouvedre, Montepulciano",
     "year": 2023,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 975,
-    "imageURL": "/assets/el_bastardo.png"
+    "imageURL": "/assets/el_bastardo.png",
+    "state": "active"
   },
   {
     "id": 34,
@@ -187,11 +201,12 @@
     "variety": "Syrah, Pinot Noir",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Jalostotitlán, Jalisco",
     "pairing": "",
     "price": 590,
-    "imageURL": "/assets/cerca_blanca_conejo_pinzon.png"
+    "imageURL": "/assets/cerca_blanca_conejo_pinzon.png",
+    "state": "active"
   },
   {
     "id": 35,
@@ -200,11 +215,12 @@
     "variety": "Malbec, Cabernet Sauvignon, Merlot",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 550,
-    "imageURL": "/assets/finca_tre_tres_de_tre.png"
+    "imageURL": "/assets/finca_tre_tres_de_tre.png",
+    "state": "active"
   },
   {
     "id": 36,
@@ -213,11 +229,12 @@
     "variety": "Malbec",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 880,
-    "imageURL": "/assets/finca_tre_dovere.png"
+    "imageURL": "/assets/finca_tre_dovere.png",
+    "state": "active"
   },
   {
     "id": 37,
@@ -226,11 +243,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 880,
-    "imageURL": "/assets/finca_tre_noble_terra.png"
+    "imageURL": "/assets/finca_tre_noble_terra.png",
+    "state": "active"
   },
   {
     "id": 38,
@@ -239,11 +257,12 @@
     "variety": "Syrah",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 715,
-    "imageURL": "/assets/finca_tre_bella_luna.png"
+    "imageURL": "/assets/finca_tre_bella_luna.png",
+    "state": "active"
   },
   {
     "id": 39,
@@ -252,11 +271,12 @@
     "variety": "Grenache",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 550,
-    "imageURL": "/assets/finca_tre_rosato.png"
+    "imageURL": "/assets/finca_tre_rosato.png",
+    "state": "active"
   },
   {
     "id": 40,
@@ -265,11 +285,12 @@
     "variety": "Chardonnay",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 830,
-    "imageURL": "/assets/lechuza_chardonnay_roble.png"
+    "imageURL": "/assets/lechuza_chardonnay_roble.png",
+    "state": "active"
   },
   {
     "id": 41,
@@ -278,11 +299,12 @@
     "variety": "Chardonnay",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 595,
-    "imageURL": "/assets/lechuza_chardonnay_acero.png"
+    "imageURL": "/assets/lechuza_chardonnay_acero.png",
+    "state": "active"
   },
   {
     "id": 42,
@@ -291,11 +313,12 @@
     "variety": "Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 590,
-    "imageURL": "/assets/lechuza_canto.png"
+    "imageURL": "/assets/lechuza_canto.png",
+    "state": "active"
   },
   {
     "id": 43,
@@ -304,11 +327,12 @@
     "variety": "Cabernet Sauvignon, Merlot, Tempranillo, Nebbiolo",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 140,
-    "imageURL": "/assets/lechuza_lata_royal.png"
+    "imageURL": "/assets/lechuza_lata_royal.png",
+    "state": "active"
   },
   {
     "id": 47,
@@ -317,11 +341,12 @@
     "variety": "Nebbiolo, Cabernet Sauvignon, Merlot",
     "year": 2019,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1200,
-    "imageURL": "/assets/lechuza_amantes.png"
+    "imageURL": "/assets/lechuza_amantes.png",
+    "state": "active"
   },
   {
     "id": 48,
@@ -330,11 +355,12 @@
     "variety": "Cabernet Sauvignon",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1740,
-    "imageURL": "/assets/lechuza_cabernet.png"
+    "imageURL": "/assets/lechuza_cabernet.png",
+    "state": "active"
   },
   {
     "id": 49,
@@ -343,11 +369,12 @@
     "variety": "Cabernet Sauvignon, Merlot, Tempranillo, Nebbiolo",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1020,
-    "imageURL": "/assets/lechuza_royal_blush_magnum.png"
+    "imageURL": "/assets/lechuza_royal_blush_magnum.png",
+    "state": "active"
   },
   {
     "id": 60,
@@ -356,11 +383,12 @@
     "variety": "Nebbiolo, Cabernet Sauvignon, Cabernet Franc",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 325,
-    "imageURL": "/assets/misiones_ensamble_de_tintos.png"
+    "imageURL": "/assets/misiones_ensamble_de_tintos.png",
+    "state": "active"
   },
   {
     "id": 61,
@@ -369,11 +397,12 @@
     "variety": "Cabernet Franc, Cabernet Sauvignon, Merlot",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_mezcla_bordalesa.png"
+    "imageURL": "/assets/misiones_mezcla_bordalesa.png",
+    "state": "active"
   },
   {
     "id": 62,
@@ -382,11 +411,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_nebbiolo.png"
+    "imageURL": "/assets/misiones_nebbiolo.png",
+    "state": "active"
   },
   {
     "id": 63,
@@ -395,11 +425,12 @@
     "variety": "Syrah",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_syrah.png"
+    "imageURL": "/assets/misiones_syrah.png",
+    "state": "active"
   },
   {
     "id": 64,
@@ -408,10 +439,11 @@
     "variety": "Cabernet Franc",
     "year": 2019,
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
-    "price": 945
+    "price": 945,
+    "state": "active"
   },
   {
     "id": 65,
@@ -420,11 +452,12 @@
     "variety": "Garnacha Negra",
     "year": "",
     "color": "Tinto",
-    "country": "españa",
+    "country": "ES",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
     "price": 485,
-    "imageURL": "/assets/vinim_ciutats_tinto.png"
+    "imageURL": "/assets/vinim_ciutats_tinto.png",
+    "state": "active"
   },
   {
     "id": 66,
@@ -433,11 +466,12 @@
     "variety": "Garnacha Blanca",
     "year": "",
     "color": "Blanco",
-    "country": "españa",
+    "country": "ES",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
     "price": 485,
-    "imageURL": "/assets/vinim_ciutats_blanco.png"
+    "imageURL": "/assets/vinim_ciutats_blanco.png",
+    "state": "active"
   },
   {
     "id": 67,
@@ -446,11 +480,12 @@
     "variety": "Macabeo, Charelo, Parellada",
     "year": "",
     "color": "Espumoso",
-    "country": "españa",
+    "country": "ES",
     "region": "Cataluña D.O. Terralta",
     "pairing": "",
     "price": 590,
-    "imageURL": "/assets/vinim_gasela.png"
+    "imageURL": "/assets/vinim_gasela.png",
+    "state": "active"
   },
   {
     "id": 68,
@@ -459,11 +494,12 @@
     "variety": "Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 625,
-    "imageURL": "/assets/bruma_jipi_naranja.png"
+    "imageURL": "/assets/bruma_jipi_naranja.png",
+    "state": "active"
   },
   {
     "id": 69,
@@ -472,11 +508,12 @@
     "variety": "Carménère",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 595,
-    "imageURL": "/assets/bruma_vdlc_rose.png"
+    "imageURL": "/assets/bruma_vdlc_rose.png",
+    "state": "active"
   },
   {
     "id": 70,
@@ -485,11 +522,12 @@
     "variety": "Cabernet Sauvignon, Malbec, Merlot",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Los Altos de Jalisco",
     "pairing": "",
     "price": 445,
-    "imageURL": "/assets/cerca_blanca_rose_lixco.png"
+    "imageURL": "/assets/cerca_blanca_rose_lixco.png",
+    "state": "active"
   },
   {
     "id": 71,
@@ -498,11 +536,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1780,
-    "imageURL": "/assets/lechuza_nebbiolo.png"
+    "imageURL": "/assets/lechuza_nebbiolo.png",
+    "state": "active"
   },
   {
     "id": 72,
@@ -511,11 +550,12 @@
     "variety": "Merlot, Syrah",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1100,
-    "imageURL": "/assets/lechuza_alas.png"
+    "imageURL": "/assets/lechuza_alas.png",
+    "state": "active"
   },
   {
     "id": 73,
@@ -524,11 +564,12 @@
     "variety": "Chardonnay, Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1235,
-    "imageURL": "/assets/lechuza_bohemio_blanco.png"
+    "imageURL": "/assets/lechuza_bohemio_blanco.png",
+    "state": "active"
   },
   {
     "id": 74,
@@ -537,11 +578,12 @@
     "variety": "Tempranillo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1500,
-    "imageURL": "/assets/lechuza_bohemio_tempranillo.png"
+    "imageURL": "/assets/lechuza_bohemio_tempranillo.png",
+    "state": "active"
   },
   {
     "id": 75,
@@ -550,11 +592,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1555,
-    "imageURL": "/assets/lechuza_bohemio_nebbiolo.png"
+    "imageURL": "/assets/lechuza_bohemio_nebbiolo.png",
+    "state": "active"
   },
   {
     "id": 76,
@@ -563,11 +606,12 @@
     "variety": "Malvar",
     "year": "",
     "color": "Blanco",
-    "country": "españa",
+    "country": "ES",
     "region": "Arganda del Rey, Madrid",
     "pairing": "",
     "price": 490,
-    "imageURL": "/assets/vinim_a_pachas_malvar.png"
+    "imageURL": "/assets/vinim_a_pachas_malvar.png",
+    "state": "active"
   },
   {
     "id": 77,
@@ -576,11 +620,12 @@
     "variety": "Tempranillo",
     "year": "",
     "color": "Tinto",
-    "country": "españa",
+    "country": "ES",
     "region": "Arganda del Rey, Madrid",
     "pairing": "",
     "price": 490,
-    "imageURL": "/assets/vinim_a_pachas_tinto.png"
+    "imageURL": "/assets/vinim_a_pachas_tinto.png",
+    "state": "active"
   },
   {
     "id": 78,
@@ -589,11 +634,12 @@
     "variety": "Syrah",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de San Vicente",
     "pairing": "",
     "price": 495,
-    "imageURL": "/assets/vinicola_os_verraco_rosado.png"
+    "imageURL": "/assets/vinicola_os_verraco_rosado.png",
+    "state": "active"
   },
   {
     "id": 79,
@@ -602,11 +648,12 @@
     "variety": "Syrah",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de San Vicente",
     "pairing": "",
     "price": 595,
-    "imageURL": "/assets/vinicola_os_verraco_tinto.png"
+    "imageURL": "/assets/vinicola_os_verraco_tinto.png",
+    "state": "active"
   },
   {
     "id": 80,
@@ -615,11 +662,12 @@
     "variety": "Chenin Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_chenin_blanc.png"
+    "imageURL": "/assets/bruma_reserva_chenin_blanc.png",
+    "state": "active"
   },
   {
     "id": 81,
@@ -628,11 +676,12 @@
     "variety": "Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_sauvignon_blanc.png"
+    "imageURL": "/assets/bruma_reserva_sauvignon_blanc.png",
+    "state": "active"
   },
   {
     "id": 82,
@@ -641,11 +690,12 @@
     "variety": "Chardonnay",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_chardonnay.png"
+    "imageURL": "/assets/bruma_reserva_chardonnay.png",
+    "state": "active"
   },
   {
     "id": 83,
@@ -654,11 +704,12 @@
     "variety": "Cabernet Franc",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1435,
-    "imageURL": "/assets/bruma_reserva_cabernet_franc.png"
+    "imageURL": "/assets/bruma_reserva_cabernet_franc.png",
+    "state": "active"
   },
   {
     "id": 84,
@@ -667,11 +718,12 @@
     "variety": "Carménère",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1250,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 85,
@@ -680,11 +732,12 @@
     "variety": "Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1250,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 86,
@@ -693,11 +746,12 @@
     "variety": "Cabernet Franc, Cabernet Sauvignon, Merlot",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1065,
-    "imageURL": "/assets/bruma_reserva_mezcla_bordalesa.png"
+    "imageURL": "/assets/bruma_reserva_mezcla_bordalesa.png",
+    "state": "active"
   },
   {
     "id": 87,
@@ -706,11 +760,12 @@
     "variety": "Merlot, Syrah",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 680,
-    "imageURL": "/assets/lechuza_alas_750ml.png"
+    "imageURL": "/assets/lechuza_alas_750ml.png",
+    "state": "active"
   },
   {
     "id": 88,
@@ -719,11 +774,12 @@
     "variety": "Espumoso",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 285,
-    "imageURL": "/assets/lechuza_cantito.png"
+    "imageURL": "/assets/lechuza_cantito.png",
+    "state": "active"
   },
   {
     "id": 89,
@@ -732,11 +788,12 @@
     "variety": "Chardonnay, Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 590,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 90,
@@ -745,11 +802,12 @@
     "variety": "Merlot",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1680,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 91,
@@ -758,11 +816,12 @@
     "variety": "Vlogner",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1150,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 92,
@@ -771,11 +830,12 @@
     "variety": "Cabernet Sauvignon, Syrah, Petit Sirah, Zinfandel, Grenache",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 795,
-    "imageURL": "/assets/vena_cava_big_blend.png"
+    "imageURL": "/assets/vena_cava_big_blend.png",
+    "state": "active"
   },
   {
     "id": 93,
@@ -784,11 +844,12 @@
     "variety": "Cabernet Sauvignon",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 765,
-    "imageURL": "/assets/vena_cava_cabernet_sauvignon.png"
+    "imageURL": "/assets/vena_cava_cabernet_sauvignon.png",
+    "state": "active"
   },
   {
     "id": 94,
@@ -797,11 +858,12 @@
     "variety": "Cabernet Sauvignon, Syrah, Nebbiolo",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 955,
-    "imageURL": "/assets/vena_cava_phils_blend.png"
+    "imageURL": "/assets/vena_cava_phils_blend.png",
+    "state": "active"
   },
   {
     "id": 95,
@@ -810,11 +872,12 @@
     "variety": "Sauvignon Blanc",
     "year": "",
     "color": "Blanco",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 530,
-    "imageURL": "/assets/vena_cava_sauvignon_blanc.png"
+    "imageURL": "/assets/vena_cava_sauvignon_blanc.png",
+    "state": "active"
   },
   {
     "id": 96,
@@ -823,11 +886,12 @@
     "variety": "Tempranillo, Syrah, Grenache, Mouvedre",
     "year": "",
     "color": "Tinto",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 800,
-    "imageURL": "/assets/vena_cava_mezcla_especial.png"
+    "imageURL": "/assets/vena_cava_mezcla_especial.png",
+    "state": "active"
   },
   {
     "id": 97,
@@ -836,11 +900,12 @@
     "variety": "Grenache",
     "year": "",
     "color": "Rosado",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 530,
-    "imageURL": "/assets/vena_cava_rosado.png"
+    "imageURL": "/assets/vena_cava_rosado.png",
+    "state": "active"
   },
   {
     "id": 98,
@@ -849,11 +914,12 @@
     "variety": "Chardonnay",
     "year": "",
     "color": "Naranja",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 610,
-    "imageURL": "/assets/vena_cava_ambar.png"
+    "imageURL": "/assets/vena_cava_ambar.png",
+    "state": "active"
   },
   {
     "id": 99,
@@ -862,11 +928,12 @@
     "variety": "Manzanas Silvestres",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 720,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 100,
@@ -875,11 +942,12 @@
     "variety": "Albariño",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_naranja.png"
+    "imageURL": "/assets/altos_norte_zafado_naranja.png",
+    "state": "active"
   },
   {
     "id": 101,
@@ -888,11 +956,12 @@
     "variety": "Malbec, Tempranillo",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_rosado.png"
+    "imageURL": "/assets/altos_norte_zafado_rosado.png",
+    "state": "active"
   },
   {
     "id": 102,
@@ -901,11 +970,12 @@
     "variety": "Cabernet Sauvignon, Malbec",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_tinto.png"
+    "imageURL": "/assets/altos_norte_zafado_tinto.png",
+    "state": "active"
   },
   {
     "id": 103,
@@ -914,11 +984,12 @@
     "variety": "Albariño",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 1010,
-    "imageURL": "/assets/altos_norte_bruto_cero.png"
+    "imageURL": "/assets/altos_norte_bruto_cero.png",
+    "state": "active"
   },
   {
     "id": 104,
@@ -927,11 +998,12 @@
     "variety": "Chardonnay",
     "year": "",
     "color": "Espumoso",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 880,
-    "imageURL": "/assets/bruma_la_vedette.png"
+    "imageURL": "/assets/bruma_la_vedette.png",
+    "state": "active"
   },
   {
     "id": 105,
@@ -940,11 +1012,12 @@
     "variety": "Syrah, Grenache",
     "year": "",
     "color": "Bag in Box",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 785,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 106,
@@ -953,11 +1026,12 @@
     "variety": "Sauvignon Blanc, Chardonnay",
     "year": "",
     "color": "Bag in Box",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 785,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 107,
@@ -966,11 +1040,12 @@
     "variety": "Tempranillo",
     "year": "",
     "color": "Bag in Box",
-    "country": "mexico",
+    "country": "MX",
     "region": "San Luis Potosí",
     "pairing": "",
     "price": 785,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   },
   {
     "id": 108,
@@ -979,11 +1054,12 @@
     "variety": "Grenache, Syrah, Mouvedre, Nebbiolo",
     "year": "",
     "color": "Bag in Box",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1400,
-    "imageURL": "/assets/bruma_bib_tinto.png"
+    "imageURL": "/assets/bruma_bib_tinto.png",
+    "state": "active"
   },
   {
     "id": 109,
@@ -992,10 +1068,11 @@
     "variety": "Cabernet Sauvignon, Merlot",
     "year": "",
     "color": "Bag in Box",
-    "country": "mexico",
+    "country": "MX",
     "region": "Valle de Guadalupe",
     "pairing": "",
     "price": 1680,
-    "imageURL": ""
+    "imageURL": "",
+    "state": "active"
   }
 ]

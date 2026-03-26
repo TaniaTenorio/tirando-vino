@@ -1,6 +1,7 @@
+"use client";
+
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import winesList from "@/app/database.json";
 import ActionsMenu from "./ActionsMenu";
 import { Paper, Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -24,9 +25,19 @@ const normalizeSelectionModel = (selectionModel) => {
 
 const WinesTable = () => {
   const router = useRouter();
-  const [rows, setRows] = React.useState(winesList);
+  const [rows, setRows] = React.useState([]);
   const [selectedIds, setSelectedIds] = React.useState([]);
   const [isBulkUpdating, setIsBulkUpdating] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch("/api/admin/wine")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch wine data");
+        return res.json();
+      })
+      .then((data) => setRows(data))
+      .catch((err) => console.error("Error loading wine data:", err));
+  }, []);
 
   const handleBulkStateChange = async (state) => {
     if (selectedIds.length === 0) return;

@@ -58,8 +58,8 @@ export async function POST(request, { params }) {
     );
 
     const newItem = {
-      id: highestId + 1,
       ...body,
+      id: highestId + 1,
       state: body.state || "active",
     };
 

@@ -10,6 +10,32 @@ const getDatabaseFilePath = (type) => {
 
 const isValidType = (type) => type === "wine" || type === "merch";
 
+export async function GET(request, { params }) {
+  const { type } = params;
+
+  if (!isValidType(type)) {
+    return new Response(JSON.stringify({ error: "Invalid type" }), {
+      status: 400,
+    });
+  }
+
+  try {
+    const filePath = getDatabaseFilePath(type);
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const database = JSON.parse(fileContent);
+
+    return new Response(JSON.stringify(database), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error reading database:", error);
+    return new Response(JSON.stringify({ error: "Failed to read database" }), {
+      status: 500,
+    });
+  }
+}
+
 export async function POST(request, { params }) {
   const { type } = params;
 

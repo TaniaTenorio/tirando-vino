@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import theme from "@/theme";
-import { ClerkProvider } from "@clerk/nextjs";
+// import { ClerkProvider } from "@clerk/nextjs";
 
 const shadowsIntoLight = Shadows_Into_Light({
   variable: "--font-shadows-into-light",
@@ -20,14 +20,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            <body className={`${shadowsIntoLight.variable}`}>{children}</body>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </html>
-    </ClerkProvider>
+    // <ClerkProvider>
+    <html lang="en">
+      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+        <ThemeProvider theme={theme}>
+          <body className={`${shadowsIntoLight.variable}`}>{children}</body>
+        </ThemeProvider>
+      </AppRouterCacheProvider>
+    </html>
+    // </ClerkProvider>
   );
 }

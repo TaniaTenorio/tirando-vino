@@ -10,25 +10,30 @@ import MerchTable from "./components/MerchTable";
 import styles from "./admin.module.css";
 
 const AdminPage = () => {
-  const { user, isLoaded } = useUser();
-  const { signOut } = useClerk();
-  const router = useRouter();
-  const [isSigningOut, setIsSigningOut] = React.useState(false);
+  // const { user, isLoaded } = useUser();
+  // const { signOut } = useClerk();
+  // const router = useRouter();
+  // const [isSigningOut, setIsSigningOut] = React.useState(false);
 
-  React.useEffect(() => {
-    if (!isLoaded) return;
-    if (!user) {
-      router.replace("/");
-    }
-  }, [isLoaded, user, router]);
+  // React.useEffect(() => {
+  //   if (!isLoaded) return;
+  //   if (!user) {
+  //     router.replace("/");
+  //   }
+  // }, [isLoaded, user, router]);
 
-  const handleLogout = async () => {
-    setIsSigningOut(true);
-    await signOut();
-    router.replace("/");
+  // const handleLogout = async () => {
+  //   setIsSigningOut(true);
+  //   await signOut();
+  //   router.replace("/");
+  // };
+
+  // if (!isLoaded || !user) return null;
+
+  const user = {
+    firstName: "Admin",
+    imageUrl: "https://via.placeholder.com/150",
   };
-
-  if (!isLoaded || !user) return null;
 
   return (
     <>

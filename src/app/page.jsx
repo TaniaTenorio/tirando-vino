@@ -174,7 +174,7 @@ export default function Home() {
             </div>
             <div className={styles.merchContainer}>
               <Grid container spacing={2}>
-                {merchData.map((el) => (
+                {merchData.filter((el) => el.state === "active").map((el) => (
                   <Grid key={el.id}>
                     <MerchCard
                       item={el}

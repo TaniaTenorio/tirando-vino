@@ -61,7 +61,7 @@ const ActionsMenu = ({ row, type }) => {
 
       if (response.ok) {
         setOpenConfirm(false);
-        window.location.reload();
+        router.refresh();
       }
     } catch (error) {
       console.error("Error updating item:", error);

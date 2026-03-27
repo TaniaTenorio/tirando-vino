@@ -13,7 +13,7 @@ const AdminPage = () => {
   // const { user, isLoaded } = useUser();
   // const { signOut } = useClerk();
   // const router = useRouter();
-  // const [isSigningOut, setIsSigningOut] = React.useState(false);
+  const [isSigningOut, setIsSigningOut] = React.useState(false);
 
   // React.useEffect(() => {
   //   if (!isLoaded) return;

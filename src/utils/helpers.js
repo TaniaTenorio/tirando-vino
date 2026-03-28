@@ -60,3 +60,9 @@ export const persistImageIfNeeded = (itemData, type) => {
 
   return `/assets/${fileName}`;
 };
+
+export const getImageUrl = (url) => {
+  if (!url) return "";
+  // add timestamp to avoid caching issues
+  return `${url}?t=${new Date().getTime()}`;
+};

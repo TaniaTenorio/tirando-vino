@@ -4,6 +4,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import RecoveryPasswordForm from "./RecoveryPasswordForm";
 
 const AuthForm = ({ type }) => {
   const [typeSelected, setTypeSelected] = React.useState(type);
@@ -15,7 +16,9 @@ const AuthForm = ({ type }) => {
       {typeSelected === "signup" && (
         <SignUpForm setTypeSelected={setTypeSelected} />
       )}
-      {/* {typeSelected === 'reset' && <ResetPasswordForm setTypeSelected={setTypeSelected} />} */}
+      {typeSelected === "reset" && (
+        <RecoveryPasswordForm setTypeSelected={setTypeSelected} />
+      )}
     </Box>
   );
 };

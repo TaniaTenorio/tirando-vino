@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { getUser } from "@/actions/auth/getUser";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -36,6 +37,26 @@ export async function updateSession(request: NextRequest) {
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
   await supabase.auth.getClaims();
+  const user = await getUser();
+  // const { data: { user } } = await supabase.auth.getUser();
+  console.log("User in middleware:", user);
+
+  const protectedRoutes = [
+    "/admin",
+    "/admin/*",
+    "/profile",
+    "/update-password",
+  ];
+
+  // if user is not authenticated and tries to access a protected route, redirect to login page
+  if (!user && protectedRoutes.includes(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+
+  // if user is authenticated and tries to access the login page, redirect to admin page
+  if (user && request.nextUrl.pathname === "/auth") {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
 
   return supabaseResponse;
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { useClerk, useUser } from "@clerk/nextjs";
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -10,9 +9,9 @@ import MerchTable from "./components/MerchTable";
 import styles from "./admin.module.css";
 
 const AdminPage = () => {
+  const router = useRouter();
   // const { user, isLoaded } = useUser();
   // const { signOut } = useClerk();
-  // const router = useRouter();
   const [isSigningOut, setIsSigningOut] = React.useState(false);
 
   // React.useEffect(() => {
@@ -22,11 +21,25 @@ const AdminPage = () => {
   //   }
   // }, [isLoaded, user, router]);
 
-  // const handleLogout = async () => {
-  //   setIsSigningOut(true);
-  //   await signOut();
-  //   router.replace("/");
-  // };
+  const handleLogout = async () => {
+    setIsSigningOut(true);
+
+    try {
+      const response = await fetch("/api/auth/signout", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to sign out");
+      }
+
+      router.replace("/");
+      router.refresh();
+    } catch (error) {
+      console.error("Sign out error:", error);
+      setIsSigningOut(false);
+    }
+  };
 
   // if (!isLoaded || !user) return null;
 

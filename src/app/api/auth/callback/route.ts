@@ -28,6 +28,11 @@ export async function GET(request: NextRequest) {
     if (type === "email") {
       return NextResponse.redirect(`${requestUrl.origin}/`);
     }
+
+    if (type === "recovery") {
+      return NextResponse.redirect(`${requestUrl.origin}/update-password`);
+    }
+
     if (!error) {
       redirectTo.searchParams.delete("next");
       return NextResponse.redirect(redirectTo);

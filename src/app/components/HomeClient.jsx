@@ -7,10 +7,12 @@ import Grid from "@mui/material/Grid2";
 import Divider from "@mui/material/Divider";
 import Header from "./Header";
 import WineCard from "./WineCard";
+import Hero from "./Hero";
 import PropTypes from "prop-types";
 import RadioFilters from "./RadioFilters";
 import Navbar from "./Navbar";
 import CustomSnackbar from "./Snackbar";
+import MerchCard from "./MerchCard";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -27,7 +29,7 @@ function CustomTabPanel(props) {
   );
 }
 
-const HomeClient = ({ data }) => {
+const HomeClient = ({ winesData, merchData }) => {
   const [tabValue, setTabvalue] = React.useState(0);
   const [filterArg, setFilterArg] = React.useState("TODOS");
   const [cart, setCart] = React.useState([]);
@@ -93,7 +95,7 @@ const HomeClient = ({ data }) => {
   };
 
   const filteredData = React.useMemo(() => {
-    let result = data;
+    let result = winesData;
 
     if (wineHouse !== "" && wineHouse !== "TODOS") {
       result = result.filter((item) => item.house === wineHouse);
@@ -106,15 +108,16 @@ const HomeClient = ({ data }) => {
     if (wineHouse === "") return [];
 
     return result;
-  }, [data, wineHouse, filterArg]);
+  }, [winesData, wineHouse, filterArg]);
 
   return (
-    <div>
+    <div className={styles.page}>
       <Header
         cartList={cart}
         onRemoveItem={handleRemoveItem}
         onUpdateCartList={handleUpdateCartList}
       />
+      <Hero />
 
       <main className={styles.mainContent}>
         <Navbar value={tabValue} handleOnChange={handleChange} />
@@ -154,7 +157,39 @@ const HomeClient = ({ data }) => {
             </Grid>
           </section>
         </article>
+        <article>
+          <section>
+            <div className={styles.sectionHeader}>
+              <Typography align="center" color="black" variant="h6">
+                {" "}
+                Llevate una playerita
+              </Typography>
+            </div>
+            <div className={styles.merchContainer}>
+              <Grid container spacing={2}>
+                {merchData.map((el) => (
+                  <Grid key={el.id}>
+                    <MerchCard
+                      item={el}
+                      handleCartButton={onCartButtonPressed}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          </section>
+        </article>
       </main>
+
+      <footer className={styles.footer}>
+        <Box>
+          <Typography variant="body2" color="textSecondary" align="center">
+            {"© "}
+            Tirando Vino {new Date().getFullYear()}
+            {"."}
+          </Typography>
+        </Box>
+      </footer>
 
       <CustomSnackbar
         open={openSnackBar}
@@ -173,7 +208,8 @@ CustomTabPanel.propTypes = {
 };
 
 HomeClient.propTypes = {
-  data: PropTypes.array.isRequired,
+  winesData: PropTypes.array.isRequired,
+  merchData: PropTypes.array.isRequired,
 };
 
 export default HomeClient;

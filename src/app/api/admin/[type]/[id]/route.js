@@ -3,13 +3,13 @@ import {
   getItemById,
   isValidType,
   updateItem,
-} from "@/lib/supabase/admin-helpers";
+} from "@/lib/supabase/helpers";
 import { getCountryCodeFromValue } from "@/utils/countries";
 
 const parseIdByType = (_type, id) => id;
 
 export async function GET(request, { params }) {
-  const { type, id } = params;
+  const { type, id } = await params;
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {
@@ -41,7 +41,7 @@ export async function GET(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
-  const { type, id } = params;
+  const { type, id } = await params;
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {
@@ -78,7 +78,7 @@ export async function PUT(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
-  const { type, id } = params;
+  const { type, id } = await params;
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {

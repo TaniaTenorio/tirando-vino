@@ -1,22 +1,10 @@
 import React from "react";
 import HomeClient from "./components/HomeClient";
 import { createClient } from "@/lib/supabase/server";
+import { getHomeData } from "@/lib/supabase/helpers";
 
 export default async function Home() {
-  const supabase = await createClient();
-
-  const [{ data: wines = [] }, { data: merch = [] }] = await Promise.all([
-    supabase
-      .from("wines")
-      .select("*")
-      .eq("status", "active")
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("merch")
-      .select("*")
-      .eq("status", "active")
-      .order("created_at", { ascending: false }),
-  ]);
+  const { wines, merch } = await getHomeData();
 
   const winesData = wines.map((item) => ({
     ...item,

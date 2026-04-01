@@ -61,7 +61,6 @@ const MerchTable = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Nombre", width: 200 },
     { field: "variety", headerName: "Variedad", width: 150 },
     { field: "price", headerName: "Precio", width: 100 },

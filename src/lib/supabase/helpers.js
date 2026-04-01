@@ -70,14 +70,45 @@ const normalizeByTypeForDb = async ({ type, payload, existingItem = null }) => {
   return normalized;
 };
 
+export const getHomeData = async () => {
+  const supabase = await createClient();
+
+  const [{ data: wines = [] }, { data: merch = [] }] = await Promise.all([
+    supabase
+      .from("wines")
+      .select("*")
+      .eq("status", "active")
+      .order("name", { ascending: true })
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("merch")
+      .select("*")
+      .eq("status", "active")
+      .order("name", { ascending: true })
+      .order("created_at", { ascending: false }),
+  ]);
+
+  return {
+    wines: wines.map(mapImageForClient),
+    merch: merch.map(mapImageForClient),
+  };
+};
+
 export const getItems = async (type) => {
   const supabase = await createClient();
   const table = TABLE_BY_TYPE[type];
 
-  const { data, error } = await supabase
-    .from(table)
-    .select("*")
-    .order("created_at", { ascending: false });
+  let query = supabase.from(table).select("*");
+
+  if (type === "wine" || type === "merch") {
+    query = query
+      .order("name", { ascending: true })
+      .order("created_at", { ascending: false });
+  } else {
+    query = query.order("created_at", { ascending: false });
+  }
+
+  const { data, error } = await query;
 
   if (error) throw error;
 

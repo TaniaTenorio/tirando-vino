@@ -8,9 +8,8 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 0.01,
-    "state": "active"
+    "status": "active"
   },
   {
     "id": 1,
@@ -21,10 +20,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 585,
-    "imageURL": "/assets/casa_jipi_blanco.png",
-    "state": "active"
+    "image": "/assets/casa_jipi_blanco.png",
+    "status": "active"
   },
   {
     "id": 2,
@@ -35,10 +33,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 640,
-    "imageURL": "/assets/casa_jipi_tinto.png",
-    "state": "active"
+    "image": "/assets/casa_jipi_tinto.png",
+    "status": "active"
   },
   {
     "id": 3,
@@ -49,10 +46,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 530,
-    "imageURL": "/assets/casa_jipi_rose.png",
-    "state": "active"
+    "image": "/assets/casa_jipi_rose.png",
+    "status": "active"
   },
   {
     "id": 4,
@@ -63,10 +59,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 640,
-    "imageURL": "/assets/vdlc_tinto.png",
-    "state": "active"
+    "image": "/assets/vdlc_tinto.png",
+    "status": "active"
   },
   {
     "id": 5,
@@ -77,10 +72,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 475,
-    "imageURL": "/assets/vdlc_blanco.png",
-    "state": "active"
+    "image": "/assets/vdlc_blanco.png",
+    "status": "active"
   },
   {
     "id": 7,
@@ -91,10 +85,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 645,
-    "imageURL": "/assets/ocho_rose.png",
-    "state": "active"
+    "image": "/assets/ocho_rose.png",
+    "status": "active"
   },
   {
     "id": 8,
@@ -105,10 +98,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 740,
-    "imageURL": "/assets/ocho_bdn.png",
-    "state": "active"
+    "image": "/assets/ocho_bdn.png",
+    "status": "active"
   },
   {
     "id": 9,
@@ -119,10 +111,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1335,
-    "imageURL": "/assets/bruma_ocho_tinto.png",
-    "state": "active"
+    "image": "/assets/bruma_ocho_tinto.png",
+    "status": "active"
   },
   {
     "id": 10,
@@ -133,10 +124,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 755,
-    "imageURL": "/assets/plan_b_tinto.png",
-    "state": "active"
+    "image": "/assets/plan_b_tinto.png",
+    "status": "active"
   },
   {
     "id": 11,
@@ -147,10 +137,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 520,
-    "imageURL": "/assets/plan_b_rose.png",
-    "state": "active"
+    "image": "/assets/plan_b_rose.png",
+    "status": "active"
   },
   {
     "id": 12,
@@ -161,10 +150,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 605,
-    "imageURL": "/assets/plan_b_chardonnay.png",
-    "state": "active"
+    "image": "/assets/plan_b_chardonnay.png",
+    "status": "active"
   },
   {
     "id": 13,
@@ -175,10 +163,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 605,
-    "imageURL": "/assets/plan_b_sauvignon_blanc.png",
-    "state": "active"
+    "image": "/assets/plan_b_sauvignon_blanc.png",
+    "status": "active"
   },
   {
     "id": 14,
@@ -189,10 +176,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 975,
-    "imageURL": "/assets/el_bastardo.png",
-    "state": "active"
+    "image": "/assets/el_bastardo.png",
+    "status": "active"
   },
   {
     "id": 34,
@@ -203,10 +189,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Jalostotitlán, Jalisco",
-    "pairing": "",
     "price": 590,
-    "imageURL": "/assets/cerca_blanca_conejo_pinzon.png",
-    "state": "active"
+    "image": "/assets/cerca_blanca_conejo_pinzon.png",
+    "status": "active"
   },
   {
     "id": 35,
@@ -217,10 +202,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 550,
-    "imageURL": "/assets/finca_tre_tres_de_tre.png",
-    "state": "active"
+    "image": "/assets/finca_tre_tres_de_tre.png",
+    "status": "active"
   },
   {
     "id": 36,
@@ -231,10 +215,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 880,
-    "imageURL": "/assets/finca_tre_dovere.png",
-    "state": "active"
+    "image": "/assets/finca_tre_dovere.png",
+    "status": "active"
   },
   {
     "id": 37,
@@ -245,10 +228,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 880,
-    "imageURL": "/assets/finca_tre_noble_terra.png",
-    "state": "active"
+    "image": "/assets/finca_tre_noble_terra.png",
+    "status": "active"
   },
   {
     "id": 38,
@@ -259,10 +241,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 715,
-    "imageURL": "/assets/finca_tre_bella_luna.png",
-    "state": "active"
+    "image": "/assets/finca_tre_bella_luna.png",
+    "status": "active"
   },
   {
     "id": 39,
@@ -273,10 +254,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 550,
-    "imageURL": "/assets/finca_tre_rosato.png",
-    "state": "active"
+    "image": "/assets/finca_tre_rosato.png",
+    "status": "active"
   },
   {
     "id": 40,
@@ -287,10 +267,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 830,
-    "imageURL": "/assets/lechuza_chardonnay_roble.png",
-    "state": "active"
+    "image": "/assets/lechuza_chardonnay_roble.png",
+    "status": "active"
   },
   {
     "id": 41,
@@ -301,10 +280,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 595,
-    "imageURL": "/assets/lechuza_chardonnay_acero.png",
-    "state": "active"
+    "image": "/assets/lechuza_chardonnay_acero.png",
+    "status": "active"
   },
   {
     "id": 42,
@@ -315,10 +293,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 590,
-    "imageURL": "/assets/lechuza_canto.png",
-    "state": "active"
+    "image": "/assets/lechuza_canto.png",
+    "status": "active"
   },
   {
     "id": 43,
@@ -329,10 +306,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 140,
-    "imageURL": "/assets/lechuza_lata_royal.png",
-    "state": "active"
+    "image": "/assets/lechuza_lata_royal.png",
+    "status": "active"
   },
   {
     "id": 47,
@@ -343,10 +319,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1200,
-    "imageURL": "/assets/lechuza_amantes.png",
-    "state": "active"
+    "image": "/assets/lechuza_amantes.png",
+    "status": "active"
   },
   {
     "id": 48,
@@ -357,10 +332,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1740,
-    "imageURL": "/assets/lechuza_cabernet.png",
-    "state": "active"
+    "image": "/assets/lechuza_cabernet.png",
+    "status": "active"
   },
   {
     "id": 49,
@@ -371,10 +345,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1020,
-    "imageURL": "/assets/lechuza_royal_blush_magnum.png",
-    "state": "active"
+    "image": "/assets/lechuza_royal_blush_magnum.png",
+    "status": "active"
   },
   {
     "id": 60,
@@ -385,10 +358,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 325,
-    "imageURL": "/assets/misiones_ensamble_de_tintos.png",
-    "state": "active"
+    "image": "/assets/misiones_ensamble_de_tintos.png",
+    "status": "active"
   },
   {
     "id": 61,
@@ -399,10 +371,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_mezcla_bordalesa.png",
-    "state": "active"
+    "image": "/assets/misiones_mezcla_bordalesa.png",
+    "status": "active"
   },
   {
     "id": 62,
@@ -413,10 +384,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_nebbiolo.png",
-    "state": "active"
+    "image": "/assets/misiones_nebbiolo.png",
+    "status": "active"
   },
   {
     "id": 63,
@@ -427,10 +397,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 640,
-    "imageURL": "/assets/misiones_syrah.png",
-    "state": "active"
+    "image": "/assets/misiones_syrah.png",
+    "status": "active"
   },
   {
     "id": 64,
@@ -441,9 +410,8 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 945,
-    "state": "active"
+    "status": "active"
   },
   {
     "id": 65,
@@ -454,10 +422,9 @@
     "color": "Tinto",
     "country": "ES",
     "region": "Cataluña D.O. Terralta",
-    "pairing": "",
     "price": 485,
-    "imageURL": "/assets/vinim_ciutats_tinto.png",
-    "state": "active"
+    "image": "/assets/vinim_ciutats_tinto.png",
+    "status": "active"
   },
   {
     "id": 66,
@@ -468,10 +435,9 @@
     "color": "Blanco",
     "country": "ES",
     "region": "Cataluña D.O. Terralta",
-    "pairing": "",
     "price": 485,
-    "imageURL": "/assets/vinim_ciutats_blanco.png",
-    "state": "active"
+    "image": "/assets/vinim_ciutats_blanco.png",
+    "status": "active"
   },
   {
     "id": 67,
@@ -482,10 +448,9 @@
     "color": "Espumoso",
     "country": "ES",
     "region": "Cataluña D.O. Terralta",
-    "pairing": "",
     "price": 590,
-    "imageURL": "/assets/vinim_gasela.png",
-    "state": "active"
+    "image": "/assets/vinim_gasela.png",
+    "status": "active"
   },
   {
     "id": 68,
@@ -496,10 +461,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 625,
-    "imageURL": "/assets/bruma_jipi_naranja.png",
-    "state": "active"
+    "image": "/assets/bruma_jipi_naranja.png",
+    "status": "active"
   },
   {
     "id": 69,
@@ -510,10 +474,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 595,
-    "imageURL": "/assets/bruma_vdlc_rose.png",
-    "state": "active"
+    "image": "/assets/bruma_vdlc_rose.png",
+    "status": "active"
   },
   {
     "id": 70,
@@ -524,10 +487,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Los Altos de Jalisco",
-    "pairing": "",
     "price": 445,
-    "imageURL": "/assets/cerca_blanca_rose_lixco.png",
-    "state": "active"
+    "image": "/assets/cerca_blanca_rose_lixco.png",
+    "status": "active"
   },
   {
     "id": 71,
@@ -538,10 +500,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1780,
-    "imageURL": "/assets/lechuza_nebbiolo.png",
-    "state": "active"
+    "image": "/assets/lechuza_nebbiolo.png",
+    "status": "active"
   },
   {
     "id": 72,
@@ -552,10 +513,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1100,
-    "imageURL": "/assets/lechuza_alas.png",
-    "state": "active"
+    "image": "/assets/lechuza_alas.png",
+    "status": "active"
   },
   {
     "id": 73,
@@ -566,10 +526,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1235,
-    "imageURL": "/assets/lechuza_bohemio_blanco.png",
-    "state": "active"
+    "image": "/assets/lechuza_bohemio_blanco.png",
+    "status": "active"
   },
   {
     "id": 74,
@@ -580,10 +539,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1500,
-    "imageURL": "/assets/lechuza_bohemio_tempranillo.png",
-    "state": "active"
+    "image": "/assets/lechuza_bohemio_tempranillo.png",
+    "status": "active"
   },
   {
     "id": 75,
@@ -594,10 +552,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1555,
-    "imageURL": "/assets/lechuza_bohemio_nebbiolo.png",
-    "state": "active"
+    "image": "/assets/lechuza_bohemio_nebbiolo.png",
+    "status": "active"
   },
   {
     "id": 76,
@@ -608,10 +565,9 @@
     "color": "Blanco",
     "country": "ES",
     "region": "Arganda del Rey, Madrid",
-    "pairing": "",
     "price": 490,
-    "imageURL": "/assets/vinim_a_pachas_malvar.png",
-    "state": "active"
+    "image": "/assets/vinim_a_pachas_malvar.png",
+    "status": "active"
   },
   {
     "id": 77,
@@ -622,10 +578,9 @@
     "color": "Tinto",
     "country": "ES",
     "region": "Arganda del Rey, Madrid",
-    "pairing": "",
     "price": 490,
-    "imageURL": "/assets/vinim_a_pachas_tinto.png",
-    "state": "active"
+    "image": "/assets/vinim_a_pachas_tinto.png",
+    "status": "active"
   },
   {
     "id": 78,
@@ -636,10 +591,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de San Vicente",
-    "pairing": "",
     "price": 495,
-    "imageURL": "/assets/vinicola_os_verraco_rosado.png",
-    "state": "active"
+    "image": "/assets/vinicola_os_verraco_rosado.png",
+    "status": "active"
   },
   {
     "id": 79,
@@ -650,10 +604,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de San Vicente",
-    "pairing": "",
     "price": 595,
-    "imageURL": "/assets/vinicola_os_verraco_tinto.png",
-    "state": "active"
+    "image": "/assets/vinicola_os_verraco_tinto.png",
+    "status": "active"
   },
   {
     "id": 80,
@@ -664,10 +617,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_chenin_blanc.png",
-    "state": "active"
+    "image": "/assets/bruma_reserva_chenin_blanc.png",
+    "status": "active"
   },
   {
     "id": 81,
@@ -678,10 +630,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_sauvignon_blanc.png",
-    "state": "active"
+    "image": "/assets/bruma_reserva_sauvignon_blanc.png",
+    "status": "active"
   },
   {
     "id": 82,
@@ -692,10 +643,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 780,
-    "imageURL": "/assets/bruma_reserva_chardonnay.png",
-    "state": "active"
+    "image": "/assets/bruma_reserva_chardonnay.png",
+    "status": "active"
   },
   {
     "id": 83,
@@ -706,10 +656,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1435,
-    "imageURL": "/assets/bruma_reserva_cabernet_franc.png",
-    "state": "active"
+    "image": "/assets/bruma_reserva_cabernet_franc.png",
+    "status": "active"
   },
   {
     "id": 84,
@@ -720,10 +669,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1250,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 85,
@@ -734,10 +682,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1250,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 86,
@@ -748,10 +695,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1065,
-    "imageURL": "/assets/bruma_reserva_mezcla_bordalesa.png",
-    "state": "active"
+    "image": "/assets/bruma_reserva_mezcla_bordalesa.png",
+    "status": "active"
   },
   {
     "id": 87,
@@ -762,10 +708,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 680,
-    "imageURL": "/assets/lechuza_alas_750ml.png",
-    "state": "active"
+    "image": "/assets/lechuza_alas_750ml.png",
+    "status": "active"
   },
   {
     "id": 88,
@@ -776,10 +721,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 285,
-    "imageURL": "/assets/lechuza_cantito.png",
-    "state": "active"
+    "image": "/assets/lechuza_cantito.png",
+    "status": "active"
   },
   {
     "id": 89,
@@ -790,10 +734,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 590,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 90,
@@ -804,10 +747,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1680,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 91,
@@ -818,10 +760,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1150,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 92,
@@ -832,10 +773,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 795,
-    "imageURL": "/assets/vena_cava_big_blend.png",
-    "state": "active"
+    "image": "/assets/vena_cava_big_blend.png",
+    "status": "active"
   },
   {
     "id": 93,
@@ -846,10 +786,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 765,
-    "imageURL": "/assets/vena_cava_cabernet_sauvignon.png",
-    "state": "active"
+    "image": "/assets/vena_cava_cabernet_sauvignon.png",
+    "status": "active"
   },
   {
     "id": 94,
@@ -860,10 +799,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 955,
-    "imageURL": "/assets/vena_cava_phils_blend.png",
-    "state": "active"
+    "image": "/assets/vena_cava_phils_blend.png",
+    "status": "active"
   },
   {
     "id": 95,
@@ -874,10 +812,9 @@
     "color": "Blanco",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 530,
-    "imageURL": "/assets/vena_cava_sauvignon_blanc.png",
-    "state": "active"
+    "image": "/assets/vena_cava_sauvignon_blanc.png",
+    "status": "active"
   },
   {
     "id": 96,
@@ -888,10 +825,9 @@
     "color": "Tinto",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 800,
-    "imageURL": "/assets/vena_cava_mezcla_especial.png",
-    "state": "active"
+    "image": "/assets/vena_cava_mezcla_especial.png",
+    "status": "active"
   },
   {
     "id": 97,
@@ -902,10 +838,9 @@
     "color": "Rosado",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 530,
-    "imageURL": "/assets/vena_cava_rosado.png",
-    "state": "active"
+    "image": "/assets/vena_cava_rosado.png",
+    "status": "active"
   },
   {
     "id": 98,
@@ -916,10 +851,9 @@
     "color": "Naranja",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 610,
-    "imageURL": "/assets/vena_cava_ambar.png",
-    "state": "active"
+    "image": "/assets/vena_cava_ambar.png",
+    "status": "active"
   },
   {
     "id": 99,
@@ -930,10 +864,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 720,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 100,
@@ -944,10 +877,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_naranja.png",
-    "state": "active"
+    "image": "/assets/altos_norte_zafado_naranja.png",
+    "status": "active"
   },
   {
     "id": 101,
@@ -958,10 +890,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_rosado.png",
-    "state": "active"
+    "image": "/assets/altos_norte_zafado_rosado.png",
+    "status": "active"
   },
   {
     "id": 102,
@@ -972,10 +903,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 870,
-    "imageURL": "/assets/altos_norte_zafado_tinto.png",
-    "state": "active"
+    "image": "/assets/altos_norte_zafado_tinto.png",
+    "status": "active"
   },
   {
     "id": 103,
@@ -986,10 +916,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 1010,
-    "imageURL": "/assets/altos_norte_bruto_cero.png",
-    "state": "active"
+    "image": "/assets/altos_norte_bruto_cero.png",
+    "status": "active"
   },
   {
     "id": 104,
@@ -1000,10 +929,9 @@
     "color": "Espumoso",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 880,
-    "imageURL": "/assets/bruma_la_vedette.png",
-    "state": "active"
+    "image": "/assets/bruma_la_vedette.png",
+    "status": "active"
   },
   {
     "id": 105,
@@ -1014,10 +942,9 @@
     "color": "Bag in Box",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 785,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 106,
@@ -1028,10 +955,9 @@
     "color": "Bag in Box",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 785,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 107,
@@ -1042,10 +968,9 @@
     "color": "Bag in Box",
     "country": "MX",
     "region": "San Luis Potosí",
-    "pairing": "",
     "price": 785,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   },
   {
     "id": 108,
@@ -1056,10 +981,9 @@
     "color": "Bag in Box",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1400,
-    "imageURL": "/assets/bruma_bib_tinto.png",
-    "state": "active"
+    "image": "/assets/bruma_bib_tinto.png",
+    "status": "active"
   },
   {
     "id": 109,
@@ -1070,9 +994,8 @@
     "color": "Bag in Box",
     "country": "MX",
     "region": "Valle de Guadalupe",
-    "pairing": "",
     "price": 1680,
-    "imageURL": "",
-    "state": "active"
+    "image": "",
+    "status": "active"
   }
 ]

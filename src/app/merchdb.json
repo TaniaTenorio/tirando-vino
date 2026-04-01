@@ -5,7 +5,8 @@
     "variety": "ch",
     "price": 350,
     "imageURL": "/assets/shirt.png",
-    "state": "active"
+    "status": "active",
+    "sex": "m"
   },
   {
     "id": 902,
@@ -13,7 +14,8 @@
     "variety": "m",
     "price": 350,
     "imageURL": "/assets/shirt.png",
-    "state": "active"
+    "status": "active",
+    "sex": "m"
   },
   {
     "id": 903,
@@ -21,6 +23,7 @@
     "variety": "g",
     "price": 350,
     "imageURL": "/assets/shirt.png",
-    "state": "active"
+    "status": "active",
+    "sex": "m"
   }
 ]

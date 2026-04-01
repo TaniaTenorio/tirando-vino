@@ -11,8 +11,6 @@ import {
   Box,
   CircularProgress,
 } from "@mui/material";
-import winesList from "@/app/database.json";
-import merchList from "@/app/merchdb.json";
 import { CountryDropdown } from "react-country-region-selector";
 import ImageDropzone from "@/app/admin/components/ImageDropzone";
 import {
@@ -50,16 +48,36 @@ const EditPage = () => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    // Load the item data based on type and id
-    const itemId = parseInt(id);
-    const database = type === "wine" ? winesList : merchList;
-    const foundItem = database.find((item) => item.id === itemId);
+    let isMounted = true;
 
-    if (foundItem) {
-      setItem(foundItem);
-      setFormData(foundItem);
-    }
-    setLoading(false);
+    const loadItem = async () => {
+      try {
+        const response = await fetch(`/api/admin/${type}/${id}`);
+
+        if (!response.ok) {
+          throw new Error("Failed to load item");
+        }
+
+        const foundItem = await response.json();
+
+        if (!isMounted) return;
+
+        setItem(foundItem);
+        setFormData(foundItem);
+      } catch (error) {
+        console.error("Error loading item:", error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadItem();
+
+    return () => {
+      isMounted = false;
+    };
   }, [type, id]);
 
   const handleChange = (e) => {
@@ -133,7 +151,6 @@ const EditPage = () => {
         "color",
         "country",
         "region",
-        "pairing",
         "price",
         "imageURL",
       ];
@@ -240,8 +257,7 @@ const EditPage = () => {
                 value={formData[field] || ""}
                 onChange={handleChange}
                 fullWidth
-                multiline={field === "pairing"}
-                rows={field === "pairing" ? 4 : 1}
+                rows={1}
                 type={field === "price" || field === "year" ? "number" : "text"}
               />
             );

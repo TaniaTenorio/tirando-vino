@@ -1,49 +1,110 @@
-import fs from "fs";
-import path from "path";
-import { persistImageIfNeeded } from "@/utils/helpers";
+import {
+  deleteItem,
+  getItemById,
+  isValidType,
+  updateItem,
+} from "@/lib/supabase/admin-helpers";
 import { getCountryCodeFromValue } from "@/utils/countries";
 
-export async function PUT(request, { params }) {
+const parseIdByType = (_type, id) => id;
+
+export async function GET(request, { params }) {
   const { type, id } = params;
-  const itemId = parseInt(id);
+
+  if (!isValidType(type)) {
+    return new Response(JSON.stringify({ error: "Invalid type" }), {
+      status: 400,
+    });
+  }
 
   try {
-    const body = await request.json();
+    const parsedId = parseIdByType(type, id);
 
-    // Determine the database file path
-    const fileName = type === "wine" ? "database.json" : "merchdb.json";
-    const filePath = path.join(process.cwd(), "src", "app", fileName);
+    const item = await getItemById(type, parsedId);
 
-    // Read the current database
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    let database = JSON.parse(fileContent);
-
-    // Find and update the item
-    const itemIndex = database.findIndex((item) => item.id === itemId);
-    if (itemIndex === -1) {
+    if (!item) {
       return new Response(JSON.stringify({ error: "Item not found" }), {
         status: 404,
       });
     }
 
-    // Update the item
-    const { id: _ignoredId, ...restBody } = body;
-    const updatedItem = { ...database[itemIndex], ...restBody };
-    if (updatedItem.country) {
-      updatedItem.country = getCountryCodeFromValue(updatedItem.country);
+    return new Response(JSON.stringify(item), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error getting item:", error);
+    return new Response(JSON.stringify({ error: "Failed to fetch item" }), {
+      status: 500,
+    });
+  }
+}
+
+export async function PUT(request, { params }) {
+  const { type, id } = params;
+
+  if (!isValidType(type)) {
+    return new Response(JSON.stringify({ error: "Invalid type" }), {
+      status: 400,
+    });
+  }
+
+  try {
+    const body = await request.json();
+
+    if (body.country) {
+      body.country = getCountryCodeFromValue(body.country);
     }
-    updatedItem.imageURL = persistImageIfNeeded(updatedItem, type);
-    database[itemIndex] = updatedItem;
 
-    // Write back to the file
-    fs.writeFileSync(filePath, JSON.stringify(database, null, 2));
+    const parsedId = parseIdByType(type, id);
 
-    return new Response(JSON.stringify(database[itemIndex]), {
+    const updated = await updateItem(type, parsedId, body);
+
+    if (!updated) {
+      return new Response(JSON.stringify({ error: "Item not found" }), {
+        status: 404,
+      });
+    }
+
+    return new Response(JSON.stringify(updated), {
       status: 200,
     });
   } catch (error) {
     console.error("Error updating item:", error);
     return new Response(JSON.stringify({ error: "Failed to update item" }), {
+      status: 500,
+    });
+  }
+}
+
+export async function DELETE(request, { params }) {
+  const { type, id } = params;
+
+  if (!isValidType(type)) {
+    return new Response(JSON.stringify({ error: "Invalid type" }), {
+      status: 400,
+    });
+  }
+
+  try {
+    const { searchParams } = new URL(request.url);
+    const hardDelete = searchParams.get("hardDelete") === "true";
+    const parsedId = parseIdByType(type, id);
+
+    const deletedItem = await deleteItem(type, parsedId, hardDelete);
+
+    if (!deletedItem) {
+      return new Response(JSON.stringify({ error: "Item not found" }), {
+        status: 404,
+      });
+    }
+
+    return new Response(JSON.stringify(deletedItem), {
+      status: 200,
+    });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return new Response(JSON.stringify({ error: "Failed to delete item" }), {
       status: 500,
     });
   }

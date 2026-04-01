@@ -28,7 +28,7 @@ const MerchTable = () => {
       .catch((err) => console.error("Error loading merch data:", err));
   }, []);
 
-  const handleBulkStateChange = async (state) => {
+  const handleBulkStatusChange = async (status) => {
     if (selectedIds.length === 0) return;
 
     setIsBulkUpdating(true);
@@ -39,7 +39,7 @@ const MerchTable = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ids: selectedIds, state }),
+        body: JSON.stringify({ ids: selectedIds, status }),
       });
 
       if (!response.ok) {
@@ -48,7 +48,7 @@ const MerchTable = () => {
 
       setRows((currentRows) =>
         currentRows.map((row) =>
-          selectedIds.includes(row.id) ? { ...row, state } : row,
+          selectedIds.includes(row.id) ? { ...row, status } : row,
         ),
       );
       setSelectedIds([]);
@@ -65,7 +65,7 @@ const MerchTable = () => {
     { field: "name", headerName: "Nombre", width: 200 },
     { field: "variety", headerName: "Variedad", width: 150 },
     { field: "price", headerName: "Precio", width: 100 },
-    { field: "state", headerName: "Estado", width: 100 },
+    { field: "status", headerName: "Estado", width: 100 },
     {
       field: "actions",
       headerName: "",
@@ -83,7 +83,7 @@ const MerchTable = () => {
             variant="outlined"
             color="error"
             disabled={selectedIds.length === 0 || isBulkUpdating}
-            onClick={() => handleBulkStateChange("inactive")}
+            onClick={() => handleBulkStatusChange("inactive")}
           >
             Desactivar seleccionados
           </Button>
@@ -91,7 +91,7 @@ const MerchTable = () => {
             variant="outlined"
             color="success"
             disabled={selectedIds.length === 0 || isBulkUpdating}
-            onClick={() => handleBulkStateChange("active")}
+            onClick={() => handleBulkStatusChange("active")}
           >
             Reactivar seleccionados
           </Button>
@@ -112,7 +112,7 @@ const MerchTable = () => {
             setSelectedIds(normalizeSelectionModel(newSelectionModel))
           }
           getRowClassName={(params) =>
-            params.row.state === "inactive" ? "row-inactive" : ""
+            params.row.status === "inactive" ? "row-inactive" : ""
           }
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[100, 200]}

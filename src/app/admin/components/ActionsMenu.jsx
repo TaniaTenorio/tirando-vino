@@ -22,7 +22,7 @@ const ActionsMenu = ({ row, type }) => {
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const router = useRouter();
   const open = Boolean(anchorEl);
-  const isInactive = row?.state === "inactive";
+  const isInactive = row?.status === "inactive";
   const statusOptionLabel = isInactive ? "Reactivar" : "Desactivar";
   const options = ["Editar", statusOptionLabel];
 
@@ -48,7 +48,7 @@ const ActionsMenu = ({ row, type }) => {
   };
 
   const handleStatusConfirm = async () => {
-    const nextState = isInactive ? "active" : "inactive";
+    const nextStatus = isInactive ? "active" : "inactive";
 
     try {
       const response = await fetch(`/api/admin/${type}/${row.id}`, {
@@ -56,7 +56,7 @@ const ActionsMenu = ({ row, type }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ state: nextState }),
+        body: JSON.stringify({ status: nextStatus }),
       });
 
       if (response.ok) {

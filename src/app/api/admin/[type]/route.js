@@ -1,14 +1,10 @@
-import fs from "fs";
-import path from "path";
-import { persistImageIfNeeded } from "@/utils/helpers";
+import {
+  createItem,
+  getItems,
+  isValidType,
+  updateItemsStatus,
+} from "@/lib/supabase/admin-helpers";
 import { getCountryCodeFromValue } from "@/utils/countries";
-
-const getDatabaseFilePath = (type) => {
-  const fileName = type === "wine" ? "database.json" : "merchdb.json";
-  return path.join(process.cwd(), "src", "app", fileName);
-};
-
-const isValidType = (type) => type === "wine" || type === "merch";
 
 export async function GET(request, { params }) {
   const { type } = params;
@@ -20,17 +16,15 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const filePath = getDatabaseFilePath(type);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const database = JSON.parse(fileContent);
+    const items = await getItems(type);
 
-    return new Response(JSON.stringify(database), {
+    return new Response(JSON.stringify(items), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error reading database:", error);
-    return new Response(JSON.stringify({ error: "Failed to read database" }), {
+    console.error("Error reading items:", error);
+    return new Response(JSON.stringify({ error: "Failed to read items" }), {
       status: 500,
     });
   }
@@ -47,30 +41,12 @@ export async function POST(request, { params }) {
 
   try {
     const body = await request.json();
-    const filePath = getDatabaseFilePath(type);
 
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const database = JSON.parse(fileContent);
-
-    const highestId = database.reduce(
-      (maxId, item) => (item.id > maxId ? item.id : maxId),
-      0,
-    );
-
-    const newItem = {
-      ...body,
-      id: highestId + 1,
-      state: body.state || "active",
-    };
-
-    if (newItem.country) {
-      newItem.country = getCountryCodeFromValue(newItem.country);
+    if (body.country) {
+      body.country = getCountryCodeFromValue(body.country);
     }
 
-    newItem.imageURL = persistImageIfNeeded(newItem, type);
-
-    database.push(newItem);
-    fs.writeFileSync(filePath, JSON.stringify(database, null, 2));
+    const newItem = await createItem(type, body);
 
     return new Response(JSON.stringify(newItem), {
       status: 201,
@@ -94,7 +70,7 @@ export async function PATCH(request, { params }) {
 
   try {
     const body = await request.json();
-    const { ids = [], state } = body;
+    const { ids = [], status } = body;
 
     if (!Array.isArray(ids) || ids.length === 0) {
       return new Response(JSON.stringify({ error: "No item ids provided" }), {
@@ -102,31 +78,17 @@ export async function PATCH(request, { params }) {
       });
     }
 
-    if (state !== "active" && state !== "inactive") {
-      return new Response(JSON.stringify({ error: "Invalid state value" }), {
+    if (status !== "active" && status !== "inactive") {
+      return new Response(JSON.stringify({ error: "Invalid status value" }), {
         status: 400,
       });
     }
 
-    const filePath = getDatabaseFilePath(type);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const database = JSON.parse(fileContent);
-    const selectedIds = new Set(ids.map((id) => Number(id)));
+    const updated = await updateItemsStatus(type, ids, status);
 
-    const updatedDatabase = database.map((item) =>
-      selectedIds.has(item.id) ? { ...item, state } : item,
-    );
-
-    fs.writeFileSync(filePath, JSON.stringify(updatedDatabase, null, 2));
-
-    return new Response(
-      JSON.stringify(
-        updatedDatabase.filter((item) => selectedIds.has(item.id)),
-      ),
-      {
-        status: 200,
-      },
-    );
+    return new Response(JSON.stringify(updated), {
+      status: 200,
+    });
   } catch (error) {
     console.error("Error bulk updating items:", error);
     return new Response(

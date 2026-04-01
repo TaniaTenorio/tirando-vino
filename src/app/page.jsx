@@ -3,8 +3,6 @@
 import * as React from "react";
 
 import styles from "./page.module.css";
-import data from "./database.json";
-import merchData from "./merchdb.json";
 import { Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Divider from "@mui/material/Divider";
@@ -38,6 +36,43 @@ export default function Home() {
   const [cart, setCart] = React.useState([]);
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
   const [wineHouse, setWineHouse] = React.useState("TODOS");
+  const [winesData, setWinesData] = React.useState([]);
+  const [merchData, setMerchData] = React.useState([]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const loadHomeData = async () => {
+      try {
+        const [winesResponse, merchResponse] = await Promise.all([
+          fetch("/api/admin/wine"),
+          fetch("/api/admin/merch"),
+        ]);
+
+        if (!winesResponse.ok || !merchResponse.ok) {
+          throw new Error("Failed to fetch home data");
+        }
+
+        const [wines, merch] = await Promise.all([
+          winesResponse.json(),
+          merchResponse.json(),
+        ]);
+
+        if (!isMounted) return;
+
+        setWinesData(Array.isArray(wines) ? wines : []);
+        setMerchData(Array.isArray(merch) ? merch : []);
+      } catch (error) {
+        console.error("Error loading home data:", error);
+      }
+    };
+
+    loadHomeData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleRadioChange = (event) => {
     console.log(event.target.value);
@@ -103,7 +138,7 @@ export default function Home() {
   };
 
   const filteredData = React.useMemo(() => {
-    let result = data.filter((item) => item.state === "active");
+    let result = winesData.filter((item) => item.status === "active");
 
     if (wineHouse !== "" && wineHouse !== "TODOS") {
       result = result.filter((item) => item.house === wineHouse);
@@ -116,7 +151,7 @@ export default function Home() {
     if (wineHouse === "") return [];
 
     return result;
-  }, [data, wineHouse, filterArg]);
+  }, [winesData, wineHouse, filterArg]);
 
   return (
     <div className={styles.page}>
@@ -174,14 +209,16 @@ export default function Home() {
             </div>
             <div className={styles.merchContainer}>
               <Grid container spacing={2}>
-                {merchData.filter((el) => el.state === "active").map((el) => (
-                  <Grid key={el.id}>
-                    <MerchCard
-                      item={el}
-                      handleCartButton={onCartButtonPressed}
-                    />
-                  </Grid>
-                ))}
+                {merchData
+                  .filter((el) => el.status === "active")
+                  .map((el) => (
+                    <Grid key={el.id}>
+                      <MerchCard
+                        item={el}
+                        handleCartButton={onCartButtonPressed}
+                      />
+                    </Grid>
+                  ))}
               </Grid>
             </div>
           </section>

@@ -41,7 +41,12 @@ const MerchCard = ({ item, handleCartButton }) => {
   return (
     <Card>
       <CardContent>
-        <Image src={item.imageURL} width={300} height={300} alt="t-shirt" />
+        <Image
+          src={item.imageURL || null}
+          width={300}
+          height={300}
+          alt="t-shirt"
+        />
         <Typography align="center">
           {item.name} - {item.variety.toUpperCase()}
         </Typography>

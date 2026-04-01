@@ -27,7 +27,6 @@ const FIELD_LABELS = {
     color: "Color",
     country: "País",
     region: "Región",
-    pairing: "Maridaje",
     price: "Precio",
     imageURL: "Imagen",
   },
@@ -48,17 +47,16 @@ const INITIAL_DATA = {
     color: "",
     country: "",
     region: "",
-    pairing: "",
     price: "",
     imageURL: "",
-    state: "active",
+    status: "active",
   },
   merch: {
     name: "",
     variety: "",
     price: "",
     imageURL: "",
-    state: "active",
+    status: "active",
   },
 };
 
@@ -82,7 +80,6 @@ const NewItemPage = () => {
           "color",
           "country",
           "region",
-          "pairing",
           "price",
           "imageURL",
         ]
@@ -229,8 +226,6 @@ const NewItemPage = () => {
                 value={formData[field] ?? ""}
                 onChange={handleChange}
                 fullWidth
-                multiline={field === "pairing"}
-                rows={field === "pairing" ? 4 : 1}
                 type={field === "price" || field === "year" ? "number" : "text"}
               />
             );

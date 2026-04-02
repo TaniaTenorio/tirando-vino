@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 
 const UpdatePasswordPage = () => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const router = useRouter();
 
   const onSubmit = async (data) => {
@@ -82,11 +82,21 @@ const UpdatePasswordPage = () => {
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            {...register("confirmPassword")}
+            {...register("confirmPassword", {
+              validate: (value) =>
+                value === watch("password") ||
+                "Las contraseñas no coinciden",
+            })}
             required
             fullWidth
             sx={{ mb: 2 }}
+            error={!!errors.confirmPassword}
           />
+          {errors.confirmPassword && (
+            <Typography variant="caption" color="error" sx={{ mb: 1 }}>
+              {errors.confirmPassword.message}
+            </Typography>
+          )}
           <Button
             type="submit"
             variant="contained"
@@ -97,7 +107,7 @@ const UpdatePasswordPage = () => {
             Actualizar contraseña
           </Button>
           <Box>
-            <Button variant="text" href="/login">
+            <Button variant="text" href="/auth">
               Volver al login
             </Button>
           </Box>

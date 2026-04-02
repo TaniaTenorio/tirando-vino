@@ -7,10 +7,9 @@ import {
   CardActions,
   Button,
   Typography,
-  FormGroup,
   FormControlLabel,
+  Checkbox,
 } from "@mui/material";
-import { CheckBox } from "@mui/icons-material";
 
 const MerchCard = ({ item, handleCartButton }) => {
   const [gender, setGender] = React.useState({
@@ -50,13 +49,13 @@ const MerchCard = ({ item, handleCartButton }) => {
 
         <FormControlLabel
           control={
-            <CheckBox checked={gender.his} name="his" onChange={handleChange} />
+            <Checkbox checked={gender.his} name="his" onChange={handleChange} />
           }
           label="El"
         />
         <FormControlLabel
           control={
-            <CheckBox checked={gender.her} name="her" onChange={handleChange} />
+            <Checkbox checked={gender.her} name="her" onChange={handleChange} />
           }
           label="Ella"
         />

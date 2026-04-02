@@ -47,10 +47,10 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   return (
     <>
       <AppBar position="fixed" style={{ backgroundColor: "#c1bdbd" }}>
-        <Container maxwidth="xl">
+        <Container maxWidth="xl">
           <Toolbar variant="dense">
             <Image
-              src={"/assets/tirando_vino_logo.png"}
+              src={"/assets/tirando_vino_logo_blanco.png"}
               width={64}
               height={64}
               alt="logo"

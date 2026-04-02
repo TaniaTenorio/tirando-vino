@@ -3,7 +3,6 @@
 import React from "react";
 import {
   Box,
-  CardContent,
   Container,
   InputLabel,
   Paper,
@@ -14,10 +13,11 @@ import {
 import { useForm } from "react-hook-form";
 import { login } from "@/actions/auth/auth";
 import { useRouter } from "next/navigation";
+import { getAuthMessage } from "@/utils/authMessages";
 
-const LoginForm = ({ setTypeSelected }) => {
+const LoginForm = ({ setTypeSelected, showFeedback }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const router = useRouter();
 
   const onSubmit = async (data) => {
@@ -25,21 +25,21 @@ const LoginForm = ({ setTypeSelected }) => {
 
     try {
       const res = await login(data);
-      console.log("RES", res);
 
       if (res.success) {
-        console.log("Usuario logueado exitosamente");
         router.push("/admin");
+        router.refresh();
+      } else {
+        showFeedback(
+          getAuthMessage(res.message, "Error al iniciar sesion."),
+          "error",
+        );
       }
     } catch (error) {
-      // Manejar errores específicos de Supabase
-      if (error.message.includes("Invalid login credentials")) {
-        console.log("Correo o contraseña incorrectos");
-      } else if (error.message.includes("User not found")) {
-        console.log("No se encontró una cuenta con ese correo electrónico");
-      } else {
-        console.log(error.message || "Error al iniciar sesión");
-      }
+      showFeedback(
+        getAuthMessage(error.message, "Error al iniciar sesion."),
+        "error",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -101,8 +101,9 @@ const LoginForm = ({ setTypeSelected }) => {
             color="primary"
             fullWidth
             sx={{ marginTop: 2 }}
+            disabled={isLoading}
           >
-            Ingresar
+            {isLoading ? "Ingresando..." : "Ingresar"}
           </Button>
           <Box>
             <Typography variant="body2" color="text.secondary" align="center">

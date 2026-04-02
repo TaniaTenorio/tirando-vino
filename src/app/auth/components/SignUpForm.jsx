@@ -3,7 +3,6 @@
 import React from "react";
 import {
   Box,
-  CardContent,
   Container,
   InputLabel,
   Paper,
@@ -13,38 +12,34 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { signup } from "@/actions/auth/auth";
+import { getAuthMessage } from "@/utils/authMessages";
 
-const SignUpForm = ({ setTypeSelected }) => {
+const SignUpForm = ({ setTypeSelected, showFeedback }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (user) => {
-    // console.log("Form submitted", user);
     setIsLoading(true);
 
     try {
       const res = await signup(user);
-      console.log("RES", res);
 
-      if (res.success) {
-        console.log("Usuario registrado exitosamente");
+      if (!res.success) {
+        showFeedback(
+          getAuthMessage(res.message, "Error al registrar el usuario."),
+          "error",
+        );
+        return;
       }
 
       setTypeSelected("login");
       reset();
+      showFeedback("Cuenta creada exitosamente. Ahora puedes iniciar sesion.");
     } catch (error) {
-      // Manejar errores específicos de Supabase
-      if (error.message.includes("User already registered")) {
-        console.log("Este correo electrónico ya está registrado");
-      } else if (
-        error.message.includes("Password should be at least 6 characters")
-      ) {
-        console.log("La contraseña debe tener al menos 6 caracteres");
-      } else if (error.message.includes("Invalid email")) {
-        console.log("Por favor ingresa un correo electrónico válido");
-      } else {
-        console.log(error.message || "Error al registrar el usuario");
-      }
+      showFeedback(
+        getAuthMessage(error.message, "Error al registrar el usuario."),
+        "error",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -111,8 +106,9 @@ const SignUpForm = ({ setTypeSelected }) => {
             color="primary"
             fullWidth
             sx={{ marginTop: 2 }}
+            disabled={isLoading}
           >
-            Registrarse
+            {isLoading ? "Registrando..." : "Registrarse"}
           </Button>
           <Box>
             <Typography variant="body2" color="text.secondary" align="center">

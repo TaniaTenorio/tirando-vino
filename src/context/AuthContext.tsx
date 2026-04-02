@@ -11,8 +11,7 @@ export interface AuthContextType {
   getUserData: () => Promise<void>;
 }
 
-const eventTypes = [
-  "INITIAL_SESSION",
+const subsequentEventTypes = [
   "SIGNED_IN",
   "USER_UPDATED",
   "TOKEN_REFRESHED",
@@ -29,33 +28,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = React.useState<User | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const supabase = React.useMemo(() => createClient(), []);
 
-  const getUserData = async () => {
+  const getUserData = React.useCallback(async () => {
     setIsLoading(true);
     try {
       // Fetch user data
       const userData = await getUser();
       if (userData) {
         setUser(userData);
+      } else {
+        setUser(null);
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);
+      setUser(null);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   React.useEffect(() => {
-    const supabase = createClient();
+    getUserData();
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (eventTypes.includes(event)) {
-        if (session) {
-          getUserData();
-        } else {
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (subsequentEventTypes.includes(event)) {
+        if (event === "SIGNED_OUT") {
           setUser(null);
+          setIsLoading(false);
+        } else {
+          getUserData();
         }
       }
     });
@@ -63,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [getUserData, supabase]);
 
   return (
     <AuthContext.Provider value={{ user, isLoading, getUserData }}>

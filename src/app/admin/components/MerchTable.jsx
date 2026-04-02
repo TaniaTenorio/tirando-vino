@@ -12,21 +12,15 @@ const normalizeSelectionModel = (selectionModel) => {
   return [];
 };
 
-const MerchTable = () => {
+const MerchTable = ({ initialRows = [] }) => {
   const router = useRouter();
-  const [rows, setRows] = React.useState([]);
+  const [rows, setRows] = React.useState(initialRows);
   const [selectedIds, setSelectedIds] = React.useState([]);
   const [isBulkUpdating, setIsBulkUpdating] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/api/admin/merch")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch merch data");
-        return res.json();
-      })
-      .then((data) => setRows(data))
-      .catch((err) => console.error("Error loading merch data:", err));
-  }, []);
+    setRows(initialRows);
+  }, [initialRows]);
 
   const handleBulkStatusChange = async (status) => {
     if (selectedIds.length === 0) return;

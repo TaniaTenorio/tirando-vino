@@ -1,25 +1,72 @@
 "use client";
 
-import { Button, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "./components/Navbar";
 import WinesTable from "./components/WinesTable";
 import MerchTable from "./components/MerchTable";
 import styles from "./admin.module.css";
+import { useAuth } from "@/context/AuthContext";
 
 const AdminPage = () => {
   const router = useRouter();
-  // const { user, isLoaded } = useUser();
-  // const { signOut } = useClerk();
   const [isSigningOut, setIsSigningOut] = React.useState(false);
+  const [wines, setWines] = React.useState([]);
+  const [merch, setMerch] = React.useState([]);
+  const [isDataLoading, setIsDataLoading] = React.useState(true);
+  const [dataError, setDataError] = React.useState("");
 
-  // React.useEffect(() => {
-  //   if (!isLoaded) return;
-  //   if (!user) {
-  //     router.replace("/");
-  //   }
-  // }, [isLoaded, user, router]);
+  const { user, isLoading, getUserData } = useAuth();
+
+  React.useEffect(() => {
+    if (!user && !isLoading) {
+      getUserData();
+    }
+  }, [getUserData, isLoading, user]);
+
+  const loadAdminData = React.useCallback(async () => {
+    setIsDataLoading(true);
+    setDataError("");
+
+    try {
+      const [wineResponse, merchResponse] = await Promise.all([
+        fetch("/api/admin/wine"),
+        fetch("/api/admin/merch"),
+      ]);
+
+      if (!wineResponse.ok || !merchResponse.ok) {
+        throw new Error(
+          "No se pudo cargar la informacion del panel de administrador.",
+        );
+      }
+
+      const [wineData, merchData] = await Promise.all([
+        wineResponse.json(),
+        merchResponse.json(),
+      ]);
+
+      setWines(wineData);
+      setMerch(merchData);
+    } catch (error) {
+      console.error("Error loading admin data:", error);
+      setDataError(
+        error instanceof Error
+          ? error.message
+          : "No se pudo cargar la informacion del panel de administrador.",
+      );
+    } finally {
+      setIsDataLoading(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (!user) {
+      return;
+    }
+
+    loadAdminData();
+  }, [loadAdminData, user]);
 
   const handleLogout = async () => {
     setIsSigningOut(true);
@@ -41,26 +88,65 @@ const AdminPage = () => {
     }
   };
 
-  // if (!isLoaded || !user) return null;
+  if (isLoading || isDataLoading || !user) {
+    return (
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <CircularProgress />
+        <Typography variant="h6">Cargando panel de administrador...</Typography>
+      </Box>
+    );
+  }
 
-  const user = {
-    firstName: "Admin",
-    imageUrl: "https://via.placeholder.com/150",
-  };
+  if (dataError) {
+    return (
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+          textAlign: "center",
+          px: 3,
+        }}
+      >
+        <Typography variant="h5">
+          No se pudo cargar el panel de administrador
+        </Typography>
+        <Typography color="text.secondary">{dataError}</Typography>
+        <Button variant="contained" onClick={loadAdminData}>
+          Intentar de nuevo
+        </Button>
+      </Box>
+    );
+  }
 
   return (
     <>
-      <Navbar userImage={user.imageUrl} onLogout={handleLogout} />
+      <Navbar
+        userImage={"https://via.placeholder.com/150"}
+        onLogout={handleLogout}
+      />
       <div className={styles.page}>
-        <h1>Welcome to the Admin Dashboard, {user.firstName}!</h1>
+        <h1>Welcome to the Admin Dashboard, {user.name}!</h1>
         <Typography variant="h5" gutterBottom>
           Lista de Vinos
         </Typography>
-        <WinesTable />
+        <WinesTable initialRows={wines} />
         <Typography variant="h5" gutterBottom>
           Merch
         </Typography>
-        <MerchTable />
+        <MerchTable initialRows={merch} />
         <Button
           variant="contained"
           color="primary"

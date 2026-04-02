@@ -32,9 +32,9 @@ const normalizeSelectionModel = (selectionModel) => {
   return [];
 };
 
-const WinesTable = () => {
+const WinesTable = ({ initialRows = [] }) => {
   const router = useRouter();
-  const [rows, setRows] = React.useState([]);
+  const [rows, setRows] = React.useState(initialRows);
   const [selectedIds, setSelectedIds] = React.useState([]);
   const [isBulkUpdating, setIsBulkUpdating] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -52,14 +52,8 @@ const WinesTable = () => {
   };
 
   React.useEffect(() => {
-    fetch("/api/admin/wine")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch wine data");
-        return res.json();
-      })
-      .then((data) => setRows(data))
-      .catch((err) => console.error("Error loading wine data:", err));
-  }, []);
+    setRows(initialRows);
+  }, [initialRows]);
 
   const handleBulkStatusChange = async (status) => {
     if (selectedIds.length === 0) return;

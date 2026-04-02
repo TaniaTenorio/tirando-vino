@@ -1,11 +1,9 @@
-"use server";
+"use client";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import { User } from "@/interfaces/user";
 
 export const getUser = async (): Promise<User | null> => {
-  console.log("Fetching user data...");
-
   try {
     const supabase = await createClient();
     const {
@@ -17,8 +15,6 @@ export const getUser = async (): Promise<User | null> => {
     }
 
     const userId = session.id;
-
-    console.log("User ID:", userId);
 
     const { data: userData, error: userError } = await supabase
       .from("profiles")

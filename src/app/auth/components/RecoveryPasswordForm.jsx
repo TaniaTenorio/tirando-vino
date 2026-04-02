@@ -2,7 +2,6 @@
 import React from "react";
 import {
   Box,
-  CardContent,
   Container,
   InputLabel,
   Paper,
@@ -12,27 +11,39 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { sendRecoveryEmail } from "@/actions/auth/auth";
+import { getAuthMessage } from "@/utils/authMessages";
 
-const RecoverPasswordForm = ({ setTypeSelected }) => {
+const RecoverPasswordForm = ({ setTypeSelected, showFeedback }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   // ============ Password Recovery ===========
   const onSubmit = async (user) => {
     setIsLoading(true);
 
     try {
-      console.log(user);
       const res = await sendRecoveryEmail(user);
 
       if (res.success) {
-        // TODO: add toast notification
-        console.log("Correo de recuperación enviado exitosamente");
+        showFeedback(res.message);
         setTypeSelected("login");
+      } else {
+        showFeedback(
+          getAuthMessage(
+            res.message,
+            "Error al enviar el correo de recuperación.",
+          ),
+          "error",
+        );
       }
     } catch (error) {
-      // TODO: add toast notification with error message
-      console.log(error.message || "Error al enviar el correo de recuperación");
+      showFeedback(
+        getAuthMessage(
+          error.message,
+          "Error al enviar el correo de recuperación.",
+        ),
+        "error",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -79,8 +90,9 @@ const RecoverPasswordForm = ({ setTypeSelected }) => {
             color="primary"
             fullWidth
             sx={{ marginTop: 2 }}
+            disabled={isLoading}
           >
-            Recuperar contraseña
+            {isLoading ? "Enviando..." : "Recuperar contraseña"}
           </Button>
           <Box>
             <Button variant="text" onClick={() => setTypeSelected("login")}>

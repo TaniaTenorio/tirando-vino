@@ -42,7 +42,7 @@ const normalizeByTypeForDb = async ({ type, payload, existingItem = null }) => {
   }
 
   if (Object.hasOwn(normalized, "price")) {
-    if (normalized.price === "" || normalized.price === null || normalized.price === undefined) {
+    if (!normalized.price && normalized.price !== 0) {
       normalized.price = null;
     } else {
       normalized.price = Number(normalized.price);

@@ -4,10 +4,29 @@ import {
   isValidType,
   updateItemsStatus,
 } from "@/lib/supabase/helpers";
+import { createClient } from "@/lib/supabase/server";
 import { getCountryCodeFromValue } from "@/utils/countries";
+
+async function requireAuth() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+  if (error || !user) {
+    return null;
+  }
+  return user;
+}
 
 export async function GET(request, { params }) {
   const { type } = await params;
+
+  if (!(await requireAuth())) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
+  }
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {
@@ -32,6 +51,12 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
   const { type } = await params;
+
+  if (!(await requireAuth())) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
+  }
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {
@@ -61,6 +86,12 @@ export async function POST(request, { params }) {
 
 export async function PATCH(request, { params }) {
   const { type } = await params;
+
+  if (!(await requireAuth())) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
+  }
 
   if (!isValidType(type)) {
     return new Response(JSON.stringify({ error: "Invalid type" }), {

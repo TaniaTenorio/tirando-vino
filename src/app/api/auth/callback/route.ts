@@ -25,6 +25,11 @@ export async function GET(request: NextRequest) {
       token_hash,
     });
 
+    if (error) {
+      redirectTo.pathname = "/error";
+      return NextResponse.redirect(redirectTo);
+    }
+
     if (type === "email") {
       return NextResponse.redirect(`${requestUrl.origin}/`);
     }
@@ -33,10 +38,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(`${requestUrl.origin}/update-password`);
     }
 
-    if (!error) {
-      redirectTo.searchParams.delete("next");
-      return NextResponse.redirect(redirectTo);
-    }
+    redirectTo.searchParams.delete("next");
+    return NextResponse.redirect(redirectTo);
   }
 
   // return the user to an error page with some instructions

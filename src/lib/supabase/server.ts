@@ -3,10 +3,6 @@ import { cookies } from "next/headers";
 
 export async function createClient() {
   const cookieStore = await cookies();
-  console.log(
-    "Creating Supabase server client with URL:",
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-  );
 
   // Create a server's supabase client with newly configured cookie,
   // which could be used to maintain user's session
@@ -23,14 +19,10 @@ export async function createClient() {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options),
             );
-            console.log("Cookies set successfully:", cookiesToSet);
           } catch {
             // The `setAll` method was called from a Server Component.
             // This can be ignored if you have proxy refreshing
             // user sessions.
-            console.warn(
-              "Attempted to set cookies from a Server Component. This can be ignored if you have proxy refreshing user sessions.",
-            );
           }
         },
       },

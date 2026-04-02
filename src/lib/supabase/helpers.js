@@ -41,8 +41,12 @@ const normalizeByTypeForDb = async ({ type, payload, existingItem = null }) => {
     normalized.year = null;
   }
 
-  if (Object.hasOwn(normalized, "price") && normalized.price !== "") {
-    normalized.price = Number(normalized.price);
+  if (Object.hasOwn(normalized, "price")) {
+    if (normalized.price === "" || normalized.price === null || normalized.price === undefined) {
+      normalized.price = null;
+    } else {
+      normalized.price = Number(normalized.price);
+    }
   }
 
   const incomingImage = normalized.imageURL;

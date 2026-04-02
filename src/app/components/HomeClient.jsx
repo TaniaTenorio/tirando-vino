@@ -162,7 +162,7 @@ const HomeClient = ({ winesData, merchData }) => {
             <div className={styles.sectionHeader}>
               <Typography align="center" color="black" variant="h6">
                 {" "}
-                Llevate una playerita
+                Llévate una playerita
               </Typography>
             </div>
             <div className={styles.merchContainer}>

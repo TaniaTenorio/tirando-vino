@@ -13,6 +13,7 @@ export interface AuthContextType {
 
 const eventTypes = [
   "INITIAL_SESSION",
+  "SIGNED_IN",
   "USER_UPDATED",
   "TOKEN_REFRESHED",
   "PASSWORD_RECOVERY",
@@ -44,10 +45,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const authState = async () => {
-    const supabase = await createClient();
+  React.useEffect(() => {
+    const supabase = createClient();
 
-    supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (eventTypes.includes(event)) {
         if (session) {
           getUserData();
@@ -56,10 +59,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       }
     });
-  };
 
-  React.useEffect(() => {
-    authState();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (

@@ -30,7 +30,6 @@ export async function signup(formData: {
   password: string;
 }) {
   const supabase = await createClient();
-  console.log("--------Signup form data:----------", formData);
 
   const { error, data } = await supabase.auth.signUp({
     email: formData.email,

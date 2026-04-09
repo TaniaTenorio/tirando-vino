@@ -191,18 +191,7 @@ const NewItemPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select
-                        {...selectProps}
-                        style={{
-                          width: "100%",
-                          minHeight: "56px",
-                          padding: "0 14px",
-                          borderRadius: "4px",
-                          border: "1px solid rgba(0, 0, 0, 0.23)",
-                          backgroundColor: "transparent",
-                          font: "inherit",
-                        }}
-                      >
+                      <Select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -212,7 +201,7 @@ const NewItemPage = () => {
                                 : label}
                             </option>
                           ))}
-                      </select>
+                      </Select>
                     )}
                     className={styles.countryDropdown}
                   />
@@ -238,7 +227,7 @@ const NewItemPage = () => {
 
             if (field === "house") {
               return (
-                <FormControl key={field} fullWidth>
+                <>
                   <InputLabel id="house-select-label">
                     {getFieldLabel(field)}
                   </InputLabel>
@@ -249,6 +238,7 @@ const NewItemPage = () => {
                     value={formData[field] ?? ""}
                     onChange={handleChange}
                     disabled={isLoadingHouses}
+                    sx={{ mb: 2 }}
                   >
                     <MenuItem value="" disabled>
                       {isLoadingHouses
@@ -261,7 +251,7 @@ const NewItemPage = () => {
                       </MenuItem>
                     ))}
                   </Select>
-                </FormControl>
+                </>
               );
             }
 

@@ -236,7 +236,7 @@ const EditPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select {...selectProps}>
+                      <Select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -246,7 +246,7 @@ const EditPage = () => {
                                 : label}
                             </option>
                           ))}
-                      </select>
+                      </Select>
                     )}
                     className={styles.countryDropdown}
                   />

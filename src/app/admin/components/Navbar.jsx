@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../../page.module.css";
 import { Tabs, Tab, Typography } from "@mui/material";
 
 function a11yProps(index) {
@@ -23,7 +22,7 @@ const Navbar = ({ value, handleOnChange }) => (
       <Tab label="Vinos" {...a11yProps(0)} sx={{ fontWeight: "bold" }} />
       <Tab label="Merch" {...a11yProps(1)} sx={{ fontWeight: "bold" }} />
       <Tab label="Bodegas" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Cupones" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
+      {/* <Tab label="Cupones" {...a11yProps(3)} sx={{ fontWeight: "bold" }} /> */}
     </Tabs>
   </div>
 );

@@ -56,11 +56,6 @@ const HousesTable = ({ initialRows = [] }) => {
 
   const columns = [
     { field: "name", headerName: "Nombre", width: 260 },
-    {
-      field: "normalized_name",
-      headerName: "Nombre normalizado",
-      width: 260,
-    },
     { field: "status", headerName: "Estado", width: 120 },
     {
       field: "actions",

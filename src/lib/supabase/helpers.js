@@ -79,23 +79,39 @@ const normalizeByTypeForDb = async ({ type, payload, existingItem = null }) => {
 export const getHomeData = async () => {
   const supabase = await createClient();
 
-  const [{ data: wines = [] }, { data: merch = [] }] = await Promise.all([
-    supabase
-      .from("wines")
-      .select("*")
-      .eq("status", "active")
-      .order("name", { ascending: true })
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("merch")
-      .select("*")
-      .eq("status", "active")
-      .order("name", { ascending: true })
-      .order("created_at", { ascending: false }),
-  ]);
+  const [{ data: wines = [] }, { data: merch = [] }, { data: houses = [] }] =
+    await Promise.all([
+      supabase
+        .from("wines")
+        .select("*")
+        .eq("status", "active")
+        .order("name", { ascending: true })
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("merch")
+        .select("*")
+        .eq("status", "active")
+        .order("name", { ascending: true })
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("houses")
+        .select("id,name")
+        .eq("status", "active")
+        .order("name", { ascending: true }),
+    ]);
+
+  const houseById = (houses || []).reduce((acc, house) => {
+    acc[house.id] = house.name;
+    return acc;
+  }, {});
+
+  const winesWithHouseName = wines.map((wine) => ({
+    ...wine,
+    houseName: houseById[wine.house] || wine.house,
+  }));
 
   return {
-    wines: wines.map(mapImageForClient),
+    wines: winesWithHouseName.map(mapImageForClient),
     merch: merch.map(mapImageForClient),
   };
 };

@@ -163,6 +163,7 @@ const AdminPage = () => {
       <Header
         userImage={"https://via.placeholder.com/150"}
         onLogout={handleLogout}
+        isSigningOut={isSigningOut}
       />
       <div className={styles.page}>
         <h1>Hola {user.name}! Este es tu panel de administrador.</h1>
@@ -185,14 +186,6 @@ const AdminPage = () => {
           </Typography>
           <HousesTable initialRows={houses} />
         </CustomTabPanel>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleLogout}
-          disabled={isSigningOut}
-        >
-          {isSigningOut ? "Cerrando sesión..." : "Cerrar sesión"}
-        </Button>
       </div>
     </>
   );

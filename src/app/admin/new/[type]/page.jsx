@@ -10,6 +10,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  OutlinedInput,
   Paper,
   Select,
   TextField,
@@ -21,61 +22,8 @@ import {
   getCountryCodeFromValue,
   getSpanishCountryNameFromCode,
 } from "@/utils/countries";
-
-const FIELD_LABELS = {
-  wine: {
-    name: "Nombre",
-    house: "Bodega",
-    variety: "Variedad",
-    year: "Año",
-    color: "Color",
-    country: "País",
-    region: "Región",
-    price: "Precio",
-    imageURL: "Imagen",
-  },
-  merch: {
-    name: "Nombre",
-    variety: "Variedad",
-    price: "Precio",
-    imageURL: "Imagen",
-  },
-  house: {
-    name: "Nombre",
-  },
-};
-
-const TYPE_LABELS = {
-  wine: "Vino",
-  merch: "Merch",
-  house: "Bodega",
-};
-
-const INITIAL_DATA = {
-  wine: {
-    name: "",
-    house: "",
-    variety: "",
-    year: "",
-    color: "",
-    country: "",
-    region: "",
-    price: "",
-    imageURL: "",
-    status: "active",
-  },
-  merch: {
-    name: "",
-    variety: "",
-    price: "",
-    imageURL: "",
-    status: "active",
-  },
-  house: {
-    name: "",
-    status: "active",
-  },
-};
+import { FIELD_LABELS, INITIAL_DATA, TYPE_LABELS } from "@/utils/constants";
+import styles from "../../admin.module.css";
 
 const NewItemPage = () => {
   const params = useParams();
@@ -212,17 +160,21 @@ const NewItemPage = () => {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 3 }}
+          sx={{ display: "flex", flexDirection: "column", mt: 3 }}
         >
           {fields.map((field) => {
             if (field === "country") {
               return (
-                <Box key={field}>
+                <Box key={field} sx={{ mb: 2 }}>
                   <Typography
                     component="label"
                     htmlFor="country-dropdown"
                     variant="body2"
-                    sx={{ display: "block", mb: 1, color: "text.secondary" }}
+                    sx={{
+                      display: "block",
+                      color: "#00000099",
+                      fontWeight: 400,
+                    }}
                   >
                     {getFieldLabel(field)}
                   </Typography>
@@ -239,18 +191,7 @@ const NewItemPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select
-                        {...selectProps}
-                        style={{
-                          width: "100%",
-                          minHeight: "56px",
-                          padding: "0 14px",
-                          borderRadius: "4px",
-                          border: "1px solid rgba(0, 0, 0, 0.23)",
-                          backgroundColor: "transparent",
-                          font: "inherit",
-                        }}
-                      >
+                      <Select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -260,8 +201,9 @@ const NewItemPage = () => {
                                 : label}
                             </option>
                           ))}
-                      </select>
+                      </Select>
                     )}
+                    className={styles.countryDropdown}
                   />
                 </Box>
               );
@@ -285,7 +227,7 @@ const NewItemPage = () => {
 
             if (field === "house") {
               return (
-                <FormControl key={field} fullWidth>
+                <>
                   <InputLabel id="house-select-label">
                     {getFieldLabel(field)}
                   </InputLabel>
@@ -296,6 +238,7 @@ const NewItemPage = () => {
                     value={formData[field] ?? ""}
                     onChange={handleChange}
                     disabled={isLoadingHouses}
+                    sx={{ mb: 2 }}
                   >
                     <MenuItem value="" disabled>
                       {isLoadingHouses
@@ -308,20 +251,26 @@ const NewItemPage = () => {
                       </MenuItem>
                     ))}
                   </Select>
-                </FormControl>
+                </>
               );
             }
 
             return (
-              <TextField
-                key={field}
-                label={getFieldLabel(field)}
-                name={field}
-                value={formData[field] ?? ""}
-                onChange={handleChange}
-                fullWidth
-                type={field === "price" || field === "year" ? "number" : "text"}
-              />
+              <>
+                <InputLabel htmlFor={field} key={field}>
+                  {getFieldLabel(field)}
+                </InputLabel>
+                <OutlinedInput
+                  type={
+                    field === "price" || field === "year" ? "number" : "text"
+                  }
+                  name={field}
+                  value={formData[field] ?? ""}
+                  onChange={handleChange}
+                  fullWidth
+                  sx={{ mb: 2 }}
+                />
+              </>
             );
           })}
 

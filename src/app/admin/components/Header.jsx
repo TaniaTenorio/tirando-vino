@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const Header = ({ userImage, onLogout }) => {
+const Header = ({ userImage, onLogout, isSigningOut }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -54,7 +54,9 @@ const Header = ({ userImage, onLogout }) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={onLogout}>Sign Out</MenuItem>
+            <MenuItem onClick={onLogout} disabled={isSigningOut}>
+              {isSigningOut ? "Cerrando sesión..." : "Cerrar sesión"}
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>

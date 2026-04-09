@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import PropTypes from "prop-types";
 import { Tabs, Tab, Typography } from "@mui/material";

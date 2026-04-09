@@ -191,7 +191,18 @@ const NewItemPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select {...selectProps}>
+                      <select
+                        {...selectProps}
+                        style={{
+                          width: "100%",
+                          minHeight: "56px",
+                          padding: "0 14px",
+                          borderRadius: "4px",
+                          border: "1px solid rgba(0, 0, 0, 0.23)",
+                          backgroundColor: "transparent",
+                          font: "inherit",
+                        }}
+                      >
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -227,6 +238,35 @@ const NewItemPage = () => {
 
             if (field === "house") {
               return (
+                <FormControl key={field} fullWidth>
+                  <InputLabel id="house-select-label">
+                    {getFieldLabel(field)}
+                  </InputLabel>
+                  <Select
+                    labelId="house-select-label"
+                    label={getFieldLabel(field)}
+                    name={field}
+                    value={formData[field] ?? ""}
+                    onChange={handleChange}
+                    disabled={isLoadingHouses}
+                  >
+                    <MenuItem value="" disabled>
+                      {isLoadingHouses
+                        ? "Cargando bodegas..."
+                        : "Selecciona una bodega"}
+                    </MenuItem>
+                    {houses.map((house) => (
+                      <MenuItem key={house.id} value={house.id}>
+                        {house.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              );
+            }
+
+            if (field === "house") {
+              return (
                 <>
                   <InputLabel id="house-select-label">
                     {getFieldLabel(field)}
@@ -238,7 +278,7 @@ const NewItemPage = () => {
                     value={formData[field] ?? ""}
                     onChange={handleChange}
                     disabled={isLoadingHouses}
-                    sx={{ mb: 2 }}
+                    sx={{ mb: 2, padding: 0 }}
                   >
                     <MenuItem value="" disabled>
                       {isLoadingHouses

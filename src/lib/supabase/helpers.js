@@ -8,6 +8,7 @@ import {
 const TABLE_BY_TYPE = {
   wine: "wines",
   merch: "merch",
+  house: "houses",
 };
 
 const BUCKET_BY_TYPE = {
@@ -20,7 +21,8 @@ const FOLDER_BY_TYPE = {
   merch: "merch",
 };
 
-export const isValidType = (type) => type === "wine" || type === "merch";
+export const isValidType = (type) =>
+  type === "wine" || type === "merch" || type === "house";
 
 const mapImageForClient = (item) => ({
   ...item,
@@ -104,7 +106,7 @@ export const getItems = async (type) => {
 
   let query = supabase.from(table).select("*");
 
-  if (type === "wine" || type === "merch") {
+  if (type === "wine" || type === "merch" || type === "house") {
     query = query
       .order("name", { ascending: true })
       .order("created_at", { ascending: false });

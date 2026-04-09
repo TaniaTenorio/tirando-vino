@@ -35,6 +35,7 @@ const normalizeSelectionModel = (selectionModel) => {
 const WinesTable = ({ initialRows = [] }) => {
   const router = useRouter();
   const [rows, setRows] = React.useState(initialRows);
+  const [housesById, setHousesById] = React.useState({});
   const [selectedIds, setSelectedIds] = React.useState([]);
   const [isBulkUpdating, setIsBulkUpdating] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -54,6 +55,52 @@ const WinesTable = ({ initialRows = [] }) => {
   React.useEffect(() => {
     setRows(initialRows);
   }, [initialRows]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const loadHouses = async () => {
+      try {
+        const response = await fetch("/api/admin/house");
+
+        if (!response.ok) {
+          throw new Error("Failed to load houses");
+        }
+
+        const houses = await response.json();
+
+        if (!isMounted) return;
+
+        const mapped = (houses || []).reduce((acc, house) => {
+          acc[house.id] = house.name;
+          return acc;
+        }, {});
+
+        setHousesById(mapped);
+      } catch (error) {
+        console.error("Error loading houses:", error);
+      }
+    };
+
+    loadHouses();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const getHouseDisplayValue = React.useCallback(
+    (value) => {
+      if (!value) return "";
+
+      if (housesById[value]) {
+        return housesById[value];
+      }
+
+      return formatHouseValue(value);
+    },
+    [housesById],
+  );
 
   const handleBulkStatusChange = async (status) => {
     if (selectedIds.length === 0) return;
@@ -95,7 +142,7 @@ const WinesTable = ({ initialRows = [] }) => {
       field: "house",
       headerName: "Bodega",
       width: 100,
-      valueGetter: (_, row) => formatHouseValue(row.house),
+      valueGetter: (_, row) => getHouseDisplayValue(row.house),
     },
     { field: "region", headerName: "Región", width: 150 },
     {
@@ -223,7 +270,7 @@ const WinesTable = ({ initialRows = [] }) => {
             <MenuItem value="all">Todas</MenuItem>
             {houseOptions.map((house) => (
               <MenuItem key={house} value={house}>
-                {formatHouseValue(house)}
+                {getHouseDisplayValue(house)}
               </MenuItem>
             ))}
           </Select>

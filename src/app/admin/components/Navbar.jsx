@@ -1,65 +1,36 @@
-"use client";
-
 import React from "react";
-import {
-  AppBar,
-  Avatar,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import PropTypes from "prop-types";
+import styles from "../../page.module.css";
+import { Tabs, Tab, Typography } from "@mui/material";
 
-const Navbar = ({ userImage, onLogout }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
+}
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+const Navbar = ({ value, handleOnChange }) => (
+  <div>
+    <Tabs
+      value={value}
+      onChange={handleOnChange}
+      aria-label="admin-tabs"
+      variant="scrollable"
+      scrollButtons="auto"
+      textColor="primary"
+    >
+      <Tab label="Vinos" {...a11yProps(0)} sx={{ fontWeight: "bold" }} />
+      <Tab label="Merch" {...a11yProps(1)} sx={{ fontWeight: "bold" }} />
+      <Tab label="Bodegas" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
+      <Tab label="Cupones" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
+    </Tabs>
+  </div>
+);
 
-  return (
-    <AppBar>
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Admin Dashboard
-        </Typography>
-        <div>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <Avatar alt="user-image" src={userImage} />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={onLogout}>Sign Out</MenuItem>
-          </Menu>
-        </div>
-      </Toolbar>
-    </AppBar>
-  );
+Navbar.propTypes = {
+  value: PropTypes.number,
+  handleOnChange: PropTypes.func,
 };
 
 export default Navbar;

@@ -9,14 +9,23 @@ import {
   OutlinedInput,
   Typography,
   Button,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { signup } from "@/actions/auth/auth";
 import { getAuthMessage } from "@/utils/authMessages";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const SignUpForm = ({ setTypeSelected, showFeedback }) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const { register, handleSubmit, reset } = useForm();
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => event.preventDefault();
+  const handleMouseUpPassword = (event) => event.preventDefault();
 
   const onSubmit = async (user) => {
     setIsLoading(true);
@@ -92,13 +101,27 @@ const SignUpForm = ({ setTypeSelected, showFeedback }) => {
           />
           <InputLabel htmlFor="password">Contraseña</InputLabel>
           <OutlinedInput
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
-            name="password"
             {...register("password")}
             required
             fullWidth
             sx={{ mb: 2 }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
           />
           <Button
             type="submit"

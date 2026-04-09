@@ -9,16 +9,25 @@ import {
   OutlinedInput,
   Typography,
   Button,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { login } from "@/actions/auth/auth";
 import { useRouter } from "next/navigation";
 import { getAuthMessage } from "@/utils/authMessages";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginForm = ({ setTypeSelected, showFeedback }) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const { register, handleSubmit } = useForm();
   const router = useRouter();
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => event.preventDefault();
+  const handleMouseUpPassword = (event) => event.preventDefault();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -81,12 +90,27 @@ const LoginForm = ({ setTypeSelected, showFeedback }) => {
           />
           <InputLabel htmlFor="password">Contraseña</InputLabel>
           <OutlinedInput
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             {...register("password")}
             required
             fullWidth
             sx={{ mb: 2 }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
           />
           <Button
             variant="text"

@@ -37,7 +37,6 @@ const AdminPage = () => {
 
   const { user, isLoading, getUserData } = useAuth();
   const [tabValue, setTabValue] = React.useState(0);
-  const [filterArg, setFilterArg] = React.useState("");
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);

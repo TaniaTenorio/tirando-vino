@@ -77,7 +77,7 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
               </IconButton>
             </div>
 
-            <IconButton onClick={toggleDrawer(true)}>
+            <IconButton aria-label="Abrir carrito" onClick={toggleDrawer(true)}>
               <Badge badgeContent={totalItems} color="primary" showZero>
                 <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
               </Badge>

@@ -63,7 +63,7 @@ const LoginForm = ({ setTypeSelected, showFeedback }) => {
     >
       {/* Your login form goes here */}
       <Paper elevation={3} sx={{ padding: 4, maxWidth: 400, margin: "0 auto" }}>
-        <Typography variant="h5" component="div" align="center">
+        <Typography variant="h5" component="h1" align="center">
           Login
         </Typography>
         <Typography

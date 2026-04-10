@@ -10,6 +10,11 @@ import {
   Typography,
   Box,
   CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  OutlinedInput,
 } from "@mui/material";
 import { CountryDropdown } from "react-country-region-selector";
 import ImageDropzone from "@/app/admin/components/ImageDropzone";
@@ -17,26 +22,8 @@ import {
   getCountryCodeFromValue,
   getSpanishCountryNameFromCode,
 } from "@/utils/countries";
-
-const FIELD_LABELS = {
-  wine: {
-    name: "Nombre",
-    color: "Color",
-    variety: "Variedad",
-    house: "Bodega",
-    region: "Región",
-    country: "País",
-    price: "Precio",
-    year: "Año",
-    imageURL: "Imagen",
-  },
-  merch: {
-    name: "Nombre",
-    variety: "Variedad",
-    price: "Precio",
-    imageURL: "Imagen",
-  },
-};
+import styles from "../../../admin.module.css";
+import { FIELD_LABELS, TYPE_LABELS } from "@/utils/constants";
 
 const EditPage = () => {
   const params = useParams();
@@ -46,6 +33,8 @@ const EditPage = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({});
+  const [houses, setHouses] = useState([]);
+  const [isLoadingHouses, setIsLoadingHouses] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -79,6 +68,47 @@ const EditPage = () => {
       isMounted = false;
     };
   }, [type, id]);
+
+  useEffect(() => {
+    if (type !== "wine") {
+      return;
+    }
+
+    let isMounted = true;
+
+    const loadHouses = async () => {
+      setIsLoadingHouses(true);
+
+      try {
+        const response = await fetch("/api/admin/house");
+
+        if (!response.ok) {
+          throw new Error("Failed to load houses");
+        }
+
+        const data = await response.json();
+
+        if (!isMounted) return;
+
+        setHouses(data || []);
+      } catch (error) {
+        console.error("Error loading houses:", error);
+        if (isMounted) {
+          setHouses([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingHouses(false);
+        }
+      }
+    };
+
+    loadHouses();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [type]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -141,26 +171,23 @@ const EditPage = () => {
     );
   }
 
-  const getFields = () => {
-    if (type === "wine") {
-      return [
-        "name",
-        "house",
-        "variety",
-        "year",
-        "color",
-        "country",
-        "region",
-        "price",
-        "imageURL",
-      ];
-    } else if (type === "merch") {
-      return ["name", "variety", "price", "imageURL"];
-    }
-    return [];
+  const fieldsByType = {
+    wine: [
+      "name",
+      "house",
+      "variety",
+      "year",
+      "color",
+      "country",
+      "region",
+      "price",
+      "imageURL",
+    ],
+    merch: ["name", "variety", "price", "imageURL"],
+    house: ["name"],
   };
 
-  const fields = getFields();
+  const fields = fieldsByType[type] || [];
   const getFieldLabel = (field) => {
     const label = FIELD_LABELS[type]?.[field];
 
@@ -172,23 +199,27 @@ const EditPage = () => {
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Paper sx={{ p: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Editar {type === "wine" ? "Vino" : "Merch"}: {item.name}
+          Editar {TYPE_LABELS[type] || "Item"}: {item.name}
         </Typography>
 
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 3 }}
+          sx={{ display: "flex", flexDirection: "column", mt: 3 }}
         >
           {fields.map((field) => {
             if (field === "country") {
               return (
-                <Box key={field}>
+                <Box key={field} sx={{ mb: 2 }}>
                   <Typography
                     component="label"
                     htmlFor="country-dropdown"
                     variant="body2"
-                    sx={{ display: "block", mb: 1, color: "text.secondary" }}
+                    sx={{
+                      display: "block",
+                      color: "#00000099",
+                      fontWeight: 400,
+                    }}
                   >
                     {getFieldLabel(field)}
                   </Typography>
@@ -205,18 +236,7 @@ const EditPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select
-                        {...selectProps}
-                        style={{
-                          width: "100%",
-                          minHeight: "56px",
-                          padding: "0 14px",
-                          borderRadius: "4px",
-                          border: "1px solid rgba(0, 0, 0, 0.23)",
-                          backgroundColor: "transparent",
-                          font: "inherit",
-                        }}
-                      >
+                      <select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -228,6 +248,7 @@ const EditPage = () => {
                           ))}
                       </select>
                     )}
+                    className={styles.countryDropdown}
                   />
                 </Box>
               );
@@ -249,17 +270,62 @@ const EditPage = () => {
               );
             }
 
+            if (field === "house") {
+              const hasSelectedHouseOption = houses.some(
+                (house) => house.id === formData[field],
+              );
+
+              return (
+                <>
+                  <InputLabel id="house-select-label">
+                    {getFieldLabel(field)}
+                  </InputLabel>
+                  <Select
+                    labelId="house-select-label"
+                    label={getFieldLabel(field)}
+                    name={field}
+                    value={formData[field] ?? ""}
+                    onChange={handleChange}
+                    disabled={isLoadingHouses}
+                    sx={{ mb: 2 }}
+                  >
+                    <MenuItem value="" disabled>
+                      {isLoadingHouses
+                        ? "Cargando bodegas..."
+                        : "Selecciona una bodega"}
+                    </MenuItem>
+                    {formData[field] && !hasSelectedHouseOption ? (
+                      <MenuItem value={formData[field]}>
+                        Valor actual (sin sincronizar)
+                      </MenuItem>
+                    ) : null}
+                    {houses.map((house) => (
+                      <MenuItem key={house.id} value={house.id}>
+                        {house.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </>
+              );
+            }
+
             return (
-              <TextField
-                key={field}
-                label={getFieldLabel(field)}
-                name={field}
-                value={formData[field] || ""}
-                onChange={handleChange}
-                fullWidth
-                rows={1}
-                type={field === "price" || field === "year" ? "number" : "text"}
-              />
+              <>
+                <InputLabel htmlFor={field} key={field}>
+                  {getFieldLabel(field)}
+                </InputLabel>
+                <OutlinedInput
+                  key={field}
+                  name={field}
+                  value={formData[field] || ""}
+                  onChange={handleChange}
+                  fullWidth
+                  type={
+                    field === "price" || field === "year" ? "number" : "text"
+                  }
+                  sx={{ mb: 2 }}
+                />
+              </>
             );
           })}
 

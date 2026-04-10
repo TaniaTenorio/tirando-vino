@@ -7,7 +7,12 @@ import {
   Button,
   CircularProgress,
   Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
   Paper,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -17,73 +22,81 @@ import {
   getCountryCodeFromValue,
   getSpanishCountryNameFromCode,
 } from "@/utils/countries";
-
-const FIELD_LABELS = {
-  wine: {
-    name: "Nombre",
-    house: "Bodega",
-    variety: "Variedad",
-    year: "Año",
-    color: "Color",
-    country: "País",
-    region: "Región",
-    price: "Precio",
-    imageURL: "Imagen",
-  },
-  merch: {
-    name: "Nombre",
-    variety: "Variedad",
-    price: "Precio",
-    imageURL: "Imagen",
-  },
-};
-
-const INITIAL_DATA = {
-  wine: {
-    name: "",
-    house: "",
-    variety: "",
-    year: "",
-    color: "",
-    country: "",
-    region: "",
-    price: "",
-    imageURL: "",
-    status: "active",
-  },
-  merch: {
-    name: "",
-    variety: "",
-    price: "",
-    imageURL: "",
-    status: "active",
-  },
-};
+import { FIELD_LABELS, INITIAL_DATA, TYPE_LABELS } from "@/utils/constants";
+import styles from "../../admin.module.css";
 
 const NewItemPage = () => {
   const params = useParams();
   const router = useRouter();
   const { type } = params;
   const [saving, setSaving] = useState(false);
+  const [houses, setHouses] = useState([]);
+  const [isLoadingHouses, setIsLoadingHouses] = useState(false);
 
-  const [formData, setFormData] = useState(
-    type === "wine" ? INITIAL_DATA.wine : INITIAL_DATA.merch,
-  );
+  const [formData, setFormData] = useState(INITIAL_DATA[type] || {});
 
-  const fields =
-    type === "wine"
-      ? [
-          "name",
-          "house",
-          "variety",
-          "year",
-          "color",
-          "country",
-          "region",
-          "price",
-          "imageURL",
-        ]
-      : ["name", "variety", "price", "imageURL"];
+  const fieldsByType = {
+    wine: [
+      "name",
+      "house",
+      "variety",
+      "year",
+      "color",
+      "country",
+      "region",
+      "price",
+      "imageURL",
+    ],
+    merch: ["name", "variety", "price", "imageURL"],
+    house: ["name"],
+  };
+
+  const fields = fieldsByType[type] || [];
+
+  React.useEffect(() => {
+    setFormData(INITIAL_DATA[type] || {});
+  }, [type]);
+
+  React.useEffect(() => {
+    if (type !== "wine") {
+      return;
+    }
+
+    let isMounted = true;
+
+    const loadHouses = async () => {
+      setIsLoadingHouses(true);
+
+      try {
+        const response = await fetch("/api/admin/house");
+
+        if (!response.ok) {
+          throw new Error("Failed to load houses");
+        }
+
+        const data = await response.json();
+
+        if (!isMounted) return;
+
+        setHouses(data || []);
+      } catch (error) {
+        console.error("Error loading houses:", error);
+        if (isMounted) {
+          setHouses([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingHouses(false);
+        }
+      }
+    };
+
+    loadHouses();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [type]);
 
   const getFieldLabel = (field) => {
     const label = FIELD_LABELS[type]?.[field];
@@ -126,7 +139,7 @@ const NewItemPage = () => {
     }
   };
 
-  if (type !== "wine" && type !== "merch") {
+  if (!TYPE_LABELS[type]) {
     return (
       <Container maxWidth="md" sx={{ py: 4 }}>
         <Typography>Tipo de item no válido.</Typography>
@@ -141,23 +154,27 @@ const NewItemPage = () => {
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Paper sx={{ p: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Agregar {type === "wine" ? "Vino" : "Merch"}
+          Agregar {TYPE_LABELS[type]}
         </Typography>
 
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 3 }}
+          sx={{ display: "flex", flexDirection: "column", mt: 3 }}
         >
           {fields.map((field) => {
             if (field === "country") {
               return (
-                <Box key={field}>
+                <Box key={field} sx={{ mb: 2 }}>
                   <Typography
                     component="label"
                     htmlFor="country-dropdown"
                     variant="body2"
-                    sx={{ display: "block", mb: 1, color: "text.secondary" }}
+                    sx={{
+                      display: "block",
+                      color: "#00000099",
+                      fontWeight: 400,
+                    }}
                   >
                     {getFieldLabel(field)}
                   </Typography>
@@ -174,18 +191,7 @@ const NewItemPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select
-                        {...selectProps}
-                        style={{
-                          width: "100%",
-                          minHeight: "56px",
-                          padding: "0 14px",
-                          borderRadius: "4px",
-                          border: "1px solid rgba(0, 0, 0, 0.23)",
-                          backgroundColor: "transparent",
-                          font: "inherit",
-                        }}
-                      >
+                      <select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -197,6 +203,7 @@ const NewItemPage = () => {
                           ))}
                       </select>
                     )}
+                    className={styles.countryDropdown}
                   />
                 </Box>
               );
@@ -218,16 +225,52 @@ const NewItemPage = () => {
               );
             }
 
+            if (field === "house") {
+              return (
+                <>
+                  <InputLabel id="house-select-label">
+                    {getFieldLabel(field)}
+                  </InputLabel>
+                  <Select
+                    labelId="house-select-label"
+                    label={getFieldLabel(field)}
+                    name={field}
+                    value={formData[field] ?? ""}
+                    onChange={handleChange}
+                    disabled={isLoadingHouses}
+                    sx={{ mb: 2 }}
+                  >
+                    <MenuItem value="" disabled>
+                      {isLoadingHouses
+                        ? "Cargando bodegas..."
+                        : "Selecciona una bodega"}
+                    </MenuItem>
+                    {houses.map((house) => (
+                      <MenuItem key={house.id} value={house.id}>
+                        {house.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </>
+              );
+            }
+
             return (
-              <TextField
-                key={field}
-                label={getFieldLabel(field)}
-                name={field}
-                value={formData[field] ?? ""}
-                onChange={handleChange}
-                fullWidth
-                type={field === "price" || field === "year" ? "number" : "text"}
-              />
+              <>
+                <InputLabel htmlFor={field} key={field}>
+                  {getFieldLabel(field)}
+                </InputLabel>
+                <OutlinedInput
+                  type={
+                    field === "price" || field === "year" ? "number" : "text"
+                  }
+                  name={field}
+                  value={formData[field] ?? ""}
+                  onChange={handleChange}
+                  fullWidth
+                  sx={{ mb: 2 }}
+                />
+              </>
             );
           })}
 

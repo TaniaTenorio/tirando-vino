@@ -78,7 +78,7 @@ const ImageDropzone = ({
     <Box>
       <Typography
         variant="body2"
-        sx={{ display: "block", mb: 1, color: "text.secondary" }}
+        sx={{ display: "block", mb: 1, color: "#00000099", fontWeight: 400 }}
       >
         {label}
       </Typography>

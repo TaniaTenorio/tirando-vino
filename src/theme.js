@@ -10,6 +10,15 @@ const shadowsIntoLight = Shadows_Into_Light({
 });
 
 const theme = createTheme({
+  components: {
+    MuiSelect: {
+      styleOverrides: {
+        outlined: {
+          padding: "5px 14px",
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: "var(--font-shadows-into-light)",
     body2: {

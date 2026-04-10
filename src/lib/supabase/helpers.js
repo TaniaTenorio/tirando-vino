@@ -8,6 +8,7 @@ import {
 const TABLE_BY_TYPE = {
   wine: "wines",
   merch: "merch",
+  house: "houses",
 };
 
 const BUCKET_BY_TYPE = {
@@ -20,7 +21,8 @@ const FOLDER_BY_TYPE = {
   merch: "merch",
 };
 
-export const isValidType = (type) => type === "wine" || type === "merch";
+export const isValidType = (type) =>
+  type === "wine" || type === "merch" || type === "house";
 
 const mapImageForClient = (item) => ({
   ...item,
@@ -77,23 +79,39 @@ const normalizeByTypeForDb = async ({ type, payload, existingItem = null }) => {
 export const getHomeData = async () => {
   const supabase = await createClient();
 
-  const [{ data: wines = [] }, { data: merch = [] }] = await Promise.all([
-    supabase
-      .from("wines")
-      .select("*")
-      .eq("status", "active")
-      .order("name", { ascending: true })
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("merch")
-      .select("*")
-      .eq("status", "active")
-      .order("name", { ascending: true })
-      .order("created_at", { ascending: false }),
-  ]);
+  const [{ data: wines = [] }, { data: merch = [] }, { data: houses = [] }] =
+    await Promise.all([
+      supabase
+        .from("wines")
+        .select("*")
+        .eq("status", "active")
+        .order("name", { ascending: true })
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("merch")
+        .select("*")
+        .eq("status", "active")
+        .order("name", { ascending: true })
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("houses")
+        .select("id,name")
+        .eq("status", "active")
+        .order("name", { ascending: true }),
+    ]);
+
+  const houseById = (houses || []).reduce((acc, house) => {
+    acc[house.id] = house.name;
+    return acc;
+  }, {});
+
+  const winesWithHouseName = wines.map((wine) => ({
+    ...wine,
+    houseName: houseById[wine.house] || wine.house,
+  }));
 
   return {
-    wines: wines.map(mapImageForClient),
+    wines: winesWithHouseName.map(mapImageForClient),
     merch: merch.map(mapImageForClient),
   };
 };
@@ -104,7 +122,7 @@ export const getItems = async (type) => {
 
   let query = supabase.from(table).select("*");
 
-  if (type === "wine" || type === "merch") {
+  if (type === "wine" || type === "merch" || type === "house") {
     query = query
       .order("name", { ascending: true })
       .order("created_at", { ascending: false });

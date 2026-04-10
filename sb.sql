@@ -181,3 +181,96 @@ ON storage.objects
 FOR DELETE
 TO authenticated
 WITH CHECK (true);
+
+-- 1) Create houses table with a normalized key
+CREATE TABLE IF NOT EXISTS houses (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  normalized_name TEXT NOT NULL UNIQUE,
+  status status DEFAULT 'active',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  CONSTRAINT houses_normalized_name_check CHECK (normalized_name = LOWER(TRIM(normalized_name)))
+);
+
+-- 2) RLS + policies
+ALTER TABLE houses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can read houses"
+ON houses
+FOR SELECT
+TO public
+USING (true);
+
+CREATE POLICY "Authenticated users can insert houses"
+ON houses
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+CREATE POLICY "Authenticated users can update houses"
+ON houses
+FOR UPDATE
+TO authenticated
+USING (true)
+WITH CHECK (true);
+
+CREATE POLICY "Authenticated users can delete houses"
+ON houses
+FOR DELETE
+TO authenticated
+USING (true);
+
+-- 3) Seed houses from wines.house using normalized value
+-- name keeps one display variant (alphabetically first), normalized_name is canonical
+INSERT INTO houses (name, normalized_name)
+SELECT
+  MIN(TRIM(house)) AS name,
+  LOWER(TRIM(house)) AS normalized_name
+FROM wines
+WHERE house IS NOT NULL AND TRIM(house) <> ''
+GROUP BY LOWER(TRIM(house))
+ON CONFLICT (normalized_name) DO NOTHING;
+
+-- 4) Add FK column to wines
+ALTER TABLE wines ADD COLUMN IF NOT EXISTS house_id UUID;
+
+-- 5) Backfill FK by normalized matching
+UPDATE wines w
+SET house_id = h.id
+FROM houses h
+WHERE LOWER(TRIM(w.house)) = h.normalized_name;
+
+-- 6) Enforce relationship
+ALTER TABLE wines
+  ALTER COLUMN house_id SET NOT NULL,
+  ADD CONSTRAINT wines_house_id_fkey
+  FOREIGN KEY (house_id) REFERENCES houses(id);
+
+-- 7) Replace old text column and keep field name as house
+ALTER TABLE wines DROP COLUMN house;
+ALTER TABLE wines RENAME COLUMN house_id TO house;
+
+-- Keep normalized_name synced from name
+CREATE OR REPLACE FUNCTION sync_houses_normalized_name()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF NEW.name IS NULL OR TRIM(NEW.name) = '' THEN
+    RAISE EXCEPTION 'houses.name cannot be empty';
+  END IF;
+
+  NEW.name := TRIM(NEW.name);
+  NEW.normalized_name := LOWER(NEW.name);
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS trg_sync_houses_normalized_name ON houses;
+
+CREATE TRIGGER trg_sync_houses_normalized_name
+BEFORE INSERT OR UPDATE OF name
+ON houses
+FOR EACH ROW
+EXECUTE FUNCTION sync_houses_normalized_name();

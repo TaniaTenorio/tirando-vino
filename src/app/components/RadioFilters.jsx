@@ -4,11 +4,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
-import { WINERIES } from "@/utils/constants";
 import { Typography } from "@mui/material";
 
-const RadioFilters = ({ wineHouse, handleOnChange }) => (
+const RadioFilters = ({ wineHouse, handleOnChange, houseOptions = [] }) => (
   <FormControl>
     <FormLabel
       id="house-filters"
@@ -41,9 +39,9 @@ const RadioFilters = ({ wineHouse, handleOnChange }) => (
         label={<Typography variant="body2">Todos</Typography>}
         value={"TODOS"}
       />
-      {Object.entries(WINERIES).map(([key, label]) => (
+      {houseOptions.map(({ value, label }) => (
         <FormControlLabel
-          key={key}
+          key={value}
           control={
             <Radio
               sx={{
@@ -56,7 +54,7 @@ const RadioFilters = ({ wineHouse, handleOnChange }) => (
             />
           }
           label={<Typography variant="body2">{label}</Typography>}
-          value={key}
+          value={value}
         />
       ))}
     </RadioGroup>
@@ -65,7 +63,8 @@ const RadioFilters = ({ wineHouse, handleOnChange }) => (
 
 RadioFilters.propTypes = {
   wineHouse: String,
-  handleRadioChange: Function,
+  handleOnChange: Function,
+  houseOptions: Array,
 };
 
 export default RadioFilters;

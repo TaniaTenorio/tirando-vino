@@ -36,6 +36,23 @@ const HomeClient = ({ winesData, merchData }) => {
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
   const [wineHouse, setWineHouse] = React.useState("TODOS");
 
+  const houseOptions = React.useMemo(() => {
+    const seen = new Set();
+
+    return winesData
+      .filter((item) => item?.house)
+      .map((item) => ({
+        value: item.house,
+        label: item.houseName || item.house,
+      }))
+      .filter((item) => {
+        if (seen.has(item.value)) return false;
+        seen.add(item.value);
+        return true;
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [winesData]);
+
   const handleRadioChange = (event) => {
     setWineHouse(event.target.value);
   };
@@ -128,6 +145,7 @@ const HomeClient = ({ winesData, merchData }) => {
                 <RadioFilters
                   wineHouse={wineHouse}
                   handleOnChange={handleRadioChange}
+                  houseOptions={houseOptions}
                 />
                 <Divider />
               </Grid>
@@ -139,7 +157,7 @@ const HomeClient = ({ winesData, merchData }) => {
                         <WineCard
                           id={el.id}
                           name={el.name}
-                          house={el.house}
+                          house={el.houseName || el.house}
                           variety={el.variety}
                           year={el.year}
                           color={el.color}

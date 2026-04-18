@@ -11,6 +11,26 @@ const cookieOptions = {
   maxAge: 60 * 60 * 24 * 365 * 10,
 };
 
+const isSameOriginRequest = (request) => {
+  const requestOrigin = request.nextUrl.origin;
+  const originHeader = request.headers.get("origin");
+  const refererHeader = request.headers.get("referer");
+
+  if (originHeader) {
+    return originHeader === requestOrigin;
+  }
+
+  if (refererHeader) {
+    try {
+      return new URL(refererHeader).origin === requestOrigin;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+};
+
 export async function GET(request) {
   const status = request.cookies.get(AGE_GATE_COOKIE)?.value;
 
@@ -22,6 +42,13 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  if (!isSameOriginRequest(request)) {
+    return NextResponse.json(
+      { error: "Invalid request origin" },
+      { status: 403 },
+    );
+  }
+
   const body = await request.json().catch(() => null);
   const requestedStatus = body?.status;
 
@@ -43,7 +70,14 @@ export async function POST(request) {
   return response;
 }
 
-export async function DELETE() {
+export async function DELETE(request) {
+  if (!isSameOriginRequest(request)) {
+    return NextResponse.json(
+      { error: "Invalid request origin" },
+      { status: 403 },
+    );
+  }
+
   if (process.env.NODE_ENV === "production") {
     return NextResponse.json(
       { error: "Age gate reset is disabled in production" },

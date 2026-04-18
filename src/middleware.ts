@@ -1,5 +1,4 @@
-import { type NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
 const AGE_GATE_COOKIE = "tv-age-gate";

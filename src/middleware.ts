@@ -13,13 +13,18 @@ const isAllowedWhenRejected = (pathname: string) => {
   );
 };
 
+const isApiPath = (pathname: string) => {
+  return pathname.startsWith("/api/");
+};
+
 export async function middleware(request: NextRequest) {
   const ageGateStatus = request.cookies.get(AGE_GATE_COOKIE)?.value;
+  const { pathname } = request.nextUrl;
 
-  if (
-    ageGateStatus === "rejected" &&
-    !isAllowedWhenRejected(request.nextUrl.pathname)
-  ) {
+  if (ageGateStatus === "rejected" && !isAllowedWhenRejected(pathname)) {
+    if (isApiPath(pathname)) {
+      return NextResponse.json({ error: "Age restricted" }, { status: 403 });
+    }
     return NextResponse.redirect(new URL(AGE_RESTRICTED_PATH, request.url));
   }
 

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 const AGE_GATE_COOKIE = "tv-age-gate";
 const VALID_STATUSES = new Set(["accepted", "rejected"]);
+const INVALID_ORIGIN_ERROR =
+  "CSRF validation failed: request origin does not match expected origin";
 
 const cookieOptions = {
   httpOnly: true,
@@ -43,10 +45,7 @@ export async function GET(request) {
 
 export async function POST(request) {
   if (!isSameOriginRequest(request)) {
-    return NextResponse.json(
-      { error: "Invalid request origin" },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: INVALID_ORIGIN_ERROR }, { status: 403 });
   }
 
   const body = await request.json().catch(() => null);
@@ -72,10 +71,7 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   if (!isSameOriginRequest(request)) {
-    return NextResponse.json(
-      { error: "Invalid request origin" },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: INVALID_ORIGIN_ERROR }, { status: 403 });
   }
 
   if (process.env.NODE_ENV === "production") {

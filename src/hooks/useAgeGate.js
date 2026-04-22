@@ -5,6 +5,8 @@ import React from "react";
 const AGE_GATE_STORAGE_KEY = "tv-age-gate-status";
 const AGE_GATE_ENDPOINT = "/api/age-gate";
 const AGE_RESTRICTED_PATH = "/age-restricted";
+const isAllowedAgeGateStatus = (status) =>
+  status === "accepted" || status === "rejected";
 
 /**
  * Manages age-gate status: loads the current state from the API (with a
@@ -84,6 +86,17 @@ export function useAgeGate() {
   }, []);
 
   const persistAgeGateAnswer = async (status) => {
+    if (!isAllowedAgeGateStatus(status)) {
+      try {
+        window.localStorage.removeItem(AGE_GATE_STORAGE_KEY);
+      } catch {
+        // Ignore local storage write failures.
+      }
+
+      setAgeGateStatus("unknown");
+      return;
+    }
+
     let lockedStatus = status;
 
     try {
@@ -98,7 +111,7 @@ export function useAgeGate() {
       if (response.ok) {
         const data = await response.json();
 
-        if (data?.status === "accepted" || data?.status === "rejected") {
+        if (isAllowedAgeGateStatus(data?.status)) {
           lockedStatus = data.status;
         }
       }

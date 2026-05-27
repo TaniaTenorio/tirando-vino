@@ -16,17 +16,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 
 import styles from "../page.module.css";
-import PayButton from "./PayButton";
+import CheckoutModal from "./CheckoutModal";
 
 const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
-  const [totalAmount, setTotalAmount] = React.useState(0);
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  const [totalItems, setTotalItems] = React.useState(0);
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     const total = list
       .reduce((acc, item) => acc + item.productPrice * item.quantity, 0)
       .toFixed(2);
 
-    setTotalAmount(total);
+    const itemsCount = list.reduce((acc, item) => acc + item.quantity, 0);
+
+    setTotalPrice(total);
+    setTotalItems(itemsCount);
   }, [list]);
 
   const handlePlusQuantity = (item) => (event) => {
@@ -37,6 +42,15 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
   const handleMinusQuantity = (item) => (event) => {
     event.stopPropagation();
     updateCartList(item, "minus");
+  };
+
+  const handleOpenCheckoutModal = (event) => {
+    event.stopPropagation();
+    setIsCheckoutModalOpen(true);
+  };
+
+  const handleCloseCheckoutModal = () => {
+    setIsCheckoutModalOpen(false);
   };
 
   return (
@@ -50,7 +64,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
         },
       }}
       role="presentation"
-      onClick={closeDrawer}
+      onClick={(event) => event.stopPropagation()}
     >
       {/* Header with close button */}
       <Container
@@ -60,7 +74,13 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           justifyContent: "flex-end",
         }}
       >
-        <IconButton edge="start" color="inherit" aria-label="menu" size="large">
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          size="large"
+          onClick={closeDrawer}
+        >
           <CloseIcon />
         </IconButton>
       </Container>
@@ -106,7 +126,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
                       edge="end"
                       aria-label="delete"
                       color="error"
-                      onClick={removeItem(el.productId)}
+                      onClick={removeItem(el)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -156,10 +176,11 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
               variant="h6"
               style={{ padding: "16px 0px", fontWeight: "bold" }}
             >
-              {`Total: $${totalAmount} MXN`}
+              {`Total: $${totalPrice} MXN`}
             </Typography>
           </Container>
         </Container>
+
         {/* Action Buttons */}
         <Container
           sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
@@ -167,9 +188,23 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           <Button onClick={closeDrawer} fullWidth variant="contained">
             Ver más productos
           </Button>
-          <PayButton totalAmount={totalAmount} disabled />
+          <Button
+            onClick={handleOpenCheckoutModal}
+            fullWidth
+            variant="contained"
+            disabled={totalPrice <= 0}
+          >
+            Continuar compra
+          </Button>
         </Container>
       </Container>
+
+      <CheckoutModal
+        isOpen={isCheckoutModalOpen}
+        onClose={handleCloseCheckoutModal}
+        list={list}
+        totalPrice={totalPrice}
+      />
     </Box>
   );
 };

@@ -191,7 +191,7 @@ const NewItemPage = () => {
                     }
                     defaultOptionLabel="Selecciona un país"
                     customRender={({ options, ...selectProps }) => (
-                      <select {...selectProps}>
+                      <Select {...selectProps}>
                         {options
                           .filter(Boolean)
                           .map(({ key, value, label }) => (
@@ -201,7 +201,7 @@ const NewItemPage = () => {
                                 : label}
                             </option>
                           ))}
-                      </select>
+                      </Select>
                     )}
                     className={styles.countryDropdown}
                   />
@@ -239,6 +239,36 @@ const NewItemPage = () => {
                     onChange={handleChange}
                     disabled={isLoadingHouses}
                     sx={{ mb: 2 }}
+                  >
+                    <MenuItem value="" disabled>
+                      {isLoadingHouses
+                        ? "Cargando bodegas..."
+                        : "Selecciona una bodega"}
+                    </MenuItem>
+                    {houses.map((house) => (
+                      <MenuItem key={house.id} value={house.id}>
+                        {house.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </>
+              );
+            }
+
+            if (field === "house") {
+              return (
+                <>
+                  <InputLabel id="house-select-label">
+                    {getFieldLabel(field)}
+                  </InputLabel>
+                  <Select
+                    labelId="house-select-label"
+                    label={getFieldLabel(field)}
+                    name={field}
+                    value={formData[field] ?? ""}
+                    onChange={handleChange}
+                    disabled={isLoadingHouses}
+                    sx={{ mb: 2, padding: 0 }}
                   >
                     <MenuItem value="" disabled>
                       {isLoadingHouses

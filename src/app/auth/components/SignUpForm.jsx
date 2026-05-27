@@ -63,7 +63,7 @@ const SignUpForm = ({ setTypeSelected, showFeedback }) => {
     >
       {/* Your signup form goes here */}
       <Paper elevation={3} sx={{ padding: 4, maxWidth: 400, margin: "0 auto" }}>
-        <Typography variant="h5" component="div" align="center">
+        <Typography variant="h5" component="h1" align="center">
           Crear cuenta
         </Typography>
         <Typography

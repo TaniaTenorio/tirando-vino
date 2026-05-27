@@ -4,6 +4,20 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
+    ignores: [
+      "**/__tests__/**",
+      "**/*.test.js",
+      "**/*.test.jsx",
+      "**/*.test.ts",
+      "**/*.test.tsx",
+      "**/*.spec.js",
+      "**/*.spec.jsx",
+      "**/*.spec.ts",
+      "**/*.spec.tsx",
+      "e2e/**",
+    ],
+  },
+  {
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

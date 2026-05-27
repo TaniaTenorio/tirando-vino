@@ -47,7 +47,7 @@ const MerchCard = ({ item, handleCartButton }) => {
 
         <Typography align="center">${item.price} MXN</Typography>
 
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
             <Checkbox checked={gender.his} name="his" onChange={handleChange} />
           }
@@ -58,7 +58,7 @@ const MerchCard = ({ item, handleCartButton }) => {
             <Checkbox checked={gender.her} name="her" onChange={handleChange} />
           }
           label="Ella"
-        />
+        /> */}
 
         <CardActions style={{ justifyContent: "center" }}>
           <Button

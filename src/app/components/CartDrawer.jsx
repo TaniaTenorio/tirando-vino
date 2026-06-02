@@ -20,7 +20,6 @@ import CheckoutModal from "./CheckoutModal";
 
 const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
   const [totalPrice, setTotalPrice] = React.useState(0);
-  const [totalItems, setTotalItems] = React.useState(0);
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -28,10 +27,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
       .reduce((acc, item) => acc + item.productPrice * item.quantity, 0)
       .toFixed(2);
 
-    const itemsCount = list.reduce((acc, item) => acc + item.quantity, 0);
-
     setTotalPrice(total);
-    setTotalItems(itemsCount);
   }, [list]);
 
   const handlePlusQuantity = (item) => (event) => {

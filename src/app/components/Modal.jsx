@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 
-const Modal = ({ isOpen, onClose, title, content, actions }) => {
+const Modal = ({ isOpen, onClose, title, content, actions = [] }) => {
   if (!isOpen) return null;
 
   return (

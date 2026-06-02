@@ -14,10 +14,10 @@ const CustomSnackbar = ({
   const action = actionLabel ? (
     <>
       <Button
-        color="white"
+        color="inherit"
         size="small"
         onClick={actionOnClick}
-        sx={{ fontWeight: "bold" }}
+        sx={{ fontWeight: "bold", color: "#fff" }}
       >
         {actionLabel}
       </Button>

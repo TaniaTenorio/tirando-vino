@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, title, content, actions }) => {
       open={isOpen}
       // disableEscapeKeyDown
       onClose={onClose}
-      aria-labelledby="modal"
+      aria-labelledby="modal-title"
     >
       <DialogTitle id="modal-title" sx={{ textAlign: "center" }}>
         {title}

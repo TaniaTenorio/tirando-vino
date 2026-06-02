@@ -58,7 +58,7 @@ const CustomSnackbar = ({
                     ? "#2196f3"
                     : "#333",
           color: "#2a532c",
-          fontWeight: "regular",
+          fontWeight: 400,
         }}
         message={message}
         action={action}

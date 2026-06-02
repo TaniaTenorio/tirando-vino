@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "reset-gate": "node scripts/reset-gate.mjs",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {

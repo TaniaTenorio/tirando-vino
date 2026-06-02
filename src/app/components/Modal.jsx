@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  Typography,
 } from "@mui/material";
 
 const Modal = ({ isOpen, onClose, title, content, actions }) => {

@@ -11,36 +11,40 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import {
+  mockCheckoutCartPayload,
+  mockCheckoutContactPayload,
+  mockCheckoutResponse,
+} from "@/utils/mockCheckoutData";
 
-const mockResponse = {
-  amount: 0.02,
-  api_version: "2",
-  created_at: "2026-04-18T01:08:17Z",
-  currency: "MXN",
-  expires_at: "2026-04-21T01:08:17Z",
-  last_status_message: "The checkout link is completed successfully",
-  modified_at: "2026-04-18T01:09:19Z",
-  object_type: "payment_link",
-  payment_id: "d57b6ebc-ca40-4fa7-98c5-df0b2cfd86db",
-  payment_request_id: "0ae8778f-f84b-4e85-8317-d89dff8d2699",
-  payment_request_url:
-    "https://pago.clip.mx/v3/0ae8778f-f84b-4e85-8317-d89dff8d2699",
-  purchase_description: "Compra en Tirando Vino",
-  receipt_no: "PAsZJMmz",
-  redirection_url: {
-    success: "http://localhost:3000/purchase-success",
-    error: "http://localhost:3000/purchase-success",
-    default: "http://localhost:3000/purchase-success",
-  },
-  status: "CHECKOUT_COMPLETED",
+const isMockModeEnabled = () => {
+  if (process.env.NODE_ENV === "production") return false;
+
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("mockPaid") === "1";
+  } catch {
+    return false;
+  }
+};
+
+const getMockPaymentRequestId = () => {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get("mockPaymentId");
+    if (fromQuery) return fromQuery;
+  } catch {
+    // Ignore malformed query params.
+  }
+
+  return `mock-${Date.now()}`;
 };
 
 export default function PurchaseSuccessPage() {
   const [cart, setCart] = React.useState([]);
 
   React.useEffect(() => {
-    // Keep this structure visible while integrating the final status model.
-    void mockResponse;
+    const mockMode = isMockModeEnabled();
 
     // Load cart from localStorage.
     let cartItems = [];
@@ -55,6 +59,11 @@ export default function PurchaseSuccessPage() {
       }
     } catch {
       // Ignore malformed storage data.
+    }
+
+    if (mockMode && cartItems.length === 0) {
+      cartItems = mockCheckoutCartPayload;
+      setCart(mockCheckoutCartPayload);
     }
 
     const sendCompletedPurchaseEmail = async (statusData) => {
@@ -74,6 +83,10 @@ export default function PurchaseSuccessPage() {
         }
       } catch {
         // Ignore malformed contact data.
+      }
+
+      if (mockMode && !contact) {
+        contact = mockCheckoutContactPayload;
       }
 
       try {
@@ -108,6 +121,23 @@ export default function PurchaseSuccessPage() {
     // Check payment status via server-side proxy.
     const checkPaymentStatus = async () => {
       try {
+        if (mockMode) {
+          const mockPaymentRequestId = getMockPaymentRequestId();
+          const simulatedCompletedStatus = {
+            ...mockCheckoutResponse,
+            payment_request_id: mockPaymentRequestId,
+            payment_request_url: `${window.location.origin}/purchase-success?mockPaid=1&mockPaymentId=${encodeURIComponent(mockPaymentRequestId)}`,
+            redirection_url: {
+              success: `${window.location.origin}/purchase-success`,
+              error: `${window.location.origin}/purchase-success`,
+              default: `${window.location.origin}/purchase-success`,
+            },
+          };
+
+          await sendCompletedPurchaseEmail(simulatedCompletedStatus);
+          return;
+        }
+
         const paymentRequestId = window.localStorage.getItem(
           "tv-payment-request-id",
         );
@@ -156,8 +186,9 @@ export default function PurchaseSuccessPage() {
       </Typography>
 
       <Typography variant="body1" textAlign="center" color="text.secondary">
-        En los próximos días nos pondremos en contacto para agendar la entrega
-        de tus productos.
+        En unos momentos recibirás un correo de confirmación con los detalles de
+        tu compra. Y en los próximos días nos pondremos en contacto para agendar
+        la entrega de tus productos.
       </Typography>
 
       {cart.length > 0 && (

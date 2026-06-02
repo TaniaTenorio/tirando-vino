@@ -1,4 +1,8 @@
 import { Resend } from "resend";
+import {
+  buildAdminOrderNotificationEmail,
+  buildPurchaseConfirmationEmail,
+} from "@/lib/emails/purchaseConfirmationTemplate";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -39,42 +43,19 @@ export async function POST(req) {
 
     const safeCart = Array.isArray(cart) ? cart : [];
 
-    const orderLines = safeCart
-      .map(
-        (item) =>
-          `${item.productName} x${item.quantity} - $${(
-            item.productPrice * item.quantity
-          ).toFixed(2)}`,
-      )
-      .join("\n");
-
-    const total = safeCart
-      .reduce((acc, item) => acc + item.productPrice * item.quantity, 0)
-      .toFixed(2);
-
-    const message = [
-      "Nueva compra completada en Tirando Vino",
-      `Payment request ID: ${paymentRequestId}`,
-      `Receipt: ${statusData?.receipt_no || "N/A"}`,
-      `Total: $${total} MXN`,
-      "",
-      "Productos:",
-      orderLines || "Sin productos",
-      "",
-      `Cliente: ${contact?.name || "N/A"}`,
-      `Correo: ${contact?.email || "N/A"}`,
-      `Telefono: ${contact?.phone || "N/A"}`,
-      `Direccion: ${contact?.address || "N/A"}`,
-      `Estado: ${contact?.stateName || "N/A"}`,
-      `Ciudad: ${contact?.city || "N/A"}`,
-      `CP: ${contact?.zip || "N/A"}`,
-    ].join("\n");
+    const adminNotification = buildAdminOrderNotificationEmail({
+      paymentRequestId,
+      receiptNo: statusData?.receipt_no,
+      cart: safeCart,
+      contact,
+    });
 
     const { error } = await resend.emails.send({
       from,
       to,
-      subject: `Compra completada #${paymentRequestId}`,
-      text: message,
+      subject: adminNotification.subject,
+      html: adminNotification.html,
+      text: adminNotification.text,
     });
 
     if (error) {
@@ -90,10 +71,53 @@ export async function POST(req) {
       );
     }
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { "content-type": "application/json" },
-    });
+    const adminEmailSent = true;
+    let customerEmailSent = false;
+    const customerEmail = contact?.email;
+
+    if (customerEmail) {
+      const confirmation = buildPurchaseConfirmationEmail({
+        paymentRequestId,
+        receiptNo: statusData?.receipt_no,
+        cart: safeCart,
+        contact,
+      });
+
+      const customerResult = await resend.emails.send({
+        from,
+        to: customerEmail,
+        subject: confirmation.subject,
+        html: confirmation.html,
+        text: confirmation.text,
+      });
+
+      if (customerResult?.error) {
+        return new Response(
+          JSON.stringify({
+            error: "Customer confirmation email failed.",
+            details: customerResult.error.message,
+          }),
+          {
+            status: 502,
+            headers: { "content-type": "application/json" },
+          },
+        );
+      }
+
+      customerEmailSent = true;
+    }
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        adminEmailSent,
+        customerEmailSent,
+      }),
+      {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      },
+    );
   } catch (err) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,

@@ -221,7 +221,7 @@ export function buildAdminOrderNotificationEmail({
         <tr>
           <td style="padding:20px 24px;background:#1f2937;color:#ffffff;">
             <p style="margin:0;font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:0.9;">Tirando Vino · Admin</p>
-            <h1 style="margin:6px 0 0;font-size:22px;line-height:1.3;">Nueva orden para preparar envio</h1>
+            <h1 style="margin:6px 0 0;font-size:22px;line-height:1.3;">Nueva orden para preparar envío</h1>
           </td>
         </tr>
 

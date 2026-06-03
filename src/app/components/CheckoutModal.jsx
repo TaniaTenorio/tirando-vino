@@ -217,6 +217,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
       isOpen={isOpen}
       onClose={handleClose}
       title={step === "contact" ? "Datos de envío" : "Confirma tu compra"}
+      content={
         step === "contact" ? (
           <>
             <Typography align="center">

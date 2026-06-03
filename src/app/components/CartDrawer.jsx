@@ -77,7 +77,6 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           size="large"
           onClick={closeDrawer}
         >
-        >
           <CloseIcon />
         </IconButton>
       </Container>

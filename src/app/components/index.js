@@ -2,7 +2,6 @@ export { default as CartDrawer } from "./CartDrawer";
 export { default as ContactUsDialog } from "./ContactUs";
 export { default as Header } from "./Header";
 export { default as Hero } from "./Hero";
-export { default as HomeClient } from "./HomeClient";
 export { default as HomeWinesSection } from "./HomeWinesSection";
 export { default as HomeMerchSection } from "./HomeMerchSection";
 export { default as MerchCard } from "./MerchCard";

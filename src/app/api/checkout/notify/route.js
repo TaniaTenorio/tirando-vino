@@ -3,6 +3,7 @@ import {
   buildAdminOrderNotificationEmail,
   buildPurchaseConfirmationEmail,
 } from "@/lib/emails/purchaseConfirmationTemplate";
+import { ENV } from "@/utils/constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -26,7 +27,7 @@ export async function POST(req) {
     }
 
     const clipToken =
-      process.env.NODE_ENV === "production"
+      ENV === "production"
         ? process.env.CLIP_TOKEN_PROD
         : process.env.CLIP_TOKEN_TEST;
     if (!clipToken) {
@@ -68,7 +69,10 @@ export async function POST(req) {
     }
 
     const from = process.env.RESEND_FROM_EMAIL;
-    const to = process.env.ORDER_NOTIFICATION_TO_EMAIL;
+    const to =
+      ENV === "production"
+        ? process.env.ORDER_NOTIFICATION_TO_EMAIL_PROD
+        : process.env.ORDER_NOTIFICATION_TO_EMAIL_DEV;
 
     if (!process.env.RESEND_API_KEY || !from || !to) {
       return new Response(

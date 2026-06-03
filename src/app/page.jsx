@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeClient } from "./components";
+import HomeClient from "./components/HomeClient";
 import { getHomeData } from "@/lib/supabase/helpers";
 
 export default async function Home() {

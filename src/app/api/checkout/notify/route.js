@@ -9,21 +9,60 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { statusData, cart, contact } = body || {};
+    const { payment_request_id: paymentRequestId, cart, contact } = body || {};
+
+    if (!paymentRequestId) {
+      return new Response(
+        JSON.stringify({ error: "Missing payment_request_id." }),
+        { status: 400, headers: { "content-type": "application/json" } },
+      );
+    }
+
+    if (!/^[\w-]+$/.test(paymentRequestId)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid payment_request_id format." }),
+        { status: 400, headers: { "content-type": "application/json" } },
+      );
+    }
+
+    const clipToken =
+      process.env.NODE_ENV === "production"
+        ? process.env.CLIP_TOKEN_PROD
+        : process.env.CLIP_TOKEN_TEST;
+    if (!clipToken) {
+      return new Response(
+        JSON.stringify({ error: "Payment token not configured on server." }),
+        { status: 500, headers: { "content-type": "application/json" } },
+      );
+    }
+
+    const clipRes = await fetch(
+      `https://api.payclip.com/v2/checkout/${paymentRequestId}`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Basic ${clipToken}`,
+        },
+      },
+    );
+
+    if (!clipRes.ok) {
+      return new Response(
+        JSON.stringify({
+          error: "Failed to verify checkout status with payment provider.",
+        }),
+        { status: 502, headers: { "content-type": "application/json" } },
+      );
+    }
+
+    const statusData = await clipRes.json();
 
     if (statusData?.status !== "CHECKOUT_COMPLETED") {
       return new Response(
         JSON.stringify({
           error: "Notification is only sent for completed checkouts.",
         }),
-        { status: 400, headers: { "content-type": "application/json" } },
-      );
-    }
-
-    const paymentRequestId = statusData?.payment_request_id;
-    if (!paymentRequestId) {
-      return new Response(
-        JSON.stringify({ error: "Missing payment_request_id." }),
         { status: 400, headers: { "content-type": "application/json" } },
       );
     }

@@ -87,13 +87,14 @@ export async function POST(req) {
 
   try {
     const body = await req.json();
+    const base = defaultPayload();
 
     const payload = {
-      ...defaultPayload(),
+      ...base,
       ...body,
-      cart: Array.isArray(body?.cart) ? body.cart : defaultPayload().cart,
+      cart: Array.isArray(body?.cart) ? body.cart : base.cart,
       contact: {
-        ...defaultPayload().contact,
+        ...base.contact,
         ...(body?.contact || {}),
       },
     };

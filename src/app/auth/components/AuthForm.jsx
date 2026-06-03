@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import RecoveryPasswordForm from "./RecoveryPasswordForm";
-import CustomSnackbar from "@/app/components/Snackbar";
+import { CustomSnackbar } from "@/app/components";
 
 const AuthForm = ({ type }) => {
   const [typeSelected, setTypeSelected] = React.useState(type);

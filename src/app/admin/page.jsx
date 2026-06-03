@@ -3,13 +3,15 @@
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/navigation";
-import Header from "./components/Header";
-import WinesTable from "./components/WinesTable";
-import MerchTable from "./components/MerchTable";
-import HousesTable from "./components/HousesTable";
+import {
+  Header,
+  WinesTable,
+  MerchTable,
+  HousesTable,
+  Navbar,
+} from "./components";
 import styles from "./admin.module.css";
 import { useAuth } from "@/context/AuthContext";
-import Navbar from "./components/Navbar";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

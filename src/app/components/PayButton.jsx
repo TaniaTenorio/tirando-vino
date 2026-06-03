@@ -3,13 +3,29 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { CURRENCY } from "@/utils/constants";
+export default function PayButton({
+  totalPrice,
+  contactForm,
+  disabled = false,
+  fullWidth = false,
+  label = "Ir a Pagar",
+}) {
+  const handleOnPay = async (event) => {
+    event?.stopPropagation();
 
-export default function PayButton({ totalAmount }) {
-  const handleOnClick = async (event) => {
-    event.stopPropagation();
+    if (contactForm) {
+      try {
+        window.localStorage.setItem(
+          "tv-client-contact",
+          JSON.stringify(contactForm),
+        );
+      } catch {
+        // Ignore local storage write failures.
+      }
+    }
 
     const paymentData = {
-      amount: totalAmount,
+      amount: totalPrice,
       currency: CURRENCY,
       purchase_description: "Compra en Tirando Vino",
     };
@@ -27,6 +43,17 @@ export default function PayButton({ totalAmount }) {
         return;
       }
 
+      if (json.payment_request_id) {
+        try {
+          window.localStorage.setItem(
+            "tv-payment-request-id",
+            json.payment_request_id,
+          );
+        } catch {
+          // Ignore local storage write failures.
+        }
+      }
+
       if (json.payment_request_url) {
         window.location.href = json.payment_request_url;
       }
@@ -37,12 +64,13 @@ export default function PayButton({ totalAmount }) {
 
   return (
     <Button
-      onClick={handleOnClick}
-      fullWidth
+      onClick={handleOnPay}
+      fullWidth={fullWidth}
       variant="contained"
-      disabled={totalAmount <= 0}
+      disabled={disabled || totalPrice <= 0}
+      sx={{ margin: "0 8px", fontWeight: "bold" }}
     >
-      Ir a Pagar
+      {label}
     </Button>
   );
 }

@@ -57,7 +57,7 @@ const CustomSnackbar = ({
                   : severity === "info"
                     ? "#2196f3"
                     : "#333",
-          color: "#2a532c",
+          color: "#fff",
           fontWeight: 400,
         }}
         message={message}

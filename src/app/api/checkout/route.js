@@ -1,6 +1,6 @@
 import { ENV, HOME_URL, DEV_HOME_URL } from "@/utils/constants";
 
-const redirectionUrl = ENV === "development" ? DEV_HOME_URL : HOME_URL;
+const redirectionUrl = (ENV === "development" ? DEV_HOME_URL : HOME_URL).replace(/\/$/, "");
 
 export async function POST(req) {
   try {

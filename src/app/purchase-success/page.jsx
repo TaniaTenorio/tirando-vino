@@ -96,7 +96,7 @@ export default function PurchaseSuccessPage() {
             "content-type": "application/json",
           },
           body: JSON.stringify({
-            statusData,
+            payment_request_id: paymentRequestId,
             cart: cartItems,
             contact,
           }),

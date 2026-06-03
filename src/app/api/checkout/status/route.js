@@ -9,7 +9,10 @@ export async function GET(req) {
     );
   }
 
-  const token = process.env.CLIP_TOKEN_TEST || process.env.CLIP_TOKEN_PROD;
+  const token =
+    process.env.NODE_ENV === "development"
+      ? process.env.CLIP_TOKEN_TEST
+      : process.env.CLIP_TOKEN_PROD;
   if (!token) {
     return new Response(
       JSON.stringify({ error: "Payment token not configured on server." }),

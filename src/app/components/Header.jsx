@@ -1,3 +1,5 @@
+"use client";
+
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -10,22 +12,26 @@ import {
   Toolbar,
 } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 import CartDrawer from "./CartDrawer";
 import ContactUsDialog from "./ContactUs";
 
 import { IG_PROFILE_URL } from "@/utils/constants";
 
-const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
-  const router = useRouter();
-  const [open, setOpen] = React.useState(false);
-  const [totalItems, setTotalItems] = React.useState(0);
+const Header = ({
+  cartList,
+  onRemoveItem,
+  onUpdateCartList,
+  onCartButtonPressed,
+  openCart,
+}) => {
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+  const totalItems = React.useMemo(
+    () => cartList.reduce((acc, item) => acc + item.quantity, 0),
+    [cartList],
+  );
+
   const handleRemoveItem = (item) => (event) => {
     event.stopPropagation();
     onRemoveItem(item);
@@ -38,11 +44,6 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
-
-  React.useEffect(() => {
-    const total = cartList.reduce((acc, item) => acc + item.quantity, 0);
-    setTotalItems(total);
-  }, [cartList]);
 
   return (
     <>
@@ -77,7 +78,7 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
               </IconButton>
             </div>
 
-            <IconButton onClick={toggleDrawer(true)}>
+            <IconButton onClick={() => onCartButtonPressed(true)}>
               <Badge badgeContent={totalItems} color="primary" showZero>
                 <ShoppingCartIcon sx={{ color: "#c69e0b" }} fontSize="medium" />
               </Badge>
@@ -86,14 +87,14 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
         </Container>
       </AppBar>
       <Drawer
-        open={open}
-        onClose={toggleDrawer(false)}
+        open={openCart}
+        onClose={() => onCartButtonPressed(false)}
         anchor="right"
         style={{ overflow: "hidden" }}
       >
         <CartDrawer
           list={cartList}
-          closeDrawer={toggleDrawer(false)}
+          closeDrawer={() => onCartButtonPressed(false)}
           removeItem={handleRemoveItem}
           updateCartList={onUpdateCartList}
         />
@@ -103,4 +104,4 @@ const Header = ({ cartList, onRemoveItem, onUpdateCartList }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

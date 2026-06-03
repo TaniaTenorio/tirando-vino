@@ -1,6 +1,6 @@
 import { ENV, HOME_URL, DEV_HOME_URL } from "@/utils/constants";
 
-const redirectionUrl = ENV === "development" ? DEV_HOME_URL : HOME_URL;
+const redirectionUrl = (ENV === "development" ? DEV_HOME_URL : HOME_URL).replace(/\/$/, "");
 
 export async function POST(req) {
   try {
@@ -14,15 +14,14 @@ export async function POST(req) {
       );
     }
 
+    console.log("Received checkout request with body:", body);
+
     const payload = {
       ...body,
       redirection_url: {
-        // "http://localhost:3000/redirection/success?external_reference=OID123456789",
-        success: redirectionUrl,
-        // TODO: create error page
-        error:
-          "http://localhost:3000/redirection/error?external_reference=OID123456789",
-        default: redirectionUrl,
+        success: `${redirectionUrl}/purchase-success`,
+        error: `${redirectionUrl}/purchase-success`,
+        default: `${redirectionUrl}/purchase-success`,
       },
     };
 
@@ -45,8 +44,12 @@ export async function POST(req) {
     }
 
     const data = await res.json();
+    console.log("--------Checkout API response:---------", data);
     return new Response(
-      JSON.stringify({ payment_request_url: data.payment_request_url }),
+      JSON.stringify({
+        payment_request_url: data.payment_request_url,
+        payment_request_id: data.payment_request_id,
+      }),
       {
         status: 200,
         headers: { "content-type": "application/json" },

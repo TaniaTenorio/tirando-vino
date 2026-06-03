@@ -3,38 +3,56 @@
 import React from "react";
 import styles from "../page.module.css";
 import { Typography, Box } from "@mui/material";
-import Grid from "@mui/material/Grid2";
-import Divider from "@mui/material/Divider";
-import Header from "./Header";
-import WineCard from "./WineCard";
-import Hero from "./Hero";
 import PropTypes from "prop-types";
-import RadioFilters from "./RadioFilters";
-import Navbar from "./Navbar";
-import CustomSnackbar from "./Snackbar";
-import MerchCard from "./MerchCard";
+import {
+  Header,
+  Hero,
+  HomeWinesSection,
+  HomeMerchSection,
+  CustomSnackbar,
+  Modal,
+} from "./index";
+import { useAgeGate } from "@/hooks/useAgeGate";
 
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {children}
-    </div>
-  );
-}
+const CART_STORAGE_KEY = "tv-cart";
 
 const HomeClient = ({ winesData, merchData }) => {
   const [tabValue, setTabvalue] = React.useState(0);
   const [filterArg, setFilterArg] = React.useState("TODOS");
+  const [openCart, setOpenCart] = React.useState(false);
   const [cart, setCart] = React.useState([]);
   const [openSnackBar, setOpenSnackBar] = React.useState(false);
   const [wineHouse, setWineHouse] = React.useState("TODOS");
+  const { ageGateStatus, handleAgeAccepted, handleAgeRejected } = useAgeGate();
+  const hasHydratedCart = React.useRef(false);
+
+  React.useEffect(() => {
+    try {
+      const storedCart = window.localStorage.getItem(CART_STORAGE_KEY);
+
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart);
+
+        if (Array.isArray(parsedCart)) {
+          setCart(parsedCart);
+        }
+      }
+    } catch {
+      // Ignore malformed or inaccessible local storage data.
+    } finally {
+      hasHydratedCart.current = true;
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasHydratedCart.current) return;
+
+    try {
+      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch {
+      // Ignore local storage write failures.
+    }
+  }, [cart]);
 
   const houseOptions = React.useMemo(() => {
     const seen = new Set();
@@ -53,50 +71,48 @@ const HomeClient = ({ winesData, merchData }) => {
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [winesData]);
 
-  const handleRadioChange = (event) => {
+  const handleRadioChange = React.useCallback((event) => {
     setWineHouse(event.target.value);
-  };
+  }, []);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = React.useCallback((event, newValue) => {
     setTabvalue(newValue);
     setFilterArg(event.target.innerText);
-  };
+  }, []);
 
-  const handleSnackbarClose = (event, reason) => {
+  const handleSnackbarClose = React.useCallback((event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnackBar(false);
-  };
+  }, []);
 
-  const onCartButtonPressed = (newItem) => {
-    const itemExists = cart.some(
-      (cartItem) => cartItem.productId === newItem.productId,
-    );
+  const handleAddToCart = React.useCallback((newItem) => {
+    setCart((prevCart) => {
+      const itemExists = prevCart.some(
+        (cartItem) => cartItem.productId === newItem.productId,
+      );
 
-    if (itemExists) {
-      setCart((prevCart) =>
-        prevCart.map((cartItem) =>
-          cartItem.id === newItem.id
+      if (itemExists) {
+        return prevCart.map((cartItem) =>
+          cartItem.productId === newItem.productId
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem,
-        ),
-      );
-    } else {
-      newItem.quantity = 1;
-      setCart((prevCart) => [...prevCart, newItem]);
-    }
+        );
+      }
 
+      return [...prevCart, { ...newItem, quantity: 1 }];
+    });
     setOpenSnackBar(true);
-  };
+  }, []);
 
-  const handleRemoveItem = (item) => {
+  const handleRemoveItem = React.useCallback((item) => {
     setCart((prevCartList) =>
-      prevCartList.filter((cartItem) => cartItem.id !== item.id),
+      prevCartList.filter((cartItem) => cartItem.productId !== item.productId),
     );
-  };
+  }, []);
 
-  const handleUpdateCartList = (item, action) => {
+  const handleUpdateCartList = React.useCallback((item, action) => {
     setCart((prevCartList) =>
       prevCartList.map((cartItem) => {
         if (cartItem.productId === item) {
@@ -109,7 +125,11 @@ const HomeClient = ({ winesData, merchData }) => {
         return cartItem;
       }),
     );
-  };
+  }, []);
+
+  const toggleCart = React.useCallback((newOpen) => {
+    setOpenCart(newOpen);
+  }, []);
 
   const filteredData = React.useMemo(() => {
     let result = winesData;
@@ -127,76 +147,34 @@ const HomeClient = ({ winesData, merchData }) => {
     return result;
   }, [winesData, wineHouse, filterArg]);
 
+  if (ageGateStatus === "pending") {
+    return null;
+  }
+
+  if (ageGateStatus === "rejected") return null;
+
   return (
     <div className={styles.page}>
       <Header
         cartList={cart}
         onRemoveItem={handleRemoveItem}
         onUpdateCartList={handleUpdateCartList}
+        onCartButtonPressed={toggleCart}
+        openCart={openCart}
       />
       <Hero />
 
       <main className={styles.mainContent}>
-        <Navbar value={tabValue} handleOnChange={handleChange} />
-        <article className={styles.winesSection}>
-          <section className={styles.winesList}>
-            <Grid container spacing={{ xs: 2, md: 3 }}>
-              <Grid size={{ xs: 5, sm: 3, md: 3 }} className="country-filter">
-                <RadioFilters
-                  wineHouse={wineHouse}
-                  handleOnChange={handleRadioChange}
-                  houseOptions={houseOptions}
-                />
-                <Divider />
-              </Grid>
-              <Grid size={{ xs: 7, sm: 9, md: 9 }}>
-                <CustomTabPanel value={tabValue} index={0}>
-                  <Grid container spacing={2} className={styles.cardContainer}>
-                    {filteredData.map((el, index) => (
-                      <Grid key={index}>
-                        <WineCard
-                          id={el.id}
-                          name={el.name}
-                          house={el.houseName || el.house}
-                          variety={el.variety}
-                          year={el.year}
-                          color={el.color}
-                          country={el.country}
-                          region={el.region}
-                          price={el.price}
-                          imageSrc={el.imageURL}
-                          handleCartButton={onCartButtonPressed}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                </CustomTabPanel>
-              </Grid>
-            </Grid>
-          </section>
-        </article>
-        <article>
-          <section>
-            <div className={styles.sectionHeader}>
-              <Typography align="center" color="black" variant="h6">
-                {" "}
-                Llévate una playerita
-              </Typography>
-            </div>
-            <div className={styles.merchContainer}>
-              <Grid container spacing={2}>
-                {merchData.map((el) => (
-                  <Grid key={el.id}>
-                    <MerchCard
-                      item={el}
-                      handleCartButton={onCartButtonPressed}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-            </div>
-          </section>
-        </article>
+        <HomeWinesSection
+          tabValue={tabValue}
+          onTabChange={handleChange}
+          wineHouse={wineHouse}
+          onHouseChange={handleRadioChange}
+          houseOptions={houseOptions}
+          filteredData={filteredData}
+          onAddToCart={handleAddToCart}
+        />
+        <HomeMerchSection merchData={merchData} onAddToCart={handleAddToCart} />
       </main>
 
       <footer className={styles.footer}>
@@ -212,17 +190,34 @@ const HomeClient = ({ winesData, merchData }) => {
       <CustomSnackbar
         open={openSnackBar}
         handleOnClose={handleSnackbarClose}
+        actionOnClick={() => toggleCart(true)}
         severity="success"
         message="Haz agregado un producto a tu carrito"
+        actionLabel="Ver carrito"
+      />
+
+      <Modal
+        isOpen={ageGateStatus === "unknown"}
+        title="¿Eres mayor de 18 años?"
+        content="Para continuar navegando en Tirando Vino, necesitamos confirmar que tienes 18 años o más."
+        onClose={(event, reason) => {
+          if (reason === "backdropClick") return;
+        }}
+        actions={[
+          {
+            label: "No, soy menor de 18",
+            color: "error",
+            onClick: handleAgeRejected,
+          },
+          {
+            label: "Sí, soy mayor de 18",
+            color: "primary",
+            onClick: handleAgeAccepted,
+          },
+        ]}
       />
     </div>
   );
-};
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  value: PropTypes.number,
-  index: PropTypes.number,
 };
 
 HomeClient.propTypes = {

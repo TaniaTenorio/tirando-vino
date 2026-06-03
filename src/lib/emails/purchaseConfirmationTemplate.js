@@ -164,7 +164,7 @@ export function buildPurchaseConfirmationEmail({
     "Tirando Vino",
     "",
     `Hola ${customerName},`,
-    "Tu compra esta confirmada. Gracias por tu pedido.",
+    "Tu compra está confirmada. Gracias por tu pedido.",
     "",
     `ID de compra: ${paymentRequestId || "N/A"}`,
     `Recibo: ${receiptNo || "N/A"}`,

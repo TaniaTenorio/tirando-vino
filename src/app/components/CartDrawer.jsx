@@ -73,9 +73,10 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
         <IconButton
           edge="start"
           color="inherit"
-          aria-label="menu"
+          aria-label="close"
           size="large"
           onClick={closeDrawer}
+        >
         >
           <CloseIcon />
         </IconButton>

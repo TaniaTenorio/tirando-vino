@@ -66,7 +66,7 @@ export function buildPurchaseConfirmationEmail({
     timeStyle: "short",
   });
 
-  const subject = `Confirmacion de compra #${paymentRequestId}`;
+  const subject = `Confirmación de compra #${paymentRequestId}`;
 
   const html = `
     <div style="margin:0;padding:24px;background:#f7f7f5;font-family:Arial,sans-serif;color:#1f2937;">

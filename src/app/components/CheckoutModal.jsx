@@ -44,6 +44,8 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
     );
   }, [contactForm]);
 
+  console.log("contactForm:", contactForm);
+
   const handleFormChange = React.useCallback((updates) => {
     setContactForm((prevForm) => ({ ...prevForm, ...updates }));
   }, []);
@@ -70,9 +72,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
 
   const cartSubtotal = React.useMemo(
     () =>
-      list
-        .reduce((acc, item) => acc + item.productPrice * item.quantity, 0)
-        .toFixed(2),
+      list.reduce((acc, item) => acc + item.productPrice * item.quantity, 0),
     [list],
   );
 
@@ -81,20 +81,35 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
     [list],
   );
 
-  const hasFreeShipping = totalItems >= 6 || totalPrice >= 4000;
+  const totalAmount = Number(totalPrice) || cartSubtotal;
 
-  //   const deliveryFee = React.useMemo(() => {
-  //     if (contactForm.stateCode === "CMX" && hasFreeShipping) {
-  //       console.log("Eligible for free shipping in CMX");
-  //       return 0;
-  //     }
-  //     return contactForm.stateCode === "CMX" ? 150 : 250;
-  //   }, [contactForm.stateCode, hasFreeShipping]);
+  const hasFreeShipping = React.useMemo(() => {
+    const stateCode = contactForm.stateCode.trim().toUpperCase();
+    const qualifiesByAmountOrItems = totalAmount > 4000 || totalItems > 6;
 
-  const deliveryFee = 0;
+    return stateCode === "CMX" && qualifiesByAmountOrItems;
+  }, [contactForm.stateCode, totalAmount, totalItems]);
+
+  const deliveryFee = React.useMemo(() => {
+    if (hasFreeShipping) {
+      return 0;
+    }
+
+    const stateCode = contactForm.stateCode.trim().toUpperCase();
+
+    if (stateCode === "CMX") {
+      return 250;
+    }
+
+    if (stateCode === "MEX") {
+      return 450;
+    }
+
+    return 600;
+  }, [contactForm.stateCode, hasFreeShipping]);
 
   const totalPriceWithDelivery = React.useMemo(
-    () => (parseFloat(cartSubtotal) + deliveryFee).toFixed(2),
+    () => (cartSubtotal + deliveryFee).toFixed(2),
     [cartSubtotal, deliveryFee],
   );
 
@@ -162,7 +177,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
         >
           <Typography variant="body2">Envío</Typography>
           <Typography variant="body2" sx={{ fontWeight: 600 }}>
-            ${deliveryFee} MXN
+            ${deliveryFee.toFixed(2)} MXN
           </Typography>
         </Box>
         <Divider sx={{ my: 0.75 }} />
@@ -252,7 +267,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
               {
                 render: (
                   <PayButton
-                    totalPrice={totalPrice}
+                    totalPrice={totalPriceWithDelivery}
                     contactForm={contactForm}
                   />
                 ),

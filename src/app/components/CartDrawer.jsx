@@ -165,14 +165,23 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
             sx={{
               display: "flex",
               justifyContent: "flex-start",
+              flexDirection: "column",
+              alignItems: "flex-start",
             }}
           >
+            <Typography>
+              Recuerda que en CDMX puedes tener envío gratis. Compra 6 botellas
+              o $6000 MXN
+            </Typography>
             <Typography
               align="center"
               variant="h6"
               style={{ padding: "16px 0px", fontWeight: "bold" }}
             >
               {`Total: $${totalPrice} MXN`}
+            </Typography>
+            <Typography>
+              Solo te faltarían {`$${6000 - totalPrice} MXN`} para envío gratis
             </Typography>
           </Container>
         </Container>

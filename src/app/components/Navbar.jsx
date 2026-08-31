@@ -10,7 +10,7 @@ function a11yProps(index) {
   };
 }
 
-const Navbar = ({ value, handleOnChange }) => (
+const Navbar = ({ value, handleOnChange, colorTabs }) => (
   <div className={styles.navbar}>
     <Typography align="center" color="black" variant="h6">
       Explora nuestros vinos
@@ -24,11 +24,14 @@ const Navbar = ({ value, handleOnChange }) => (
       textColor="primary"
     >
       <Tab label="Todos" {...a11yProps(0)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Blanco" {...a11yProps(1)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Rosado" {...a11yProps(2)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Tinto" {...a11yProps(3)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Naranja" {...a11yProps(4)} sx={{ fontWeight: "bold" }} />
-      <Tab label="Espumoso" {...a11yProps(4)} sx={{ fontWeight: "bold" }} />
+      {colorTabs.map((color, index) => (
+        <Tab
+          key={color}
+          label={color}
+          {...a11yProps(index + 1)}
+          sx={{ fontWeight: "bold" }}
+        />
+      ))}
     </Tabs>
   </div>
 );
@@ -36,6 +39,7 @@ const Navbar = ({ value, handleOnChange }) => (
 Navbar.propTypes = {
   value: PropTypes.number,
   handleOnChange: PropTypes.func,
+  colorTabs: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Navbar;

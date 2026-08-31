@@ -71,14 +71,45 @@ const HomeClient = ({ winesData, merchData }) => {
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [winesData]);
 
+  const colorTabs = React.useMemo(() => {
+    const seen = new Set();
+
+    return winesData
+      .map((item) => item?.color)
+      .filter((color) => {
+        if (!color) return false;
+
+        const normalized = String(color).trim();
+        if (!normalized) return false;
+
+        const key = normalized.toUpperCase();
+        if (seen.has(key)) return false;
+
+        seen.add(key);
+        return true;
+      })
+      .map((color) => String(color).trim())
+      .sort((a, b) => a.localeCompare(b));
+  }, [winesData]);
+
   const handleRadioChange = React.useCallback((event) => {
     setWineHouse(event.target.value);
   }, []);
 
-  const handleChange = React.useCallback((event, newValue) => {
-    setTabvalue(newValue);
-    setFilterArg(event.target.innerText);
-  }, []);
+  const handleChange = React.useCallback(
+    (event, newValue) => {
+      setTabvalue(newValue);
+
+      if (newValue === 0) {
+        setFilterArg("TODOS");
+        return;
+      }
+
+      const selectedColor = colorTabs[newValue - 1];
+      setFilterArg(selectedColor ? selectedColor.toUpperCase() : "TODOS");
+    },
+    [colorTabs],
+  );
 
   const handleSnackbarClose = React.useCallback((event, reason) => {
     if (reason === "clickaway") {
@@ -168,6 +199,7 @@ const HomeClient = ({ winesData, merchData }) => {
         <HomeWinesSection
           tabValue={tabValue}
           onTabChange={handleChange}
+          colorTabs={colorTabs}
           wineHouse={wineHouse}
           onHouseChange={handleRadioChange}
           houseOptions={houseOptions}

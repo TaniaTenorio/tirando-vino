@@ -10,7 +10,7 @@ function a11yProps(index) {
   };
 }
 
-const Navbar = ({ value, handleOnChange, colorTabs }) => (
+const Navbar = ({ value, handleOnChange, colorTabs = [] }) => (
   <div className={styles.navbar}>
     <Typography align="center" color="black" variant="h6">
       Explora nuestros vinos

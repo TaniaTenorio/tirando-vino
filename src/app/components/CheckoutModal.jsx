@@ -44,7 +44,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
     );
   }, [contactForm]);
 
-  console.log("contactForm:", contactForm);
+  process.env.NODE_ENV === "development" && console.log("contactForm:", contactForm);
 
   const handleFormChange = React.useCallback((updates) => {
     setContactForm((prevForm) => ({ ...prevForm, ...updates }));

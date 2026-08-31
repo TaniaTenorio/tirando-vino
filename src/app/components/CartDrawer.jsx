@@ -180,9 +180,11 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
             >
               {`Total: $${totalPrice} MXN`}
             </Typography>
-            <Typography>
-              Solo te faltarían {`$${6000 - totalPrice} MXN`} para envío gratis
-            </Typography>
+            {Number(totalPrice) < 6000 && (
+              <Typography>
+                Solo te faltarían {`$${(6000 - Number(totalPrice)).toFixed(2)} MXN`} para envío gratis
+              </Typography>
+            )}
           </Container>
         </Container>
 

@@ -256,10 +256,8 @@ const NewItemPage = () => {
             }
 
             return (
-              <>
-                <InputLabel htmlFor={field} key={field}>
-                  {getFieldLabel(field)}
-                </InputLabel>
+              <div key={field}>
+                <InputLabel htmlFor={field}>{getFieldLabel(field)}</InputLabel>
                 <OutlinedInput
                   type={
                     field === "price" || field === "year" ? "number" : "text"
@@ -270,7 +268,7 @@ const NewItemPage = () => {
                   fullWidth
                   sx={{ mb: 2 }}
                 />
-              </>
+              </div>
             );
           })}
 

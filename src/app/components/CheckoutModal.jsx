@@ -85,7 +85,7 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
 
   const hasFreeShipping = React.useMemo(() => {
     const stateCode = contactForm.stateCode.trim().toUpperCase();
-    const qualifiesByAmountOrItems = totalAmount > 4000 || totalItems > 6;
+    const qualifiesByAmountOrItems = totalAmount >= 6000 || totalItems >= 6;
 
     return stateCode === "CMX" && qualifiesByAmountOrItems;
   }, [contactForm.stateCode, totalAmount, totalItems]);

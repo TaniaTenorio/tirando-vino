@@ -171,7 +171,7 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
           >
             <Typography>
               Recuerda que en CDMX puedes tener envío gratis. Compra 6 botellas
-              o $6000 MXN
+              o $4000 MXN
             </Typography>
             <Typography
               align="center"
@@ -180,9 +180,11 @@ const CartDrawer = ({ list, closeDrawer, removeItem, updateCartList }) => {
             >
               {`Total: $${totalPrice} MXN`}
             </Typography>
-            {Number(totalPrice) < 6000 && (
+            {Number(totalPrice) < 4000 && (
               <Typography>
-                Solo te faltarían {`$${(6000 - Number(totalPrice)).toFixed(2)} MXN`} para envío gratis
+                Solo te faltarían{" "}
+                {`$${(4000 - Number(totalPrice)).toFixed(2)} MXN`} para envío
+                gratis
               </Typography>
             )}
           </Container>

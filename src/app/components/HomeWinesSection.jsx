@@ -26,6 +26,7 @@ function CustomTabPanel(props) {
 function HomeWinesSection({
   tabValue,
   onTabChange,
+  colorTabs,
   wineHouse,
   onHouseChange,
   houseOptions,
@@ -34,7 +35,11 @@ function HomeWinesSection({
 }) {
   return (
     <article className={styles.winesSection}>
-      <Navbar value={tabValue} handleOnChange={onTabChange} />
+      <Navbar
+        value={tabValue}
+        handleOnChange={onTabChange}
+        colorTabs={colorTabs}
+      />
       <section className={styles.winesList}>
         <Grid container spacing={{ xs: 2, md: 3 }}>
           <Grid size={{ xs: 5, sm: 3, md: 3 }} className="country-filter">
@@ -100,6 +105,7 @@ CustomTabPanel.propTypes = {
 HomeWinesSection.propTypes = {
   tabValue: PropTypes.number.isRequired,
   onTabChange: PropTypes.func.isRequired,
+  colorTabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   wineHouse: PropTypes.string.isRequired,
   onHouseChange: PropTypes.func.isRequired,
   houseOptions: PropTypes.array.isRequired,

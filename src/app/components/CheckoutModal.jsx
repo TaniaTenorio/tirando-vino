@@ -176,6 +176,14 @@ const CheckoutModal = ({ isOpen, onClose, list, totalPrice }) => {
         <Box
           sx={{ display: "flex", justifyContent: "space-between", mb: 0.75 }}
         >
+          <Typography variant="body2">Productos</Typography>
+          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+            ${cartSubtotal.toFixed(2)} MXN
+          </Typography>
+        </Box>
+        <Box
+          sx={{ display: "flex", justifyContent: "space-between", mb: 0.75 }}
+        >
           <Typography variant="body2">Envío</Typography>
           <Typography variant="body2" sx={{ fontWeight: 600 }}>
             ${deliveryFee.toFixed(2)} MXN

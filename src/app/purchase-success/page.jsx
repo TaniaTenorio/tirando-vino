@@ -46,10 +46,10 @@ export default function PurchaseSuccessPage() {
   React.useEffect(() => {
     const mockMode = isMockModeEnabled();
 
-    // Load cart from localStorage.
+    // Load cart from sessionStorage.
     let cartItems = [];
     try {
-      const storedCart = window.localStorage.getItem("tv-cart");
+      const storedCart = window.sessionStorage.getItem("tv-cart");
       if (storedCart) {
         const parsed = JSON.parse(storedCart);
         if (Array.isArray(parsed)) {

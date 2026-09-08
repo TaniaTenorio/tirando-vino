@@ -3,8 +3,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
-const AGE_GATE_STORAGE_KEY = "tv-age-gate-status";
-
 export default function AgeRestrictedPage() {
   const isDev = process.env.NODE_ENV !== "production";
 
@@ -12,13 +10,7 @@ export default function AgeRestrictedPage() {
     try {
       await fetch("/api/age-gate", { method: "DELETE" });
     } catch {
-      // Ignore network errors and still reset local state.
-    }
-
-    try {
-      window.localStorage.removeItem(AGE_GATE_STORAGE_KEY);
-    } catch {
-      // Ignore local storage failures.
+      // Ignore network errors and still navigate.
     }
 
     window.location.replace("/");

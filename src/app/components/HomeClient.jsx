@@ -28,7 +28,7 @@ const HomeClient = ({ winesData, merchData }) => {
 
   React.useEffect(() => {
     try {
-      const storedCart = window.localStorage.getItem(CART_STORAGE_KEY);
+      const storedCart = window.sessionStorage.getItem(CART_STORAGE_KEY);
 
       if (storedCart) {
         const parsedCart = JSON.parse(storedCart);
@@ -38,7 +38,7 @@ const HomeClient = ({ winesData, merchData }) => {
         }
       }
     } catch {
-      // Ignore malformed or inaccessible local storage data.
+      // Ignore malformed or inaccessible session storage data.
     } finally {
       hasHydratedCart.current = true;
     }
@@ -48,9 +48,9 @@ const HomeClient = ({ winesData, merchData }) => {
     if (!hasHydratedCart.current) return;
 
     try {
-      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+      window.sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     } catch {
-      // Ignore local storage write failures.
+      // Ignore session storage write failures.
     }
   }, [cart]);
 

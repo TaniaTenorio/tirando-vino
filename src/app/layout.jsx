@@ -17,6 +17,11 @@ const shadowsIntoLight = Shadows_Into_Light({
 export const metadata = {
   title: "Tirando Vino",
   description: "Tienda en linea especializada en vinos mexicanos",
+  icons: {
+    icon: "/assets/tirando_vino_logo_blanco.png",
+    shortcut: "/assets/tirando_vino_logo_blanco.png",
+    apple: "/assets/tirando_vino_logo_blanco.png",
+  },
 };
 
 export default function RootLayout({ children }) {
